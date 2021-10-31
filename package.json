@@ -1,5 +1,5 @@
 {
-  "name": "kaali_peeli",
+  "name": "meter_down",
   "version": "1.0.0",
   "description": "FSD MERN Mini-project GRP-27",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vedant080102/FSD-MERN-GRP27-KAALI_PEELI.git"
+    "url": "git+https://github.com/vedant080102/FSD-MERN-GRP27-METER_DOWN.git"
   },
   "keywords": [
     "mern",
@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vedant080102/FSD-MERN-GRP27-KAALI_PEELI/issues"
+    "url": "https://github.com/vedant080102/FSD-MERN-GRP27-METER_DOWN/issues"
   },
-  "homepage": "https://github.com/vedant080102/FSD-MERN-GRP27-KAALI_PEELI#readme"
+  "homepage": "https://github.com/vedant080102/FSD-MERN-GRP27-METER_DOWN#readme"
 }
