@@ -1,24 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
+  "short_name": "MD",
+  "name": "Meter Down",
+  "description": "A website where customers can book cabs/autorikshaws for transport",
+  "icons": [{
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "logo.svg",
+      "purpose": "maskable any",
+      "sizes": "48x48 72x72 96x96 128x128 192x192 256x256"
     }
   ],
-  "start_url": ".",
+  "start_url": "index.html",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

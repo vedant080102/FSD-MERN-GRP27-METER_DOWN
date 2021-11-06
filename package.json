@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "FSD MERN Mini-project GRP-27",
   "main": "index.js",
+  "start": "react-scripts --openssl-legacy-provider start",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
