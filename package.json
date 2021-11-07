@@ -6,7 +6,8 @@
   "start": "react-scripts --openssl-legacy-provider start",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "heroku-postbuild": "cd frontend && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,9 @@
     "react",
     "node"
   ],
+  "engines": {
+    "node": "14.15.5"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
