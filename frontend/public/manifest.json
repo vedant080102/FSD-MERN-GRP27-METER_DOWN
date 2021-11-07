@@ -1,0 +1,46 @@
+{
+  "short_name": "MD",
+  "name": "Meter Down",
+  "description": "A website where customers can book cabs/autorikshaws for transport",
+  "icons": [{
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "logo/logo-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "logo/logo-72.png",
+      "type":"image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "logo/logo-180.png",
+      "type":"image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "logo/logo-192.png",
+      "type":"image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo/logo-new.svg",
+      "type":"image/png",
+      "purpose": "maskable any",
+      "sizes": "96x96 128x128 192x192 256x256"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "theme_color": "#2b0a2c",
+  "background_color": "#2b0a2c"
+}
