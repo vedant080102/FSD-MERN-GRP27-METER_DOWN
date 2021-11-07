@@ -36,12 +36,6 @@ To build the project run the following command in your terminal:
 
 ## BACKEND
 
----
-    displayName: Jwhisper
-    description: A simple client
-    labels: ['node.js', 'json', 'communication', 'wsp']
----
-
 <br>
 
 ### MEMBERS

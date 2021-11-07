@@ -1,3 +1,13 @@
+/* theme colors:
+purpe: #2b0a2c
+yellow: #ffcf15
+*/
+
+:root {
+  --purpe: #2b0a2c;
+  --yellow: #ffcf15;
+}
+
 .App {
   text-align: center;
 }
