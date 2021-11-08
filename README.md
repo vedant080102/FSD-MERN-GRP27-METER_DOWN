@@ -6,7 +6,11 @@
 
 ### TITLE: **METER DOWN**
 
+<center>
+
 ![LOGO](frontend/public/logo/logo-512.png)
+
+</center>
 
 <br>
 <br>
