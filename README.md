@@ -6,7 +6,7 @@
 
 ### TITLE: **METER DOWN**
 
-![LOGO](frontend\public\logo\logo-512.png)
+![LOGO](frontend/public/logo/logo-512.png)
 
 <br>
 <br>
