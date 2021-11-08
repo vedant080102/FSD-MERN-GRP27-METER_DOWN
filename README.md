@@ -1,18 +1,18 @@
 # FSD-MERN-GRP27-METER_DOWN
 
-### GROUP NUMBER: **27**
+
+<p align="center">
+  <a href="" rel="noopener">
+    <img src='frontend/public/logo/logo-512.png' alt='LOGO' height='300'/>
+  </a>
+</p>
 
 <br>
+
+### GROUP NUMBER: **27**
 
 ### TITLE: **METER DOWN**
 
-<center>
-
-![LOGO](frontend/public/logo/logo-512.png)
-
-</center>
-
-<br>
 <br>
 
 ## Quick Start
