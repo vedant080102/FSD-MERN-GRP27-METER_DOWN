@@ -1,0 +1,32 @@
+@import '../App.css';
+
+.home-header {
+    height: 100vh;
+    /* background-color: var(--purple); */
+    background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6), url('../Media/MUMBAI-TAXI-landscape.jpg');
+    background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover;
+}
+
+.home-header .navbar-brand {
+    display: none;
+}
+
+.home-logo {
+    position: absolute;
+    top: 25%;
+    display: flex;
+    flex-direction: column;
+    /* left: 41%; */
+    left: 0%;
+    right: 0%;
+    width: 200px;
+    margin: auto;
+}
+
+.home-logo span {
+    color: var(--yellow);
+    font-family: 'Antonio', sans-serif;
+    font-size: 2em;
+}

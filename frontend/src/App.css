@@ -1,10 +1,12 @@
 /* theme colors:
-purpe: #2b0a2c
+purple: #2b0a2c
 yellow: #ffcf15
 */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@200;400;700&display=swap');
+/* font-family: 'Antonio', sans-serif; */
 
 :root {
-  --purpe: #2b0a2c;
+  --purple: #2b0a2c;
   --yellow: #ffcf15;
 }
 
@@ -13,21 +15,93 @@ yellow: #ffcf15
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 75px;
   pointer-events: none;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--purple);
+  /* min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white; */
+}
+
+.App-header .navbar {
+  transition: 0.4s;
+}
+
+.navbar.fixed-top .navbar-brand {
+  display: block;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar.fixed-top {
+  background-color: var(--purple);
+  transition: 0.4s;
+}
+
+/* hamburger css */
+#hamburg {
+  position: absolute;
+  top: 25px;
+  left: 12px;
+}
+
+#hamburg svg {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 1.5;
+  cursor: pointer;
+}
+
+#hamburg svg path {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3px;
+}
+
+#top,
+#bottom {
+  stroke-dasharray: 30, 75.39;
+  transition: all 0.6s cubic-bezier(0.6, 0.33, 0.67, 1.29);
+}
+
+#hamburg svg.active #top,
+#hamburg svg.active #bottom {
+  stroke-dasharray: 75.39;
+  stroke-dashoffset: -60;
+}
+
+#hamburg svg {
+  transform: rotate(0deg);
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#hamburg svg path {
+  transition: all 0.4s ease-in-out 0.6s;
+}
+
+#hamburg svg.active {
+  transform: rotate(180deg);
+}
+
+#hamburg .rocket #top {
+  stroke-dasharray: 30, 88;
+}
+
+/* ham end */
