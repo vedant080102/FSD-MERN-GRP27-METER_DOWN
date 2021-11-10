@@ -14,13 +14,39 @@ yellow: #ffcf15
   text-align: center;
 }
 
+body {
+  overflow: overlay;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #0a09034b;
+	border-radius: 2em;
+	cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #0a09038a;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	margin: 2px 0;
+}
+/* SCROLL END */
+
 .App-logo {
-  height: 75px;
+  height: 50px;
   pointer-events: none;
 }
 
 .App-header {
   background-color: var(--purple);
+  height: 76px;
   /* min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -51,13 +77,16 @@ yellow: #ffcf15
 .navbar.fixed-top {
   background-color: var(--purple);
   transition: 0.4s;
+  background-image: url('Media/purple-sprinkle.svg');
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
 }
 
 /* hamburger css */
 #hamburg {
   position: absolute;
-  top: 25px;
+  top: 13px;
   left: 12px;
+  z-index: 1200;
 }
 
 #hamburg svg {
@@ -88,7 +117,7 @@ yellow: #ffcf15
 }
 
 #hamburg svg {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
   transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -97,7 +126,7 @@ yellow: #ffcf15
 }
 
 #hamburg svg.active {
-  transform: rotate(180deg);
+  transform: rotate(360deg);
 }
 
 #hamburg .rocket #top {
@@ -105,3 +134,48 @@ yellow: #ffcf15
 }
 
 /* ham end */
+
+/* SIDEBAR */
+/* .sidebar-root, */
+.sidebar-sb {
+  position: fixed !important;
+}
+
+.sidebar-sb {
+  z-index: 1020 !important;
+  background-image: url('Media/purple-sprinkle.svg');
+  width: 280px;
+}
+
+.sidebar-root .nav-link {
+  color: white;
+}
+.sidebar-root .nav-link.active {
+  background-color: var(--yellow) !important;
+  color: var(--purple) !important;
+}
+
+.side-col {
+  height: calc(100vh - 76px);
+  margin-top: 76px;
+}
+
+.side-col hr {
+  background-color: var(--yellow);
+  /* height: 5px; */
+}
+.side-col .dropdown-menu {
+  background-color: var(--purple) !important;
+}
+.side-comp {
+  width: fit-content;
+  color: var(--yellow);
+  font-family: 'Antonio', sans-serif;
+}
+
+/* SB END */
+
+.purple-btn {
+  color: white;
+  background-color: var(--purple);
+}

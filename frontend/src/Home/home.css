@@ -3,10 +3,11 @@
 .home-header {
     height: 100vh;
     /* background-color: var(--purple); */
-    background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6), url('../Media/MUMBAI-TAXI-landscape.jpg');
-    background-size: cover;
+    /* background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6), url('../Media/MUMBAI-TAXI-landscape.jpg'); */
+    /* background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6); */
+    /* background-size: cover;
     background-position: center center;
-    -webkit-background-size: cover;
+    -webkit-background-size: cover; */
 }
 
 .home-header .navbar-brand {
