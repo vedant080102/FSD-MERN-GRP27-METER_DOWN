@@ -31,3 +31,46 @@
     font-family: 'Antonio', sans-serif;
     font-size: 2em;
 }
+
+.curved {
+    position: relative;
+    background: #2c3e50;
+    height: 50vh;
+}
+
+.curved::after {
+    content: '';
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    height: 13%;
+}
+
+.custom-shape-divider-top-1636559095 {
+    position: absolute;
+    top: calc(100vh - 100px);
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    /* transform: rotate(180deg); */
+    /* top: 100vh; */
+}
+
+.custom-shape-divider-top-1636559095 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 101px;
+}
+
+.custom-shape-divider-top-1636559095 .shape-fill {
+    fill: #FFFFFF;
+}
+
+#book-a-ride .card {
+    background-color: var(--yellow);
+}
