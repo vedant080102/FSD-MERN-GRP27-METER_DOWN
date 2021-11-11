@@ -3,8 +3,8 @@ const dynamicCacheName = 'dynamic-cache';
 
 const assets = [
   '/',
-  // '/index.html'
 ];
+// '/index.html'
 
 //cache size limit function
 const limitCacheSize=(name,size)=>{
