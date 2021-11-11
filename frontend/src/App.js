@@ -5,40 +5,56 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 import Home from './Home/Home';
+import Bookings from './Bookings/Bookings';
+import Feedback from './Feedback/Feedback';
+import About from './About/About';
+import Contact from './Contact/Contact';
 import Login from './loginSignup/Login';
 
 
 function App() {
 	return (
 		<div className="App">
-			<Home />
-			{/* <Router>
-				<nav>
-					<ul>
-					<li>
-						<Link to="/">Home</Link>
-					</li>
-					<li>
-						<Link to="/about">About</Link>
-					</li>
-					<li>
-						<Link to="/users">Users</Link>
-					</li>
-					</ul>
-				</nav>
-
+			<Router>
 				<Routes>
-					<Route path="/" exact component={() => <Home />} />
-					<Route path="/login" exact component={() => <>
-						<Login />
+					<Route path="/" element={<Home />} />
+					<Route path="/index.html" element={<Home />} />
+					<Route path="/home" element={<Home />} />
+					<Route path="/login" element={<>
 						<Navbar homepage={false}/>
+						<Login />
 					</>} />
+					<Route path="/bookings" element={<>
+						<Navbar homepage={false}/>
+						<Bookings />
+						</>}
+					/>
+					<Route path="/feedback" element={<>
+						<Navbar homepage={false}/>
+						<Feedback />
+						</>}
+					/>
+					<Route path="/about" element={<>
+						<Navbar homepage={false}/>
+						<About />
+						</>}
+					/>
+					<Route path="/contact" element={<>
+						<Navbar homepage={false}/>
+						<Contact />
+						</>}
+					/>
+					<Route path="/login" element={<>
+						<Navbar homepage={false}/>
+						<Login />
+						</>}
+					/>
 				</Routes>
-			</Router> */}
+			{/* <Home/> */}
+			</Router>
 		</div>
 	);
 }

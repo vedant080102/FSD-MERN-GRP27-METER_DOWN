@@ -3,10 +3,11 @@
 .home-header {
     height: 100vh;
     /* background-color: var(--purple); */
-    background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6), url('../Media/MUMBAI-TAXI-landscape.jpg');
-    background-size: cover;
+    /* background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6), url('../Media/MUMBAI-TAXI-landscape.jpg'); */
+    /* background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6); */
+    /* background-size: cover;
     background-position: center center;
-    -webkit-background-size: cover;
+    -webkit-background-size: cover; */
 }
 
 .home-header .navbar-brand {
@@ -29,4 +30,47 @@
     color: var(--yellow);
     font-family: 'Antonio', sans-serif;
     font-size: 2em;
+}
+
+.curved {
+    position: relative;
+    background: #2c3e50;
+    height: 50vh;
+}
+
+.curved::after {
+    content: '';
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    height: 13%;
+}
+
+.custom-shape-divider-top-1636559095 {
+    position: absolute;
+    top: calc(100vh - 100px);
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    /* transform: rotate(180deg); */
+    /* top: 100vh; */
+}
+
+.custom-shape-divider-top-1636559095 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 101px;
+}
+
+.custom-shape-divider-top-1636559095 .shape-fill {
+    fill: #FFFFFF;
+}
+
+#book-a-ride .card {
+    background-color: var(--yellow);
 }
