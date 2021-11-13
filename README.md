@@ -15,10 +15,17 @@
 
 <br>
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+
 ## Quick Start
 Clone the repository:
 
     git clone https://github.com/vedant080102/FSD-MERN-GRP27-METER_DOWN.git 
+
+<br/>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+
 
 ## FRONTEND- REACT PWA
 
@@ -38,9 +45,13 @@ To build the project run the following command in your terminal:
 
 <br>
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+
 ## BACKEND
 
-<br>
+<br/>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
 
 ### MEMBERS
 - VEDANT SARNOBAT (1911117)
