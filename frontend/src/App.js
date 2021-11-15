@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './base/Base';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,7 +14,6 @@ import Feedback from './Feedback/Feedback';
 import About from './About/About';
 import Contact from './Contact/Contact';
 import Login from './loginSignup/Login';
-
 
 function App() {
 	return (
@@ -53,7 +53,6 @@ function App() {
 						</>}
 					/>
 				</Routes>
-			{/* <Home/> */}
 			</Router>
 		</div>
 	);

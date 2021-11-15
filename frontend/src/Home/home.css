@@ -1,5 +1,6 @@
 @import '../App.css';
 
+
 .home-header {
     height: 100vh;
     /* background-color: var(--purple); */
@@ -68,9 +69,16 @@
 }
 
 .custom-shape-divider-top-1636559095 .shape-fill {
-    fill: #FFFFFF;
+    /* fill: #FFFFFF; */
+    fill: var(--yellow);
 }
 
 #book-a-ride .card {
-    background-color: var(--yellow);
+    background-color: var(--purple);
+}
+
+/* .home-main { */
+#book-a-ride {
+    background-image: linear-gradient(#ffcf15, transparent), url('../Media/purple-sprinkle.svg');
+    /* background-image: url('../Media/purple-sprinkle.svg'); */
 }
