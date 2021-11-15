@@ -13,7 +13,7 @@ import Feedback from './Feedback/Feedback';
 import About from './About/About';
 import Contact from './Contact/Contact';
 import Login from './loginSignup/Login';
-
+import Signup from './loginSignup/Signup';
 
 function App() {
 	return (
@@ -26,6 +26,10 @@ function App() {
 					<Route path="/login" element={<>
 						<Navbar homepage={false}/>
 						<Login />
+					</>} />
+					<Route path="/signup" element={<>
+						<Navbar homepage={false}/>
+						<Signup/>
 					</>} />
 					<Route path="/bookings" element={<>
 						<Navbar homepage={false}/>
