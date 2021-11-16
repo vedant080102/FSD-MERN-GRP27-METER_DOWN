@@ -12,14 +12,14 @@ function Login() {
         <div className="container-fluid bg">
           <div className="container login">
           <form>
-            <h1 id="sign-head">Sign in</h1>New user? <a class="link" href="">Create an account</a>
+            <h1 id="sign-head">Sign in</h1>New user? <a class="link" href="/signup" className="mylink">Create an account</a>
             <br></br>
             <br></br>
-            <label htmlFor="Email">Email</label><br></br>
-            <input type="text" id="Email" /><br></br>
+            <label htmlFor="Email" className="mylabel">Email</label><br></br>
+            <input className="myinput" type="text" id="Email" /><br></br>
             <br></br>
-            <label htmlFor="pass">Password</label><br></br>
-            <input type="password" id="pass"/><br></br>
+            <label htmlFor="pass" className="mylabel">Password</label><br></br>
+            <input  className="myinput" type="password" id="pass"/><br></br>
             <br></br>
             <br></br>
             <button type="submit" id="submit">Login</button>
