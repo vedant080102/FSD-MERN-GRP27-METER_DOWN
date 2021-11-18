@@ -1,0 +1,55 @@
+.login{
+    width: 40%;
+    margin: 5% 5% 55%;
+    background-color: rgba(61, 4, 61,0.6);
+    color: yellow;
+    padding: 1.5%;
+}
+
+.bg{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../../Media/login2.png");;
+    background-size: cover;
+ 
+    height: 100vh;
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+}
+
+
+
+input {
+    width: 80%;
+    margin: 8px 0px 0px 0px;
+    background-color: transparent;
+    border-block-style: none;
+    border-bottom-style: groove;
+    border-inline: none;
+    color: rgba(37, 3, 35, 0.4);
+    font-size: 20px;
+    font-family: 'Adobe Clean';
+  }
+
+label{
+    text-align: left;
+    font-size: large;
+}
+
+  #submit {
+    background-color: transparent;
+    color: yellow;
+    padding: 14px 20px;
+    border: 1px solid;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 100px;
+    font-family: 'Varela Round';
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  #submit:hover {
+    color: #24252a;
+    background-color: blanchedalmond;
+    transition: all 0.4s ease 0s;
+  }

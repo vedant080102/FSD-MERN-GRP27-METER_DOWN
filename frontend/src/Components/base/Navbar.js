@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import logo from '../Media/logo.png';
+import logo from '../../Media/logo.png';
 import Sidebar from "react-sidebar";
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
@@ -123,8 +123,32 @@ function Navbar(props) {
             onSetOpen={setsidebarOpen}
             rootClassName={'sidebar-root'}
             sidebarClassName={'sidebar-sb'}
-            contentClassName={'content-sb'}
-            overlayClassName={'overlay-sb'}
+            // contentClassName={'content-sb'}
+            // overlayClassName={'overlay-sb'}
+            styles={{
+                root: {
+                  position: undefined,
+                  zIndex: "20"
+                },
+                sidebar: {
+                  position: "fixed",
+                  width: "310px",
+                  height: "100vh",
+                  top: "0px",
+                  zIndex: "20"
+                },
+                content: {
+                  position: undefined,
+                  top: undefined,
+                  left: undefined,
+                  right: undefined,
+                  bottom: undefined
+                },
+                overlay: {
+                  backgroundColor: "rgba(0,0,0,0.5)",
+                  zIndex: "15"
+                }
+              }}
         ></Sidebar>
     </>
 

@@ -1,4 +1,4 @@
-@import '../App.css';
+@import '../../App.css';
 
 
 .home-header {
@@ -79,6 +79,41 @@
 
 /* .home-main { */
 #book-a-ride {
-    background-image: linear-gradient(#ffcf15, transparent), url('../Media/purple-sprinkle.svg');
+    background-image: linear-gradient(#ffcf15, transparent), url('../../Media/purple-sprinkle.svg');
     /* background-image: url('../Media/purple-sprinkle.svg'); */
+}
+#book-a-ride h3 {
+    font-weight: 700;
+}
+#location-card {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--purple);
+    border-radius: 7%;
+    text-align: start;
+    color: var(--yellow);
+}
+#select-route {
+    background-color: var(--yellow);
+    border-radius: 7%;
+}
+
+#select-route svg g[aria-label="Choose Your Route"] {
+    font-family: var(--contentFont);
+    fill: var(--purple);
+}
+
+#select-route svg path[fill="rgb(214,81,81)"] {
+    fill: var(--purple);
+}
+
+#select-route svg path[stroke="rgb(88,88,88)"] {
+    stroke: var(--yellow);
+    stroke-width: 3px;
+}
+
+.scrollable {
+    overflow: overlay;
+    scroll-behavior: smooth;
+    height: 20vh;
 }
