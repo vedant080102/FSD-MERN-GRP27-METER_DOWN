@@ -1,5 +1,5 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './login.css';
 import { Parallax, Background } from "react-parallax";
 import bgImg from '../../Media/MUMBAI-TAXI-landscape.jpg'

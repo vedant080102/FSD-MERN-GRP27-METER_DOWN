@@ -5,12 +5,11 @@ import logo from '../../Media/logo.png'
 import bgImg1 from '../../Media/MUMBAI-TAXI-landscape.jpg'
 import bgImg2 from '../../Media/MUMBAI-Rick.jpg'
 import { Parallax, Background } from "react-parallax";
-import sprinkle from '../../Media/purple-sprinkle.svg'
-import mapImg from '../../Media/map.svg'
-import * as LottiePlayer from "@lottiefiles/lottie-player";
-import lottie from 'lottie-web'
+// import sprinkle from '../../Media/purple-sprinkle.svg'
+// import mapImg from '../../Media/map.svg'
+import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from './geocoding';
-import { set } from 'mongoose';
+
 
 function Home() {
 
@@ -18,38 +17,37 @@ function Home() {
     const [locQuery, setLocQuery] = useState({})
     const [pickupLoc, setpickupLoc] = useState({})
     const [destinationLoc, setdestinationLoc] = useState({})
-    const hiddenRef = useRef();
+    const routeAnimationRef = useRef();
     var animation;
     
-    useEffect(()=> {
-        animate();
-    },[1]);
-        
-    useEffect(() => {
-        window.addEventListener('scroll resize', scrollHandler);
-        return () => window.removeEventListener('scroll resize', scrollHandler);
-    }, []);
-    
-   const animate = () => {
+    const animate = () => {
         console.log("lottie animation")
-        hiddenRef.current.innerHTML = '';
+        routeAnimationRef.current.innerHTML = '';
         animation = lottie.loadAnimation({
-            container: hiddenRef.current,
+            container: routeAnimationRef.current,
+            name: 'route-svg',
             path: 'https://assets1.lottiefiles.com/packages/lf20_ZZ5gpp.json',
             renderer: 'svg',
             loop: false,
-            // autoplay: false,
+            autoplay: false,
         })
-        animation.pause()
+        animation.pause('route-svg')
     }
     
+    useEffect(()=> animate(), [1])
+    
     const scrollHandler = () => {
-        if(window.pageYOffset + window.innerHeight >= hiddenRef.current.offsetTop) {
-            animation.play()
-            console.log("element in VP")
+        if(window.pageYOffset + window.innerHeight >= routeAnimationRef.current.offsetTop) {
+            // console.log("element in VP")
+            animation.play('route-svg')
         }
     }
-
+    
+    useEffect(() => {
+        window.addEventListener('scroll', scrollHandler);
+        return () => window.removeEventListener('scroll', scrollHandler);
+    }, [])
+        
     const getLocationModal = (type, location, loc) => {
         setLocQuery({
             type: type,
@@ -127,19 +125,14 @@ function Home() {
                                 <p>Choose from a range of categories and prices</p>
                             </div>
                             <div className='col-12 col-md-6 mt-2 mt-md-1'>
-                                <div className='card p-3 p-md-4 w-100 h-100' id='location-card'>
-                                    <div className="mb-3">
-                                    <div class="row-sm ptr">
-                                        <div onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>Pickup location</div>
-                                        <div>location</div>
-                                        <div onClick={() => getLocationModal('Destination Location', setdestinationLoc, destinationLoc)}>Destination location</div>
-                                    </div>
-                                        <label>Email address</label>
-                                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
-                                    </div>
-                                    <div className="mb-3">
-                                        <label>Password</label>
-                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                                <div className='card justify-content-betwee p-3 p-md-4 w-100 h-100' id='location-card'>
+                                    <h5>Need a taxi?<br/>Tell us when and where!</h5>
+                                    <div className='choose-location p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
+                                        onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>Pickup: {pickupLoc.title ? <span>{pickupLoc.title}</span> : "Select pickup for estimation"}</div>
+                                    <div className='choose-location p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}
+                                        onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>Drop: {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop for estimation"}</div>
+                                    <div className="w-100 flex">
+                                        <button className='buton yellow-btn mt-2 center'>Search Rides</button>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +146,7 @@ function Home() {
                                         src="https://assets1.lottiefiles.com/packages/lf20_ZZ5gpp.json"
                                         style={{width: "320px"}}
                                     ></lottie-player> */}
-                                    <div ref={hiddenRef} id='select-route'></div>
+                                    <div ref={routeAnimationRef} id='select-route'></div>
                                 </div>
                             </div>
                         </div>

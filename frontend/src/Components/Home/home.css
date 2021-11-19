@@ -87,17 +87,19 @@
 }
 #location-card {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     background-color: var(--purple);
-    border-radius: 7%;
+    border-radius: 0.5rem;
     text-align: start;
     color: var(--yellow);
 }
 #select-route {
     background-color: var(--yellow);
-    border-radius: 7%;
+    border-radius: 0.5rem;
 }
-
+#select-route svg {
+    max-height: 380px;
+}
 #select-route svg g[aria-label="Choose Your Route"] {
     font-family: var(--contentFont);
     fill: var(--purple);
@@ -115,5 +117,39 @@
 .scrollable {
     overflow: overlay;
     scroll-behavior: smooth;
-    height: 20vh;
+    height: 25vh;
+}
+.location-input input:focus {
+    border-color: #ced4da !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+.location-input span {
+    background-color: transparent !important;
+}
+.choose-location {
+    /* background-color: #ffffff0d; */
+    border: 1px solid var(--yellow);
+    /* background-color: #823585a6; */
+    color: #ffcf15a6;
+    /* font-weight: 100; */
+    cursor: pointer;
+    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.choose-location span {
+    color: var(--yellow);
+}
+
+@media (max-width: 756px) {
+    #select-route svg {
+        height: 300px;
+    }
+}
+@media (max-width: 576px) {
+    #select-route svg {
+        height: 250px;
+    }
 }

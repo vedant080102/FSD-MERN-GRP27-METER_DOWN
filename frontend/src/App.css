@@ -32,23 +32,24 @@ body {
 
 /* SCROLLBAR */
 ::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #0a09034b;
-	border-radius: 2em;
-	cursor: pointer;
+  background: #0a09034b;
+  border-radius: 2em;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #0a09038a;
+  background: #0a09038a;
 }
 
 ::-webkit-scrollbar-track {
-	background: transparent;
-	margin: 2px 0;
+  background: transparent;
+  margin: 2px 0;
 }
+
 /* SCROLL END */
 
 .App-logo {
@@ -90,7 +91,7 @@ body {
   background-color: var(--purple);
   transition: 0.4s;
   background-image: url('Media/purple-sprinkle.svg');
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
 }
 
 /* hamburger css */
@@ -170,9 +171,11 @@ body {
 .sidebar-root .nav-link {
   color: white;
 }
+
 .sidebar-root .nav-link:hover {
   color: var(--yellow);
 }
+
 .sidebar-root .nav-link.active {
   background-color: var(--yellow) !important;
   color: var(--purple) !important;
@@ -187,14 +190,17 @@ body {
   background-color: var(--yellow);
   /* height: 5px; */
 }
+
 .side-col .dropdown-menu {
   background-color: var(--purple) !important;
 }
+
 .side-comp {
   width: fit-content;
   color: var(--yellow);
   font-family: 'Antonio', sans-serif;
 }
+
 .content-sb {
   position: undefined;
   top: undefined;
@@ -202,11 +208,26 @@ body {
   right: undefined;
   bottom: undefine;
 }
+
 /* SB END */
+.buton {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
 
 .purple-btn {
   color: white;
   background-color: var(--purple);
+  border: 1px solid transparent;
+}
+
+.yellow-btn {
+  color: var(--purple);
+  background-color: var(--yellow);
+
+  border: 1px solid transparent;
 }
 
 /* FOOTER */
@@ -214,7 +235,8 @@ footer {
   background-image: url('Media/purple-sprinkle.svg');
   padding: 2px;
 }
-#social-links, 
+
+#social-links,
 #bottom-nav-links {
   margin-bottom: 0px !important;
 }
@@ -257,15 +279,16 @@ footer {
 
 .footer-end-part {
   background-color: var(--yellow);
-  font-weight: 200; 
+  font-weight: 200;
 }
+
 .footer-end-part .quote {
   font-style: italic;
   margin-bottom: 0.5em;
 }
 
 @media (max-width: 576px) {
-  #bottom-nav-links a{
+  #bottom-nav-links a {
     font-size: 0.8em;
   }
 }

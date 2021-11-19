@@ -5,15 +5,16 @@ import './home.css'
 
 function GetAddress(props) {
 
-    const APP_CODE_HERE = 'luNgjJlD7MqWbotefxNRB2r0cWjz6AZm92SgSRa-rQg'
+    const APP_CODE_HERE = process.env.REACT_APP_HERE_API;
     const [results, setResults] = useState([])
     const [userChoice, setUserChoice] = useState({})
     const inputRef = useRef();
 
     useEffect(()=>{
-        (props.locQuery.currLoc === undefined) ? console.log('') : inputRef.current.value = props.locQuery.currLoc.address;
+        (props.locQuery.currLoc === undefined || props.locQuery.currLoc.title === undefined) ? console.log() : inputRef.current.value = props.locQuery.currLoc.title;
         console.log("hi modal invoked!")
-    }, [1])
+        setResults([])
+    }, [props.show])
 
     const getDetails = (query) => {
         axios.get('https://geocode.search.hereapi.com/v1/geocode',
@@ -26,15 +27,10 @@ function GetAddress(props) {
             'maxresults': 5,
             }})
             .then((data)=> {
-                console.log("data:", data.data.items)
-                let doc = {position: [], title: '', address: ''}
+                // console.log("data:", data.data.items)
                 let temp = []
                 let t = data.data.items
                 t.forEach(x => {
-                    // doc.position = x.position;
-                    // doc.title = x.title;
-                    // doc.address = x.address.label;
-                    
                     temp.push({
                         position: x.position,
                         title: x.title,
@@ -42,19 +38,28 @@ function GetAddress(props) {
                     })
                 });
                 setResults(temp)
-                console.log("results:", results);
+                // console.log("results:", results);
         });
     }
     
     const showLoc = (doc) => {
         setUserChoice(doc)
-        inputRef.current.value = userChoice.title
+        
+        // props.locQuery.setLoc(userChoice)
+        // props.onHide()
     }
+    useEffect(()=> {
+        if (inputRef.current && userChoice) {
+            inputRef.current.value = userChoice.title
+        }
+    }, [userChoice])
 
-    const cards = (doc, i) => <div key={i} onClick={() => showLoc(doc)}>
-        <h4>{doc.title}</h4>
-        <p>{doc.address}</p>
-        <hr/>
+    const cards = (doc, i) => <div className='row m-0 pt-2 border-bottom' role="button" key={i} onClick={() => showLoc(doc)}>
+        <div className="col-1 mt-2 d-flex justify-content-center"><i class="fas fa-map-marker-alt"></i></div>
+        <div className="col">
+            <span style={{fontWeight: '700', fontSize: '1em'}}>{doc.title}</span>
+            <p style={{fontSize: '0.8rem'}}>{doc.address}</p>
+        </div>
     </div>
 
     return <>
@@ -73,25 +78,26 @@ function GetAddress(props) {
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title className='text-center' id="contained-modal-title-vcenter">{props.locQuery.type}</Modal.Title>
+                <Modal.Title id="contained-modal-title-vcenter">{props.locQuery.type}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex justify-content-center my-3">
-                    {/* <div className='p-2 border' style={{lineHeight: '1.5em', width: '80%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                        Pickup: 
-                        {userChoice.address != null ? userChoice.address : ""}
-                    </div> */}
                     <div className="container flex flex-column">
-                        <input className='location-input w-75' type='text' ref={inputRef} placeholder='Search...' onChange={(e)=> {e ? getDetails(e.target.value) : console.log('')}}/>
-                        <div className="w-75 scrollable">
+                        <div class="location-input input-group mb-3 w-75">
+                            <span class="input-group-text border-end-0" id="basic-addon1"><i class="fas fa-search-location"></i></span>
+                            <input type="text" class="form-control border-start-0" ref={inputRef} placeholder='Enter address...' onChange={(e)=> {e ? getDetails(e.target.value) : console.log('')}} aria-label="Location" aria-describedby="basic-addon1"/>
+                        </div>
+                        <div className="w-75 scrollable border">
                             {results && results[0] ? results.map((data, i) => cards(data, i)) : <center className='my-3'>No Results Found!</center>}
                         </div>
                     </div>
-                    <Button className='btn-success ms-2' onClick={()=> props.locQuery.setLoc(userChoice)}><i class="fas fa-check"></i></Button>
                 </div>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
+            <Modal.Footer className='flex'>
+                <Button className='btn-success ms-2' onClick={()=> {
+                    props.locQuery.setLoc(userChoice)
+                    props.onHide()
+                }}>Confirm{" "}<i class="fas fa-check"></i></Button>
             </Modal.Footer>
         </Modal>
     </>
