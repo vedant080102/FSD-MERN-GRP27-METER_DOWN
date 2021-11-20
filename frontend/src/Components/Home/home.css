@@ -1,0 +1,155 @@
+@import '../../App.css';
+
+
+.home-header {
+    height: 100vh;
+    /* background-color: var(--purple); */
+    /* background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6), url('../Media/MUMBAI-TAXI-landscape.jpg'); */
+    /* background-image: linear-gradient(#2b0a2ca6, #2b0a2ca6); */
+    /* background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover; */
+}
+
+.home-header .navbar-brand {
+    display: none;
+}
+
+.home-logo {
+    position: absolute;
+    top: 25%;
+    display: flex;
+    flex-direction: column;
+    /* left: 41%; */
+    left: 0%;
+    right: 0%;
+    width: 200px;
+    margin: auto;
+}
+
+.home-logo span {
+    color: var(--yellow);
+    font-family: 'Antonio', sans-serif;
+    font-size: 2em;
+}
+
+.curved {
+    position: relative;
+    background: #2c3e50;
+    height: 50vh;
+}
+
+.curved::after {
+    content: '';
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    height: 13%;
+}
+
+.custom-shape-divider-top-1636559095 {
+    position: absolute;
+    top: calc(100vh - 100px);
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    /* transform: rotate(180deg); */
+    /* top: 100vh; */
+}
+
+.custom-shape-divider-top-1636559095 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 101px;
+}
+
+.custom-shape-divider-top-1636559095 .shape-fill {
+    /* fill: #FFFFFF; */
+    fill: var(--yellow);
+}
+
+#book-a-ride .card {
+    background-color: var(--purple);
+}
+
+/* .home-main { */
+#book-a-ride {
+    background-image: linear-gradient(#ffcf15, transparent), url('../../Media/purple-sprinkle.svg');
+    /* background-image: url('../Media/purple-sprinkle.svg'); */
+}
+#book-a-ride h3 {
+    font-weight: 700;
+}
+#location-card {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--purple);
+    border-radius: 0.5rem;
+    text-align: start;
+    color: var(--yellow);
+}
+#select-route {
+    background-color: var(--yellow);
+    border-radius: 0.5rem;
+}
+#select-route svg {
+    max-height: 380px;
+}
+#select-route svg g[aria-label="Choose Your Route"] {
+    font-family: var(--contentFont);
+    fill: var(--purple);
+}
+
+#select-route svg path[fill="rgb(214,81,81)"] {
+    fill: var(--purple);
+}
+
+#select-route svg path[stroke="rgb(88,88,88)"] {
+    stroke: var(--yellow);
+    stroke-width: 3px;
+}
+
+.scrollable {
+    overflow: overlay;
+    scroll-behavior: smooth;
+    height: 25vh;
+}
+.location-input input:focus {
+    border-color: #ced4da !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+.location-input span {
+    background-color: transparent !important;
+}
+.choose-location {
+    /* background-color: #ffffff0d; */
+    border: 1px solid var(--yellow);
+    /* background-color: #823585a6; */
+    color: #ffcf15a6;
+    /* font-weight: 100; */
+    cursor: pointer;
+    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.choose-location span {
+    color: var(--yellow);
+}
+
+@media (max-width: 756px) {
+    #select-route svg {
+        height: 300px;
+    }
+}
+@media (max-width: 576px) {
+    #select-route svg {
+        height: 250px;
+    }
+}

@@ -1,5 +1,5 @@
 {
-  "short_name": "MD",
+  "short_name": "Meter Down",
   "name": "Meter Down",
   "description": "A website where customers can book cabs/autorikshaws for transport",
   "icons": [{
@@ -39,7 +39,7 @@
       "sizes": "96x96 128x128 192x192 256x256"
     }
   ],
-  "start_url": "index.html",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#2b0a2c",
   "background_color": "#2b0a2c"

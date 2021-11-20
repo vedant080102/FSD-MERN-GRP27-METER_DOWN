@@ -1,19 +1,25 @@
 import React from 'react';
 import './App.css';
-import Navbar from './base/Base';
+
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+	BrowserRouter as Router,
+	Routes,
+	Route,
 } from "react-router-dom";
 
-import Home from './Home/Home';
-import Bookings from './Bookings/Bookings';
-import Feedback from './Feedback/Feedback';
-import About from './About/About';
-import Contact from './Contact/Contact';
-import Login from './loginSignup/Login';
-import Signup from './loginSignup/Signup';
+import Navbar from './Components/base/Navbar';
+import Home from './Components/Home/Home';
+import Bookings from './Components/Bookings/Bookings';
+import Feedback from './Components/Feedback/Feedback';
+import About from './Components/About/About';
+import Contact from './Components/Contact/Contact';
+import Login from './Components/loginSignup/Login';
+import Signup from './Components/loginSignup/Signup';
+import ServerAutoSuggest from './gogogog'
+import Footer from './Components/base/Footer';
+
+import AddressForm from './Components/here-example/AddressForm';
+import GetAddress from './Components/Home/geocoding';
 
 function App() {
 	return (
@@ -21,7 +27,7 @@ function App() {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/index.html" element={<Home />} />
+					{/* <Route path="/index.html" element={<Home />} /> */}
 					<Route path="/home" element={<Home />} />
 					<Route path="/login" element={<>
 						<Navbar homepage={false}/>
@@ -56,8 +62,14 @@ function App() {
 						<Login />
 						</>}
 					/>
+					<Route path="/server" element={<>
+						{/* <ServerAutoSuggest /> */}
+						{/* <AddressForm /> */}
+						<GetAddress/>
+						</>}
+					/>
 				</Routes>
-			{/* <Home/> */}
+				<Footer/>
 			</Router>
 		</div>
 	);
