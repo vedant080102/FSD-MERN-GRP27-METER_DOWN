@@ -62,6 +62,7 @@ function Home() {
     }
 
     useEffect(()=>{console.log(pickupLoc, destinationLoc)}, [pickupLoc, destinationLoc])
+    
 
     return(
         <>
