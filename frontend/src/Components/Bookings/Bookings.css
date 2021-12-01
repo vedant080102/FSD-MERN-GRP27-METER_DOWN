@@ -28,14 +28,14 @@
 
 
 .autoR{
-    background-image: url('../../Media/icons8-auto-rickshaw-48.png');
+    background-image: url('../../Media/rickshaw.svg');
     background-position: center;
     background-size: 33%;
     background-repeat: no-repeat;
 }
 
 .taxiR{
-    background-image: url('../../Media/icons8-taxi-64.png');
+    background-image: url('../../Media/taxi.svg');
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
@@ -43,7 +43,7 @@
 
 .source{
     background-image: url("../../Media/icons8-green-circle-48.png");
-    background-position-y:30% ;
+    background-position-y:30%;
     background-position-x: 50%;
     background-size: 35%;
     background-repeat: no-repeat;
