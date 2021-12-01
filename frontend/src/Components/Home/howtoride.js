@@ -29,7 +29,7 @@ function HowToRide() {
     </>
 
     return <>
-        <div className="container p-2 p-md-5 shadow" id='how-to-ride'>
+        <div className="mx-2 mx-sm-0 container p-2 p-md-5 shadow" id='how-to-ride'>
             <h3 className='fw-bold'>
                 How to ride with<br/>
                 <span style={{fontFamily: 'var(--brandFont)'}}>METER DOWN</span>

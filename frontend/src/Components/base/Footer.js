@@ -14,7 +14,7 @@ function Footer() {
                         {/* NAV LINKS */}
                         <ul id='bottom-nav-links' className='d-flex -flex-row text-decoration-none ps-0'>
                             <li className='mx-2'><Link to='/'>Book a Ride</Link></li>
-                            <li className='mx-2'><Link to='/booking'>Bookings</Link></li>
+                            <li className='mx-2'><Link to='/bookings'>Bookings</Link></li>
                             <li className='mx-2'><Link to="/about">About</Link></li>
                             <li className='mx-2'><Link to="/contact">Contact</Link></li>
                             <li className='mx-2'><Link to="/feedback">Become a driver</Link></li>
@@ -30,7 +30,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="w-100 footer-end-part px-2 py-3">
+            <div className="w-100 footer-end-part- px-2 py-3" style={{color: 'var(--yellow)'}}>
                 <div className='quote'>Everyone should try a taxi, as it is part of the Mumbai experience.</div>
                 <div className="muted">Credits: Lorem, ipsum dolor.</div>
             </div>

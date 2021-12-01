@@ -11,10 +11,6 @@
     -webkit-background-size: cover; */
 }
 
-body {
-    background-color: var(--purple);
-}
-
 .home-header .navbar-brand {
     display: none;
 }

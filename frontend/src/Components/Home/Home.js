@@ -7,8 +7,8 @@ import bgImg2 from '../../Media/MUMBAI-Rick.jpg'
 import { Parallax, Background } from "react-parallax";
 // import sprinkle from '../../Media/purple-sprinkle.svg'
 // import mapImg from '../../Media/map.svg'
-import rick from '../../Media/rickshaw.svg'
-import taxi from '../../Media/taxi.svg'
+import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
+import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from './geocoding';
 import PopularRoutes from './PopularRoutes.js'
@@ -199,13 +199,15 @@ function Home() {
                         <div className='rounded-pill fw-bold fs-2 p-5 my-5' style={{backgroundColor: 'var(--yellow)', color: 'var(--purple)'}}>
                             Redefining Mobility for Billions
                             <br/>
-                            <img src={rick} alt='rickshaw' height='150'/>
-                            <img src={taxi} alt='taxi' height='150'/>
+                            {/* <img src={Rick} alt='rickshaw' height='150'/> */}
+                            {/* <img src={Taxi} alt='taxi' height='150'/> */}
+                            <Rick height='150'/>
+                            <Taxi height='150'/>
                         </div>
                     </div>
                 </div>
 
-                <div className='mx-1 mx-sm-0 flex min-vh-100 py-2 how-to'>
+                <div className='flex min-vh-100 py-2 how-to'>
                     <HowToRide/>
                 </div>
 
