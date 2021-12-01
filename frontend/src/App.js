@@ -15,11 +15,7 @@ import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
-import ServerAutoSuggest from './gogogog'
 import Footer from './Components/base/Footer';
-
-import AddressForm from './Components/here-example/AddressForm';
-import GetAddress from './Components/Home/geocoding';
 
 function App() {
 	return (
@@ -62,12 +58,12 @@ function App() {
 						<Login />
 						</>}
 					/>
-					<Route path="/server" element={<>
-						{/* <ServerAutoSuggest /> */}
-						{/* <AddressForm /> */}
+					{/* <Route path="/server" element={<>
+						<ServerAutoSuggest />
+						<AddressForm />
 						<GetAddress/>
 						</>}
-					/>
+					/> */}
 				</Routes>
 				<Footer/>
 			</Router>

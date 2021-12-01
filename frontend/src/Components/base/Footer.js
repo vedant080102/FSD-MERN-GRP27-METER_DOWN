@@ -15,9 +15,9 @@ function Footer() {
                         <ul id='bottom-nav-links' className='d-flex -flex-row text-decoration-none ps-0'>
                             <li className='mx-2'><Link to='/'>Book a Ride</Link></li>
                             <li className='mx-2'><Link to='/booking'>Bookings</Link></li>
-                            <li className='mx-2'><Link to="/feedback">Feedback</Link></li>
                             <li className='mx-2'><Link to="/about">About</Link></li>
                             <li className='mx-2'><Link to="/contact">Contact</Link></li>
+                            <li className='mx-2'><Link to="/feedback">Become a driver</Link></li>
                         </ul>
                     </div>
                     <div className='my-1 py-1'>

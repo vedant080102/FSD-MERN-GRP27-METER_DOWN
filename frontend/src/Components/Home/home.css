@@ -11,6 +11,10 @@
     -webkit-background-size: cover; */
 }
 
+body {
+    background-color: var(--purple);
+}
+
 .home-header .navbar-brand {
     display: none;
 }
@@ -52,7 +56,7 @@
 
 .custom-shape-divider-top-1636559095 {
     position: absolute;
-    top: calc(100vh - 100px);
+    top: calc(100vh - 98px);
     left: 0;
     width: 100%;
     overflow: hidden;
@@ -79,6 +83,8 @@
 
 /* .home-main { */
 #book-a-ride {
+    /* background-position: center;
+    background-repeat: no-repeat; */
     background-image: linear-gradient(#ffcf15, transparent), url('../../Media/purple-sprinkle.svg');
     /* background-image: url('../Media/purple-sprinkle.svg'); */
 }
@@ -134,13 +140,34 @@
     color: #ffcf15a6;
     /* font-weight: 100; */
     cursor: pointer;
-    
+}
+.choose-location .col-9 {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 .choose-location span {
     color: var(--yellow);
+}
+.location-results {
+    transition: 0.4s;
+}
+.location-results:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.how-to {
+    background-image: linear-gradient(transparent, var(--yellow)), url('../../Media/purple-sprinkle.svg');
+}
+
+#how-to-ride {
+    background-color: var(--purple);
+    border-radius: 0.5em;
+    color: var(--yellow);
+}
+
+.st10 {
+    fill: #ffcf15 !important;
 }
 
 @media (max-width: 756px) {
