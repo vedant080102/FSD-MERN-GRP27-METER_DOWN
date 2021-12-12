@@ -20,6 +20,18 @@ const userSchema=mongoose.Schema({
     email:{
         type:String,
         default:null
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
+    },
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
+    data:{
+        type: mongoose.Schema.Types.ObjectId,
+        default:null
     }
     
 
