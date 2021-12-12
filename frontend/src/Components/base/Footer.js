@@ -17,7 +17,7 @@ function Footer() {
                             <li className='mx-2'><Link to='/bookings'>Bookings</Link></li>
                             <li className='mx-2'><Link to="/about">About</Link></li>
                             <li className='mx-2'><Link to="/contact">Contact</Link></li>
-                            <li className='mx-2'><Link to="/feedback">Become a driver</Link></li>
+                            <li className='mx-2'><Link to="/become-driver">Become a driver</Link></li>
                         </ul>
                     </div>
                     <div className='my-1 py-1'>

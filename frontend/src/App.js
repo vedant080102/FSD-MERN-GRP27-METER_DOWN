@@ -10,7 +10,7 @@ import {
 import Navbar from './Components/base/Navbar';
 import Home from './Components/Home/Home';
 import Bookings from './Components/Bookings/Bookings';
-import Feedback from './Components/Feedback/Feedback';
+import Driver from './Components/Driver/Driver';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
@@ -38,11 +38,6 @@ function App() {
 						<Bookings />
 						</>}
 					/>
-					<Route path="/feedback" element={<>
-						<Navbar homepage={false}/>
-						<Feedback />
-						</>}
-					/>
 					<Route path="/about" element={<>
 						<Navbar homepage={false}/>
 						<About />
@@ -56,6 +51,11 @@ function App() {
 					<Route path="/login" element={<>
 						<Navbar homepage={false}/>
 						<Login />
+						</>}
+					/>
+					<Route path="/become-driver" element={<>
+						<Navbar homepage={false}/>
+						<Driver />
 						</>}
 					/>
 					{/* <Route path="/server" element={<>
