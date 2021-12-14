@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, "frontend", "build")))
 
 app.use("/api/user",require("./routes/user"))
 app.use("/api/driver",require("./routes/driver"))
+app.use("/api/passenger",require("./routes/passenger"))
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));

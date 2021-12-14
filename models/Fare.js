@@ -7,7 +7,8 @@ const fareSchema=mongoose.Schema({
     },
     driver:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Driver'
+        ref: 'Driver',
+        default:null
     },
     passenger:{
         type: mongoose.Schema.Types.ObjectId,
@@ -15,9 +16,13 @@ const fareSchema=mongoose.Schema({
     },
     startsAt:{
         type:Date,
+        default:Date.now
+    },
+    startType:{
+        type:String,
         default:null
     },
-    endsAt:{
+    rideStart:{
         type:Date,
         default:null
     },
