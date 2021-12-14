@@ -20,6 +20,8 @@ import Footer from './Components/base/Footer';
 
 import AddressForm from './Components/here-example/AddressForm';
 import GetAddress from './Components/Home/geocoding';
+import TestMap from './Components/TestMap/TestMap';
+
 
 function App() {
 	return (
@@ -66,6 +68,12 @@ function App() {
 						{/* <ServerAutoSuggest /> */}
 						{/* <AddressForm /> */}
 						<GetAddress/>
+						</>}
+					/>
+					{/* Test Routes */}
+					<Route path="/Map" element={<>
+						<Navbar homepage={false}/>
+						<TestMap/>
 						</>}
 					/>
 				</Routes>
