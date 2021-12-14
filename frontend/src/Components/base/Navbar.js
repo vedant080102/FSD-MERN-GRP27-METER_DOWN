@@ -169,7 +169,7 @@ function Navbar(props) {
                 <Link to="/bookings" className={"nav-link " + (activePage.bookings ? "active" : "")}>My Bookings</Link>
             </li>
             <li>
-                <Link to="/feedback" className={"nav-link " + (activePage.feedback ? "active" : "")}>Feedback</Link>
+                <Link to="/become-driver" className={"nav-link " + (activePage.feedback ? "active" : "")}>Become a Driver</Link>
             </li>
             <li>
                 <Link to="/about" className={"nav-link " + (activePage.about ? "active" : "")}>About</Link>

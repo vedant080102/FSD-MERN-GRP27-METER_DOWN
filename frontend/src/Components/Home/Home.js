@@ -7,8 +7,12 @@ import bgImg2 from '../../Media/MUMBAI-Rick.jpg'
 import { Parallax, Background } from "react-parallax";
 // import sprinkle from '../../Media/purple-sprinkle.svg'
 // import mapImg from '../../Media/map.svg'
+import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
+import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from './geocoding';
+import PopularRoutes from './PopularRoutes.js'
+import HowToRide from './howtoride';
 
 
 function Home() {
@@ -115,23 +119,33 @@ function Home() {
                         </defs> */}
                     </svg>
                 </div>
-                <div>
-                    
-                </div>
-                <div id='book-a-ride' className='flex vh-100 py-2'>
+                
+                <div id='book-a-ride' className='flex min-vh-100 py-2'>
                     <div className="container">
                         <div className='row bg-white shadow rounded-3 py-4 py-lg-5 px-md-4 mr-0 g-5 m-1 m-sm-5'>
                             <div className="col-12 mt-2 mt-md-1">
                                 <h3>Book a City Taxi to your destination in town</h3>
-                                <p>Choose from a range of categories and prices</p>
+                                <p>Local taxis at the tap of a button</p>
                             </div>
                             <div className='col-12 col-md-6 mt-2 mt-md-1'>
                                 <div className='card justify-content-betwee p-3 p-md-4 w-100 h-100' id='location-card'>
-                                    <h5>Need a taxi?<br/>Tell us when and where!</h5>
-                                    <div className='choose-location p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
-                                        onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>Pickup: {pickupLoc.title ? <span>{pickupLoc.title}</span> : "Select pickup for estimation"}</div>
-                                    <div className='choose-location p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}
-                                        onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>Drop: {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop for estimation"}</div>
+                                    <h5>Need a taxi?<br/>Request a ride from your phone with <br/>METER DOWN</h5>
+                                    <div className='row m-0 choose-location p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
+                                        onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
+                                            <div className="col-3 col-xl-2 p-0 px-xl-2">
+                                                Pickup:
+                                            </div>
+                                            <div className="col-9">
+                                                {pickupLoc.title ? <span>{pickupLoc.title}</span> : "Select pickup for estimation"}</div>
+                                            </div>
+                                    <div className='row m-0 choose-location p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}
+                                        onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>
+                                            <div className="col-3 col-xl-2 p-0 px-xl-2">
+                                                Drop:
+                                            </div>
+                                            <div className="col-9">
+                                                {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop for estimation"}</div>
+                                            </div>
                                     <div className="w-100 flex">
                                         <button className='buton yellow-btn mt-2 center'>Search Rides</button>
                                     </div>
@@ -153,8 +167,48 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <div className='flex vh-100 py-2'>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, placeat voluptatibus! Repudiandae pariatur illo minus quisquam vitae quibusdam tenetur eligendi sunt iure atque. In veritatis non fuga autem cumque, explicabo iure dolorem, placeat, necessitatibus totam accusantium. Harum soluta illo atque quia eaque molestiae id reprehenderit deleniti numquam, saepe, optio ex! Illum veniam ducimus adipisci ipsum sequi perferendis minus, mollitia laboriosam rerum delectus molestiae, quidem vel sed hic beatae doloremque veritatis odio magni similique culpa modi eveniet deleniti iste. Pariatur omnis, aliquam eligendi ullam, earum quidem voluptatum et odio magni cumque provident nesciunt ipsam tempore nostrum voluptatibus quae repudiandae eveniet neque dicta minus vel numquam explicabo dignissimos? Omnis natus qui necessitatibus ipsam dolore doloremque culpa blanditiis sed molestias illo! Repellendus, animi. Perspiciatis, tempora!
+
+                <div className='vw-100 vh-100 position-relative'>
+                    <Parallax strength={500} className='w-100 h-100'
+                        renderLayer={(percentage) => (
+                            <div className='rounded-pill'
+                                style={{
+                                position: "absolute",
+                                background: `rgba(255, 207, 21, ${percentage * 1})`,
+                                left: "50%",
+                                top: "50%",
+                                zIndex: '1',
+                                // borderRadius: "50%",
+                                transform: "translate(-50%,-50%)",
+                                width: percentage * 850,
+                                height: percentage * 400
+                                }}
+                            />
+                        )}>
+                        <Background className="custom-bg">
+                            <div style={{
+                                height: '100vh',
+                                width: '100vw',
+                                backgroundImage: `linear-gradient(#2b0a2ca6, #2b0a2ca6), url(${bgImg2})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                            }}/>
+                        </Background>
+                    </Parallax>
+                    <div className='w-100 flex' style={{position: 'absolute', top: '27%', zIndex: '2'}}>
+                        <div className='rounded-pill fw-bold fs-2 p-5 my-5' style={{backgroundColor: 'var(--yellow)', color: 'var(--purple)'}}>
+                            Redefining Mobility for Billions
+                            <br/>
+                            {/* <img src={Rick} alt='rickshaw' height='150'/> */}
+                            {/* <img src={Taxi} alt='taxi' height='150'/> */}
+                            <Rick height='150'/>
+                            <Taxi height='150'/>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='flex min-vh-100 py-2 how-to'>
+                    <HowToRide/>
                 </div>
 
                 <GetAddress locQuery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>

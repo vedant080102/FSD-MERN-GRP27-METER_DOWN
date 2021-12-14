@@ -45,7 +45,14 @@ const fareSchema=mongoose.Schema({
         type:String,
         enum:["day","night"]
     },
-    
+    allotted:{
+        type:Boolean,
+        default:false
+    },
+    completed:{
+        type:Boolean,
+        default:false
+    }
 })
 
 module.exports=mongoose.model("Fare",fareSchema)

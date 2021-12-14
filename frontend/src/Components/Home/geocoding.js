@@ -19,7 +19,6 @@ function GetAddress(props) {
     const getDetails = (query) => {
         axios.get('https://geocode.search.hereapi.com/v1/geocode',
         {'params': {
-            // 'app_id': APP_ID_HERE,
             'apiKey': APP_CODE_HERE,
             'q': query,
             'lang': 'en',
@@ -54,8 +53,8 @@ function GetAddress(props) {
         }
     }, [userChoice])
 
-    const cards = (doc, i) => <div className='row m-0 pt-2 border-bottom' role="button" key={i} onClick={() => showLoc(doc)}>
-        <div className="col-1 mt-2 d-flex justify-content-center"><i class="fas fa-map-marker-alt"></i></div>
+    const cards = (doc, i) => <div className='row m-0 pt-2 border-bottom location-results' role="button" key={i} onClick={() => showLoc(doc)}>
+        <div className="col-1 mt-2 d-flex justify-content-center"><i className="fas fa-map-marker-alt"></i></div>
         <div className="col">
             <span style={{fontWeight: '700', fontSize: '1em'}}>{doc.title}</span>
             <p style={{fontSize: '0.8rem'}}>{doc.address}</p>
@@ -83,9 +82,9 @@ function GetAddress(props) {
             <Modal.Body>
                 <div className="d-flex justify-content-center my-3">
                     <div className="container flex flex-column">
-                        <div class="location-input input-group mb-3 w-75">
-                            <span class="input-group-text border-end-0" id="basic-addon1"><i class="fas fa-search-location"></i></span>
-                            <input type="text" class="form-control border-start-0" ref={inputRef} placeholder='Enter address...' onChange={(e)=> {e ? getDetails(e.target.value) : console.log('')}} aria-label="Location" aria-describedby="basic-addon1"/>
+                        <div className="location-input input-group mb-3 w-75">
+                            <span className="input-group-text border-end-0" id="basic-addon1"><i className="fas fa-search-location"></i></span>
+                            <input type="text" className="form-control border-start-0" ref={inputRef} placeholder='Enter address...' onChange={(e)=> {e ? getDetails(e.target.value) : console.log('')}} aria-label="Location" aria-describedby="basic-addon1"/>
                         </div>
                         <div className="w-75 scrollable border">
                             {results && results[0] ? results.map((data, i) => cards(data, i)) : <center className='my-3'>No Results Found!</center>}
@@ -97,7 +96,7 @@ function GetAddress(props) {
                 <Button className='btn-success ms-2' onClick={()=> {
                     props.locQuery.setLoc(userChoice)
                     props.onHide()
-                }}>Confirm{" "}<i class="fas fa-check"></i></Button>
+                }}>Confirm{" "}<i className="fas fa-check"></i></Button>
             </Modal.Footer>
         </Modal>
     </>
