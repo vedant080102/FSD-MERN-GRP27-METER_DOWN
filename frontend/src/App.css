@@ -1,33 +1,294 @@
 /* theme colors:
-purpe: #2b0a2c
+purple: #2b0a2c
 yellow: #ffcf15
+*/
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,400;0,700;1,200;1,700&display=swap');
+/* BRAND FONT: font-family: 'Antonio', sans-serif; */
+/* CONTENT FONT: font-family: 'Exo 2', sans-serif;
+Extra-light 200
+Extra-light 200 italic
+Regular 400
+Bold 700 italic
+Extra-bold 800
 */
 
 :root {
-  --purpe: #2b0a2c;
+  --purple: #2b0a2c;
   --yellow: #ffcf15;
+  --contentFont: 'Exo 2', sans-serif;
+  --brandFont: 'Antonio', sans-serif;
 }
 
 .App {
   text-align: center;
 }
 
+body {
+  overflow: overlay;
+  scroll-behavior: smooth;
+  font-family: var(--contentFont);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0a09034b;
+  border-radius: 2em;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0a09038a;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 2px 0;
+}
+
+/* SCROLL END */
+
 .App-logo {
-  height: 40vmin;
+  height: 50px;
   pointer-events: none;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--purple);
+  height: 76px;
+  /* min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white; */
+}
+
+.App-header .navbar {
+  transition: 0.4s;
+}
+
+.navbar.fixed-top .navbar-brand {
+  display: block;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar.fixed-top {
+  background-color: var(--purple);
+  transition: 0.4s;
+  background-image: url('Media/purple-sprinkle.svg');
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+}
+
+/* hamburger css */
+#hamburg {
+  position: absolute;
+  top: 13px;
+  left: 12px;
+  z-index: 1200;
+}
+
+#hamburg svg {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 1.5;
+  cursor: pointer;
+}
+
+#hamburg svg path {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3px;
+}
+
+#top,
+#bottom {
+  stroke-dasharray: 30, 75.39;
+  transition: all 0.6s cubic-bezier(0.6, 0.33, 0.67, 1.29);
+}
+
+#hamburg svg.active #top,
+#hamburg svg.active #bottom {
+  stroke-dasharray: 75.39;
+  stroke-dashoffset: -60;
+}
+
+#hamburg svg {
+  transform: rotate(180deg);
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#hamburg svg path {
+  transition: all 0.4s ease-in-out 0.6s;
+}
+
+#hamburg svg.active {
+  transform: rotate(360deg);
+}
+
+#hamburg .rocket #top {
+  stroke-dasharray: 30, 88;
+}
+
+/* ham end */
+
+/* SIDEBAR */
+/* .sidebar-root {
+  position: undefined;
+  z-index: 20;
+} */
+
+/* .sidebar-sb {
+  position: fixed !important;
+} */
+
+.overlay-sb {
+  z-index: 15;
+}
+
+.sidebar-sb {
+  z-index: 1020 !important;
+  background-image: url('Media/purple-sprinkle.svg');
+  width: 280px;
+}
+
+.sidebar-root .nav-link {
+  color: white;
+}
+
+.sidebar-root .nav-link:hover {
+  color: var(--yellow);
+}
+
+.sidebar-root .nav-link.active {
+  background-color: var(--yellow) !important;
+  color: var(--purple) !important;
+}
+
+.side-col {
+  height: calc(100vh - 76px);
+  margin-top: 76px;
+}
+
+.side-col hr {
+  background-color: var(--yellow);
+  /* height: 5px; */
+}
+
+.side-col .dropdown-menu {
+  background-color: var(--purple) !important;
+}
+
+.side-comp {
+  width: fit-content;
+  color: var(--yellow);
+  font-family: 'Antonio', sans-serif;
+}
+
+.content-sb {
+  position: undefined;
+  top: undefined;
+  left: undefined;
+  right: undefined;
+  bottom: undefine;
+}
+
+/* SB END */
+.buton {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.purple-btn {
+  color: white;
+  background-color: var(--purple);
+  border: 1px solid transparent;
+}
+
+.yellow-btn {
+  color: var(--purple);
+  background-color: var(--yellow);
+
+  border: 1px solid transparent;
+}
+
+/* FOOTER */
+footer {
+  background-image: url('Media/purple-sprinkle.svg');
+  padding: 2px;
+}
+
+#social-links,
+#bottom-nav-links {
+  margin-bottom: 0px !important;
+}
+
+#social-links,
+#social-links a,
+#bottom-nav-links a,
+#bottom-nav-links {
+  color: var(--yellow);
+  list-style: none;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+#social-links li {
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+}
+
+#social-links a {
+  background: var(--yellow);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: var(--purple) !important;
+  /* font-size: 1.5em; */
+  transition: all .2s ease-in-out 0s;
+}
+
+#bottom-nav-links a {
+  font-size: 1em;
+  transition: 0.4s;
+}
+
+#bottom-nav-links a:hover {
+  transition: 0.4s;
+  text-decoration: underline;
+}
+
+.footer-end-part {
+  background-color: var(--yellow);
+  font-weight: 200;
+}
+
+.footer-end-part .quote {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 576px) {
+  #bottom-nav-links a {
+    font-size: 0.8em;
+  }
 }

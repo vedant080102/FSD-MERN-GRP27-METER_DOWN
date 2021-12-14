@@ -1,20 +1,31 @@
 # FSD-MERN-GRP27-METER_DOWN
 
-### GROUP NUMBER: **27**
+
+<p align="center">
+  <a href="" rel="noopener">
+    <img src='frontend/public/logo/logo-512.png' alt='LOGO' height='300'/>
+  </a>
+</p>
 
 <br>
+
+### GROUP NUMBER: **27**
 
 ### TITLE: **METER DOWN**
 
-![LOGO](frontend\public\logo512.png)
+<br>
 
-<br>
-<br>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
 
 ## Quick Start
 Clone the repository:
 
     git clone https://github.com/vedant080102/FSD-MERN-GRP27-METER_DOWN.git 
+
+<br/>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+
 
 ## FRONTEND- REACT PWA
 
@@ -34,9 +45,13 @@ To build the project run the following command in your terminal:
 
 <br>
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+
 ## BACKEND
 
-<br>
+<br/>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
 
 ### MEMBERS
 - VEDANT SARNOBAT (1911117)
