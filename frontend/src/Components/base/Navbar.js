@@ -12,7 +12,7 @@ function Navbar(props) {
     const [activePage, setActivePage] = useState({
         home: false,
         bookings: false,
-        feedback: false,
+        becomeDriver: false,
         about: false,
         contact: false
     });
@@ -49,7 +49,7 @@ function Navbar(props) {
         setActivePage({
             home: false,
             bookings: false,
-            feedback: false,
+            becomeDriver: false,
             about: false,
             contact: false
         })
@@ -65,10 +65,10 @@ function Navbar(props) {
                 bookings: true
             }))
         }
-        else if (page === 'feedback') {
+        else if (page === 'become-driver') {
             setActivePage(prevState => ({
                 ...prevState,
-                feedback: true
+                becomeDriver: true
             }))
         }
         else if (page === 'about') {
@@ -169,7 +169,7 @@ function Navbar(props) {
                 <Link to="/bookings" className={"nav-link " + (activePage.bookings ? "active" : "")}>My Bookings</Link>
             </li>
             <li>
-                <Link to="/become-driver" className={"nav-link " + (activePage.feedback ? "active" : "")}>Become a Driver</Link>
+                <Link to="/become-driver" className={"nav-link " + (activePage.becomeDriver ? "active" : "")}>Become a Driver</Link>
             </li>
             <li>
                 <Link to="/about" className={"nav-link " + (activePage.about ? "active" : "")}>About</Link>

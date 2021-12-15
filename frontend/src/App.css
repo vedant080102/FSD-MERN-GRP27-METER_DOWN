@@ -49,8 +49,12 @@ body {
   background: transparent;
   margin: 2px 0;
 }
-
 /* SCROLL END */
+
+::selection {
+  color: white;
+  background-color: #7209b7;
+}
 
 .App-logo {
   height: 50px;
@@ -218,15 +222,23 @@ body {
 }
 
 .purple-btn {
-  color: white;
-  background-color: var(--purple);
-  border: 1px solid transparent;
+  color: var(--purple);
+  background-color: transparent;
+  border: 1px solid var(--purple);
+  transition: 0.4s;
 }
-
+.purple-btn:hover {
+  background-color: var(--purple);
+  color: var(--yellow);
+}
 .yellow-btn {
+  color: var(--yellow);
+  background-color: transparent;
+  border: 1px solid var(--yellow);
+}
+.yellow-btn:hover {
   color: var(--purple);
   background-color: var(--yellow);
-
   border: 1px solid transparent;
 }
 
