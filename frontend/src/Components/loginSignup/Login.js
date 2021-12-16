@@ -15,17 +15,17 @@ function Login() {
             <h1 id="sign-head">Sign in</h1>New user? <a class="link" href="/signup" className="mylink">Create an account</a>
             <br></br>
             <br></br>
-            <label htmlFor="Email" className="mylabel">Email</label><br></br>
-            <input className="myinput" type="text" id="Email" /><br></br>
+            {/* <label htmlFor="Email" className="mylabel">Email</label><br></br> */}
+            <input className="myinput" type="text" id="Email" placeholder="   Email"/><br></br>
             <br></br>
-            <label htmlFor="pass" className="mylabel">Password</label><br></br>
-            <input  className="myinput" type="password" id="pass"/><br></br>
+            {/* <label htmlFor="pass" className="mylabel">Password</label><br></br> */}
+            <input  className="myinput" type="password" id="pass" placeholder="   Password"/><br></br>
             <br></br>
             <br></br>
             <button type="submit" id="submit">Login</button>
           </form>
           </div>
-        </div>
+        </div> 
       </div>
     );
     

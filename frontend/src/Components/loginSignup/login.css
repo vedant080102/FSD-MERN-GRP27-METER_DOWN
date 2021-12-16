@@ -3,7 +3,16 @@
     margin: 5% 5% 55%;
     background-color: rgba(61, 4, 61,0.9);
     color: yellow;
-    padding: 1.5%;
+    padding: 2%;
+    position: absolute;
+}
+
+.signup{
+    width: 40%;
+    margin: 3% 3% 55%;
+    background-color: rgba(61, 4, 61,0.9);
+    color: yellow;
+    padding: 2%;
     position: absolute;
 }
 
@@ -20,12 +29,14 @@
     width: 80%;
     margin: 8px 0px 0px 0px;
     background-color: transparent;
-    border-block-style: none;
+    /* border-block-style: none; */
     border-bottom-style: groove;
-    border-inline: none;
+    /* border-inline: none; */
     color: yellow;
-    font-size: 20px;
+    border-color: yellow;
+    font-size: 25px;
     font-family: 'Adobe Clean';
+    border-radius: 5px;
   }
 
 .mylabel{
@@ -42,17 +53,80 @@
     width: 50%;
     border-radius: 100px;
     font-family: 'Varela Round';
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     
   }
   
   #submit:hover {
-    color: rgba(61, 4, 61,0.6);
+    color: rgba(61, 4, 61,1);
     background-color: yellow;
     transition: all 0.4s ease 0s;
   }
 
   .mylink{
-      text-decoration: none;
+ 
+      color: yellow;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: yellow;
+    opacity: 0.75; /* Firefox */
+    text-align: left;
+    margin-left: 10%;
+    font-size: 22px;
+  }
+
+  .myform{
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    text-align: left;
+  }
+
+  @media (max-width: 992px){
+
+    .login{
+      width: 70%;
+      margin: 5% 15%;
+      background-color: rgba(61, 4, 61,0.9);
+      color: yellow;
+      padding: 2%;
+      position: center;
+  }
+
+    .signup{
+      width: 70%;
+      margin: 5% 15%;
+    }
+
+  .bg{
+    background-image: linear-gradient(rgba(61, 4, 61, 0.3), rgba(61, 4, 61, 0.3)), url("../../Media/rick-mobile-view.jpg");;
+    background-size: cover;
+    height: 100vh; 
+    padding: 0 !important;
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+  }
+
+  }
+
+  @media (max-width: 576px){
+    .login{
+      width: 90%;
+      margin: 15% 5%;
+      
+  }
+
+  .signup{
+    width: 90%;
+    margin: 15% 5%;
+  }
+
+
+    .bg{
+      padding: 0!important;
+      height:100vh;
+    }
   }

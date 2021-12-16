@@ -17,6 +17,10 @@ import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
 import Footer from './Components/base/Footer';
 
+
+import TestMap from './Components/TestMap/TestMap';
+
+
 function App() {
 	return (
 		<div className="App">
@@ -58,12 +62,13 @@ function App() {
 						<Driver />
 						</>}
 					/>
-					{/* <Route path="/server" element={<>
-						<ServerAutoSuggest />
-						<AddressForm />
-						<GetAddress/>
+					{/* Test Routes */}
+					<Route path="/Map" element={<>
+						<Navbar homepage={false}/>
+						<TestMap/>
 						</>}
-					/> */}
+					/>
+					
 				</Routes>
 				<Footer/>
 			</Router>
