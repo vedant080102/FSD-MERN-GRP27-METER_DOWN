@@ -1,0 +1,57 @@
+#become-driver {
+    background-color: var(--yellow);
+}
+#become-driver .react-parallax-background-children {
+    top: 7%;
+}
+#become-driver .custom-shape-divider-top-1636559095 {
+    position: absolute;
+    top: calc(75vh - 23px);
+}
+
+#become-driver .accordion-body {
+    background-color: var(--yellow);
+    color: var(--purple);
+}
+#become-driver .accordion-button {
+    color: var(--purple);
+    background-color: var(--yellow);
+    font-weight: bold;
+    border-color: var(--purple);
+}
+#become-driver .accordion-button:not(.collapsed) {
+    background-color: var(--purple) !important;
+    color: var(--yellow) !important;
+}
+#become-driver .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem #2b0a2c54 !important;
+}
+
+#become-driver .accordion-button:not(.collapsed):focus {
+    box-shadow: 0 0 0 0.25rem #ffcf1554 !important;
+}
+
+
+#become-driver .accordion-button::after {
+    background-image: none !important;
+    font-family: "Font Awesome 5 Free";
+    content: '\f078' !important;
+    font-weight: 900;
+}
+
+#become-driver .accordion-button:not(.collapsed)::after {
+    background-image: none !important;
+    margin-right: 5px;
+    color: var(--yellow);
+}
+
+#become-driver .nav-link {
+    color: var(--purple);
+    background-color: transparent;
+    border-color: var(--purple);
+}
+#become-driver .nav-link.active {
+    color: var(--yellow);
+    background-color: var(--purple);
+    /* border-color: var(--yellow); */
+}

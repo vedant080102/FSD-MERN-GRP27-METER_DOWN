@@ -10,16 +10,14 @@ import {
 import Navbar from './Components/base/Navbar';
 import Home from './Components/Home/Home';
 import Bookings from './Components/Bookings/Bookings';
-import Feedback from './Components/Feedback/Feedback';
+import Driver from './Components/Driver/Driver';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
-import ServerAutoSuggest from './gogogog'
 import Footer from './Components/base/Footer';
 
-import AddressForm from './Components/here-example/AddressForm';
-import GetAddress from './Components/Home/geocoding';
+
 import TestMap from './Components/TestMap/TestMap';
 
 
@@ -44,11 +42,6 @@ function App() {
 						<Bookings />
 						</>}
 					/>
-					<Route path="/feedback" element={<>
-						<Navbar homepage={false}/>
-						<Feedback />
-						</>}
-					/>
 					<Route path="/about" element={<>
 						<Navbar homepage={false}/>
 						<About />
@@ -64,10 +57,9 @@ function App() {
 						<Login />
 						</>}
 					/>
-					<Route path="/server" element={<>
-						{/* <ServerAutoSuggest /> */}
-						{/* <AddressForm /> */}
-						<GetAddress/>
+					<Route path="/become-driver" element={<>
+						<Navbar homepage={false}/>
+						<Driver />
 						</>}
 					/>
 					{/* Test Routes */}
@@ -76,6 +68,7 @@ function App() {
 						<TestMap/>
 						</>}
 					/>
+					
 				</Routes>
 				<Footer/>
 			</Router>
