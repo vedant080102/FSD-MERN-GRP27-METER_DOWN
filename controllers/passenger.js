@@ -14,9 +14,15 @@ const bookRide=async(req,res)=>{
     console.log(fare)
     res.send(fare)
 }
-
+// populate("source destination passenger driver")
 const getOneRideData=async(req,res)=>{
-    var fare=await Fare.findOne({passenger:req.userId,_id:req.params.rideId}).populate("source destination passenger driver")
+    var fare=await Fare.findOne({passenger:req.userId,_id:req.params.rideId}).populate("source destination").populate({
+        path:"passenger",
+        populate:{"path":"account"}
+    }).populate({
+        path:"driver",
+        populate:{"path":"account"}
+    })
     res.send(fare)
 }
 

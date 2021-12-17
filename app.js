@@ -26,6 +26,28 @@ app.get("*", (req, res) => {
 });
 
 
-app.listen(process.env.PORT,()=>{
+server=app.listen(process.env.PORT,()=>{
     console.log("Running on port ",process.env.PORT)
 })
+
+const {Server}=require("socket.io")
+
+
+const io= new Server(server,{
+    cors: {
+      origin: "http://localhost:3000",
+    },
+  })
+
+io.on("connection", (socket) => {
+    
+    
+    socket.on("join",(event)=>{
+     
+      socket.join(event.user)
+      
+    })
+  
+  });
+
+module.exports=io
