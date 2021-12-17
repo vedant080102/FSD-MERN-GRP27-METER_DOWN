@@ -3,8 +3,23 @@ import logo from '../../Media/logo.png';
 import Sidebar from "react-sidebar";
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import InstallPWA from './InstallEve';
 
 function Navbar(props) {
+
+    // // Initialize deferredPrompt for use later to show browser install prompt.
+    // let deferredPrompt;
+
+    // window.addEventListener('beforeinstallprompt', (e) => {
+    //     // Prevent the mini-infobar from appearing on mobile
+    //     e.preventDefault();
+    //     // Stash the event so it can be triggered later.
+    //     deferredPrompt = e;
+    //     // Update UI notify the user they can install the PWA
+    //     showInstallPromotion();
+    //     // Optionally, send analytics event that PWA install promo was shown.
+    //     console.log(`'beforeinstallprompt' event was fired.`);
+    // });
     
     // const [hamActive, setHamActive] = useState(false);
     const [isHome, setIsHome] = useState(props.homepage);
@@ -178,11 +193,13 @@ function Navbar(props) {
                 <Link to="/contact" className={"nav-link " + (activePage.contact ? "active" : "")}>Contact</Link>
             </li>
         </ul>
-        <hr />
-        <div>
+        <hr/>
+        <div><InstallPWA/></div>
+        <hr/>
+        {/* <div>
             <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>
-        </div>
-        {/* <div className="dropdown">
+        </div> */}
+        <div className="dropdown">
             <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
                 <strong>mdo</strong>
@@ -193,30 +210,17 @@ function Navbar(props) {
                 <li><hr className="dropdown-divider"/></li>
                 <li><a className="dropdown-item" href="#">Sign out</a></li>
             </ul>
-        </div> */}
+        </div>
     </div>
 
 
     return(
-        <>
-            {isHome ? <>
+        isHome ? 
+            <>{Nav()}</>
+                :
+            <header className="App-header">
                 {Nav()}
-                </> :
-                <header className="App-header">
-                    {Nav()}
-                    {/* <Sidebar
-                        sidebar={SideBar()}
-                        children={''}
-                        open={sidebarOpen}
-                        onSetOpen={setsidebarOpen}
-                        rootClassName={'sidebar-root'}
-                        sidebarClassName={'sidebar-sb'}
-                        contentClassName={'content-sb'}
-                        overlayClassName={'overlay-sb'}
-                    ></Sidebar> */}
-                </header>
-            }
-        </>
+            </header>
     )
 }
 

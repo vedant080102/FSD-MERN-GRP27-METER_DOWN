@@ -115,7 +115,7 @@ function Driver() {
 
             <div className="container my-5 rounded py-3 py-sm-5 px-sm-5" style={{backgroundColor:`var(--purple)`}}>
                 <h3 className="fw-bold mt-3 mb-5 text-white">Here’s what you need to drive for <span style={{fontFamily: 'var(--brandFont)'}}>METER DOWN</span></h3> 
-                <div className="bg-white rounded py-3">
+                <div className="bg-white rounded py-3 mb-3">
                     <div className="w-100">
                         <ul className="nav nav-pills flex mb-3" id="pills-tab" role="tablist">
                             <li className="nav-item" role="presentation">
@@ -158,11 +158,41 @@ function Driver() {
                         </div>
                     </div>
                 </div>
+                <div className="flex w-100"><hr className='w-75'/></div>
+                <div className='container rounded my-3 py-4 px-md-4'style={{backgroundColor: 'var(--yellow)'}}>
+                    <h3 className='fw-bold'>Drive to fulfil your dreams</h3>
+                    <div className="row mx-0 mt-5 py-2 rounded bg-white shadow">
+                        <div className="col-12 col-md-4 p-4">
+                            <ImageComp img={driverImg1}/>
+                        </div>
+                        <div className="col-12 col-md-4 p-4">
+                            <ImageComp img={driverImg}/>
+                        </div>
+                        <div className="col-12 col-md-4 p-4">
+                            <ImageComp img={driverImg2}/>
+                        </div>
+                        {/* <div className="col-12 flex"><hr className='w-75'/></div> */}
+                    </div>
+                </div>
+                <div className="flex w-100"><hr className='w-75'/></div>
+                <div className="mt-3 py-4 rounded bg-white col-12 flex flex-column text-start " style={{backgroundColor: 'var(--purple)'}}>
+                    <ul className='instruction-list'>
+                        <div>Enter your details and register yourself</div>
+                        <div>Submit your documents</div>
+                        <div>Our team will contact you in the next 24 hours</div>
+                        <div>Faster document verification</div>
+                        <div>Download the app and start driving</div>
+                    </ul>
+                    {/* <div className="w-100 flex"><hr className='w-75'/></div> */}
+                    <a className='mt-3 btn purple-btn'>Fill your application now!</a>
+                </div>
+
+
             </div>
-            <div className="vw-100 my-3 py-2 p-sm-4" style={{backgroundColor: 'var(--purple)'}}>
+            {/* <div className="vw-100 my-3 py-2 p-sm-4" style={{backgroundColor: 'var(--purple)'}}>
                 <div className='container rounded my-5 py-4 px-md-4'style={{backgroundColor: 'var(--yellow)'}}>
                     <h3 className='fw-bold'>Drive to fulfil your dreams</h3>
-                    <div className="row mx-0 mt-5 py-2 bg-white rounded">
+                    <div className="row mx-0 mt-5 py-2 rounded bg-white">
                         <div className="col-12 col-md-4 p-4">
                             <ImageComp img={driverImg1}/>
                         </div>
@@ -173,20 +203,20 @@ function Driver() {
                             <ImageComp img={driverImg2}/>
                         </div>
                         <div className="col-12 flex"><hr className='w-75'/></div>
-                        <div className="col-12 flex flex-column text-start mb-3">
-                            <ul className='instruction-list'>
-                                <li>Enter your details and register yourself</li>
-                                <li>Submit your documents</li>
-                                <li>Our team will contact you in the next 24 hours</li>
-                                <li>Faster document verification</li>
-                                <li>Download the app and start driving</li>
-                            </ul>
-                            <div className="w-100 flex"><hr className='w-75'/></div>
-                            <a className='btn purple-btn'>Fill your application now!</a>
-                        </div>
+                    </div>
+                    <div className="mt-3 py-4 rounded bg-white col-12 flex flex-column text-start " style={{backgroundColor: 'var(--purple)'}}>
+                        <ul className='instruction-list'>
+                            <li>Enter your details and register yourself</li>
+                            <li>Submit your documents</li>
+                            <li>Our team will contact you in the next 24 hours</li>
+                            <li>Faster document verification</li>
+                            <li>Download the app and start driving</li>
+                        </ul>
+                        <div className="w-100 flex"><hr className='w-75'/></div>
+                        <a className='mt-3 btn purple-btn'>Fill your application now!</a>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
