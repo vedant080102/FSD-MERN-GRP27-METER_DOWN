@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
 import './login.css';
-import { Parallax, Background } from "react-parallax";
-import bgImg from '../../Media/MUMBAI-TAXI-landscape.jpg'
 import {Container,Form,Button} from 'react-bootstrap';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate } from "react-router-dom";

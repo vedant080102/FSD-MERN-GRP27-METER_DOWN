@@ -2,6 +2,11 @@
     background-color: var(--yellow);
 }
 
+#become-driver hr {
+    background-color: var(--yellow);
+    height: 4px;
+}
+
 #become-driver .react-parallax-background-children {
     top: 7%;
 }
@@ -103,4 +108,15 @@
 
 #become-driver .instruction-list {
     width: fit-content;
+}
+#become-driver .instruction-list div {
+    margin: 0.25em 0;
+}
+
+#become-driver .instruction-list div::before {
+    content: '\f560';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 1em;
+    color: var(--purple);
 }

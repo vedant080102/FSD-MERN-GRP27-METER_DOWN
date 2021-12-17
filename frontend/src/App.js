@@ -17,14 +17,15 @@ import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
 import Footer from './Components/base/Footer';
 
-
 import TestMap from './Components/TestMap/TestMap';
+import ScrollToTop from './ScrollToTop';
 
 
 function App() {
 	return (
 		<div className="App">
 			<Router>
+				<ScrollToTop />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					{/* <Route path="/index.html" element={<Home />} /> */}
@@ -63,11 +64,11 @@ function App() {
 						</>}
 					/>
 					{/* Test Routes */}
-					<Route path="/Map" element={<>
+					{/* <Route path="/Map" element={<>
 						<Navbar homepage={false}/>
 						<TestMap/>
 						</>}
-					/>
+					/> */}
 					
 				</Routes>
 				<Footer/>
