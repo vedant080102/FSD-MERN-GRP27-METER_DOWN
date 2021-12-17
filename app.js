@@ -13,12 +13,21 @@ require('./config/passport')(passport);
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser("secret"))
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 app.use(express.static(path.join(__dirname, "frontend", "build")))
 
 app.use("/api/user",require("./routes/user"))
 app.use("/api/driver",require("./routes/driver"))
+
+
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.header('origin') );
+    next();
+  });
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
