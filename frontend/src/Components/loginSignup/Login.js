@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react";
+
 import './login.css';
 import {Container,Form,Button} from 'react-bootstrap';
 import { axiosInstance } from "../../AxiosSetUp";
