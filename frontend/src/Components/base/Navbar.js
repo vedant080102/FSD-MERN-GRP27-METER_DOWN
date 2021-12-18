@@ -214,6 +214,8 @@ function Navbar(props) {
                 <Link to="/contact" className={"nav-link " + (activePage.contact ? "active" : "")}>Contact</Link>
             </li>
         </ul>
+        <hr/>
+        <div><InstallPWA/></div>
         <hr />
         <div>
             {userInfo.name?<div></div>
@@ -221,8 +223,6 @@ function Navbar(props) {
             {/* <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link> */}
         </div>
         {/* <div className="dropdown">
-        <hr/>
-        <div><InstallPWA/></div>
         <hr/>
         {/* <div>
             <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>
