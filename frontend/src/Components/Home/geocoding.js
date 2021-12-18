@@ -11,7 +11,7 @@ function GetAddress(props) {
     const inputRef = useRef();
 
     useEffect(()=>{
-        (props.locQuery.currLoc === undefined || props.locQuery.currLoc.title === undefined) ? console.log() : inputRef.current.value = props.locQuery.currLoc.title;
+        (props.locquery.currLoc === undefined || props.locquery.currLoc.title === undefined) ? console.log() : inputRef.current.value = props.locquery.currLoc.title;
         console.log("hi modal invoked!")
         setResults([])
     }, [props.show])
@@ -44,7 +44,7 @@ function GetAddress(props) {
     const showLoc = (doc) => {
         setUserChoice(doc)
         
-        // props.locQuery.setLoc(userChoice)
+        // props.locquery.setLoc(userChoice)
         // props.onHide()
     }
     useEffect(()=> {
@@ -62,22 +62,13 @@ function GetAddress(props) {
     </div>
 
     return <>
-        {/* <div className="conatiner vh-100">
-            <h1>HIYA</h1>
-            <div className='p-2 bg-black text-white' style={{lineHeight: '1.5em'}}>
-                Pickup: {userChoice != {} ? userChoice.address : ""}
-            </div>
-            <input type='text' placeholder='Search...' onChange={(e)=> {e ? getDetails(e.target.value) : console.log('')}}/>
-            {results && results[0] ? results.map((data, i) => cards(data, i)) : "errorororororor"}
-        </div>
-         */}
         <Modal {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">{props.locQuery.type}</Modal.Title>
+                <Modal.Title id="contained-modal-title-vcenter">{props.locquery.type}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex justify-content-center my-3">
@@ -94,7 +85,7 @@ function GetAddress(props) {
             </Modal.Body>
             <Modal.Footer className='flex'>
                 <Button className='btn-success ms-2' onClick={()=> {
-                    props.locQuery.setLoc(userChoice)
+                    props.locquery.setLoc(userChoice)
                     props.onHide()
                 }}>Confirm{" "}<i className="fas fa-check"></i></Button>
             </Modal.Footer>

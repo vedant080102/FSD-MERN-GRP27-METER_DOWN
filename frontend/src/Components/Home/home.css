@@ -137,7 +137,8 @@
     /* font-weight: 100; */
     cursor: pointer;
 }
-.choose-location .col-9 {
+.choose-location .col-9,
+#ride-booking .locations .col-9 {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -175,4 +176,27 @@
     #select-route svg {
         height: 250px;
     }
+}
+
+/* BookRide.js */
+#ride-booking {
+    min-height: 100vh;
+
+    background-image: linear-gradient(#2b0a2ca8, #ffcf1587),url(../../Media/MUMBAI-TAXI-book-ride.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+#ride-booking h3 {
+    font-weight: bold;
+    color: var(--purple);
+}
+
+#ride-booking .btn-check:checked+.purple-btn {
+    background-color: var(--purple);
+    color: var(--yellow);
+}
+
+#ride-booking .locations {
+    border: 1px solid var(--purple);
 }

@@ -21,12 +21,10 @@ const data = [
 
 
 function HowToRide() {
-    const print = (doc, i) => <>
-        <div className='col-12 col-md-4 text-start'>
-            <h4 className='mb-4'>{doc.title}</h4>
-            {doc.details}
-        </div>
-    </>
+    const print = (doc, i) => <div className='col-12 col-md-4 text-start' key={i}>
+        <h4 className='mb-4'>{doc.title}</h4>
+        {doc.details}
+    </div>
 
     return <>
         <div className="mx-2 mx-sm-0 container p-2 p-md-5 shadow" id='how-to-ride'>

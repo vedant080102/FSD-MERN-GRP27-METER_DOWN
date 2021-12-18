@@ -1,120 +1,131 @@
 @import '../../App.css';
 
 
-#bookings{
-    background-image: linear-gradient(#ffcf15, transparent);
+#bookings {
+    background-image: linear-gradient(var(--yellow), transparent);
 }
 
-.booksvg{
-    background-image: url('../../Media/route-gps-svgrepo-com.svg');
-    background-position: left ;
+.booksvg {
+    /* background-image: url('../../Media/route-gps-svgrepo-com.svg'); */
+    background-image: url('../../Media/route-bookings.svg');
+    background-position: left;
     background-size: 70%;
     background-repeat: no-repeat;
     height: 75vh;
     margin-top: 6vh;
 }
 
-.mybook h1{
-    color: rgb(255, 255, 38);
+.mybook h1 {
+    color: var(--yellow);
     font-weight: 600;
 }
 
-.mybook{
+.mybook {
     margin-top: 6vh;
     background-color: rgb(102, 4, 102);
     height: 80vh;
+    padding: 0.5em;
 }
 
 
-.autoR{
+.autoR {
     background-image: url('../../Media/rickshaw.svg');
     background-position: center;
     background-size: 33%;
     background-repeat: no-repeat;
 }
 
-.taxiR{
+.taxiR {
     background-image: url('../../Media/taxi.svg');
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
 }
 
-.source{
+.source {
     background-image: url("../../Media/icons8-green-circle-48.png");
-    background-position-y:30%;
+    background-position-y: 30%;
     background-position-x: 50%;
     background-size: 35%;
     background-repeat: no-repeat;
 }
 
-.destn{
+.destn {
     background-image: url("../../Media/icons8-red-circle-48.png");
-    background-position-y:30% ;
+    background-position-y: 30%;
     background-position-x: 50%;
     background-size: 35%;
     background-repeat: no-repeat;
 }
 
-.srcinfo{
+.srcinfo {
     text-align: left !important;
 }
 
 .mybtn {
-    background-color: transparent;
-    color: purple;
+    /* background-color: transparent;
+    color: purple; */
     padding: 4px 2px;
-    border: 1px solid ;
+    border: 1px solid;
     cursor: pointer;
     width: 100%;
     border-radius: 10px;
-    font-family: 'Varela Round';
+    /* font-family: 'Varela Round'; */
     font-size: 15px;
     font-weight: bold;
     margin-top: 1vh;
-  }
-  
-  .mybtn:hover {
-    color:yellow;
+}
+
+/* .mybtn:hover {
+    color: yellow;
     background-color: purple;
     transition: all 0.4s ease 0s;
-  }
+} */
 
-  .rideind{
-      margin-bottom:15px ;
-  }
+.rideind {
+    margin-bottom: 15px;
+}
 
-  .myrides{
-      overflow-y: hidden;
-  }
+.myrides {
+    overflow-y: hidden;
+}
 
-  .myrides{
-      overflow-y: scroll !important;
-     
-      height: 67vh;
-  }
+.myrides {
+    overflow-y: scroll !important;
 
-  @media (max-width: 992px){
-      .booksvg{
-          display: none;
-      }
-  }
+    height: 67vh;
+}
 
-  @media (max-width: 576px){
-    .mybook{
+.card-header {
+    background-color: var(--yellow) !important;
+    color: var(--purple) !important;
+}
+
+@media (max-width: 992px) {
+    .booksvg {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .mybook {
         width: 90% !important;
-        margin-left: 05%;      
+        margin-left: 05%;
     }
-    .autoR{
+
+    .autoR {
         background-size: 53%;
     }
-    .taxiR{
+
+    .taxiR {
         background-size: 53%;
     }
-    .source{
+
+    .source {
         background-size: 25%;
     }
-    .destn{
+
+    .destn {
         background-size: 25%;
     }
-  }
+}

@@ -16,6 +16,7 @@ import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
 import Footer from './Components/base/Footer';
+import BookRide from './Components/Home/BookRide';
 
 import TestMap from './Components/TestMap/TestMap';
 import ScrollToTop from './ScrollToTop';
@@ -63,13 +64,11 @@ function App() {
 						<Driver />
 						</>}
 					/>
-					{/* Test Routes */}
-					{/* <Route path="/Map" element={<>
+					<Route path="/book-ride" element={<>
 						<Navbar homepage={false}/>
-						<TestMap/>
+						<BookRide />
 						</>}
-					/> */}
-					
+					/>
 				</Routes>
 				<Footer/>
 			</Router>
