@@ -3,6 +3,7 @@ import logo from '../../Media/logo.png';
 import Sidebar from "react-sidebar";
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { axiosInstance } from '../../AxiosSetUp';
 import InstallPWA from './InstallEve';
 
 function Navbar(props) {
@@ -22,6 +23,7 @@ function Navbar(props) {
     // });
     
     // const [hamActive, setHamActive] = useState(false);
+    const [userInfo,setuserInfo] = useState("");
     const [isHome, setIsHome] = useState(props.homepage);
     const [sidebarOpen, setsidebarOpen] = useState(false);
     const [activePage, setActivePage] = useState({
@@ -33,6 +35,18 @@ function Navbar(props) {
     });
 
     const history = useNavigate();
+
+    const getUser = async() =>{
+        const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true });
+        console.log(data.userData);
+        setuserInfo(data.userData);
+    }
+
+    const logoutHandler = async(e) =>{
+        const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
+        console.log(data.userData);
+        setuserInfo(data.userData);
+    }
     
     useEffect(()=> {
         document.addEventListener("scroll", function () {
@@ -102,6 +116,10 @@ function Navbar(props) {
         // console.log("page:", activePage);
     }, [history])
 
+    useEffect(()=>{
+        getUser()
+    },[1]);
+
     const Nav = () => <>
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
@@ -168,6 +186,9 @@ function Navbar(props) {
     </>
 
     const SideBar = () => <div className="side-col d-flex flex-column flex-shrink-0 p-3">
+        <div>
+            <h1 className='text-yellow'>{userInfo.name}</h1>
+        </div>
         <a href="/" className="d-flex mb-3 mb-md-0 me-md-auto text-decoration-none mx-auto">
             <span className="side-comp fs-4">METER DOWN</span>
         </a>
@@ -193,24 +214,33 @@ function Navbar(props) {
                 <Link to="/contact" className={"nav-link " + (activePage.contact ? "active" : "")}>Contact</Link>
             </li>
         </ul>
+        <hr />
+        <div>
+            {userInfo.name?<div></div>
+            :<Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>}
+            {/* <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link> */}
+        </div>
+        {/* <div className="dropdown">
         <hr/>
         <div><InstallPWA/></div>
         <hr/>
         {/* <div>
             <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>
         </div> */}
-        <div className="dropdown">
+
+        {userInfo.name?<div className="dropdown">
             <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
-                <strong>mdo</strong>
+                <strong>{userInfo.name}</strong>
             </a>
             <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a className="dropdown-item" href="#">Settings</a></li>
                 <li><a className="dropdown-item" href="#">Profile</a></li>
                 <li><hr className="dropdown-divider"/></li>
-                <li><a className="dropdown-item" href="#">Sign out</a></li>
+                <li><a className="dropdown-item" href="/" onClick={logoutHandler}>Sign out</a></li>
             </ul>
-        </div>
+        </div>:<div></div>}
+        
     </div>
 
 
