@@ -6,6 +6,20 @@ const path = require("path")
 const passport=require("passport")
 const app =express()
 
+global.ab="doo"
+server=app.listen(process.env.PORT,()=>{
+    console.log("Running on port ",process.env.PORT)
+})
+// global.io=require("socket.io")(server,{
+//     cors: {
+//               origin: "http://localhost:3000",
+//             }
+// })
+io=require("./config/socket")
+// console.log("app",io)
+global.server=server
+
+
 require("./config/mongoose")
 require('./config/passport')(passport);
 
@@ -26,28 +40,5 @@ app.get("*", (req, res) => {
 });
 
 
-server=app.listen(process.env.PORT,()=>{
-    console.log("Running on port ",process.env.PORT)
-})
-
-const {Server}=require("socket.io")
 
 
-const io= new Server(server,{
-    cors: {
-      origin: "http://localhost:3000",
-    },
-  })
-
-io.on("connection", (socket) => {
-    
-    
-    socket.on("join",(event)=>{
-     
-      socket.join(event.user)
-      
-    })
-  
-  });
-
-module.exports=io
