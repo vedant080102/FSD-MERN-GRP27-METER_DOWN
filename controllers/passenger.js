@@ -54,14 +54,14 @@ const bookRide=async(req,res)=>{
             "fareId":String(fare._id),
             "timestamp":Date.now()
         })
-        // console.log("driverindex"+String(drivers[driverIndex]._id),Date.now())
+        
         var waitCount=0
         
         while (waitCount<=10){
             console.log(waitCount)
             await sleep(5*1000)
             checkAccepted=await Fare.findOne({_id:fare._id}).lean()
-            // console.log(checkAccepted._id,String(checkAccepted._id))
+            
             if(String(checkAccepted.driver)==String(drivers[driverIndex]._id)){
                 allotted=1
                 console.log("allotted!")
@@ -77,7 +77,7 @@ const bookRide=async(req,res)=>{
 
         blackList.push(drivers[driverIndex])
         await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:false,ongoingFare:null})
-        // driverIndex=driverIndex+1
+        
         driverIndex=0
         drivers=await getDrivers(blackList,source)
 
@@ -86,7 +86,7 @@ const bookRide=async(req,res)=>{
         }
       }
       if(allotted==0){
-          
+          await Fare.findOneAndRemove({_id:fare._id})
       }
       console.log("function end")
 
