@@ -40,28 +40,9 @@ const bookRide=async(req,res)=>{
     console.log(fare)
     res.send(fare)
     var blackList=[]
-    // driversList= await Driver.find({busy:false}).lean()
-    // drivers=[...driversList]
-    // console.log(typeof(drivers))
     
-    // drivers.forEach((driver,index) => {
-    //    drivers[index].distance=geolib.getDistance(driver.location, {
-    //         latitude: source.lat,
-    //         longitude: source.lng,
-    //     })
-    // });
-    // drivers=drivers.sort(function(a, b){return a.distance-b.distance});
-    start=Date.now()
     drivers=await getDrivers(blackList,source)
-    end=Date.now()
-    console.log("Query time",(end-start)*1000)
-    // console.log("total",drivers)
-    // io.sockets.to(String(drivers[0]._id)).emit("ride",{"data":"data1"})
-    // blackList.push(drivers[1])
-    // c = drivers.filter( ( el ) => !blackList.includes( el ) );
-    // c = drivers.filter( x => !blackList.filter( y => String(y._id) == String(x._id)).length);
-    // console.log("filtered",c);
-    await sleep(15*1000)
+    
       var driverIndex=0
       while(driverIndex<drivers.length){
 
@@ -104,12 +85,7 @@ const bookRide=async(req,res)=>{
         }
       }
       console.log("function end")
-    // console.log(drivers)
-    // res.send(drivers)
-//     const seprateThread = new Worker(__dirname + "/fareAlloter.js");
-//     faredata=JSON.stringify({"fareid":fare._id,"source":source})
-//     // console.log("pas",faredata)
-//   seprateThread.postMessage({"source":"abcaslk"});
+
 
 }
 // populate("source destination passenger driver")
