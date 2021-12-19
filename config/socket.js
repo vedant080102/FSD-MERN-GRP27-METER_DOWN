@@ -49,10 +49,14 @@ if (io === undefined) {
                 socket.on("accept",async(event)=>{
                   fareid=event.fareId
                   console.log("event",event)
-                 conf=await Fare.updateOne({_id:fareid},{
-                    driver:event.driverId
-                  })
-                  console.log("accept",conf)
+                  if(socket.rooms.has(fareid)){
+                    console.log("correct")
+                    conf=await Fare.updateOne({_id:fareid},{
+                      driver:event.driverId
+                    })
+                    console.log("accept",conf)
+                  }
+                 
                   // console.log(io.sockets.adapter.rooms)
                   
                 })

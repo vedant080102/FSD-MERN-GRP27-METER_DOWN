@@ -10,13 +10,9 @@ global.ab="doo"
 server=app.listen(process.env.PORT,()=>{
     console.log("Running on port ",process.env.PORT)
 })
-// global.io=require("socket.io")(server,{
-//     cors: {
-//               origin: "http://localhost:3000",
-//             }
-// })
+
 io=require("./config/socket")
-// console.log("app",io)
+
 global.server=server
 
 

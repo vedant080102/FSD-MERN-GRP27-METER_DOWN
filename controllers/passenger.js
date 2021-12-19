@@ -24,7 +24,7 @@ const getDrivers=async(blackList,source)=>{
     if(blackList.length>0){
         drivers = drivers.filter( x => !blackList.filter( y => String(y._id) == String(x._id)).length);
     }
-    console.log(drivers)
+    // console.log(drivers)
     return drivers
 }
 
@@ -45,7 +45,7 @@ const bookRide=async(req,res)=>{
     var allotted=0
       var driverIndex=0
       while(driverIndex<drivers.length){
-
+        console.log("Driver index:",drivers[driverIndex]._id)
          await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:true,ongoingFare:fare._id})
         io.socketsLeave(String(fare._id));
         io.in(String(drivers[driverIndex]._id)).socketsJoin(String(fare._id));
@@ -67,6 +67,9 @@ const bookRide=async(req,res)=>{
                 console.log("allotted!")
                 await Fare.updateOne({_id:fare._id},{allotted:true})
                 await Passenger.updateOne({_id:req.userId,ongoingRide:fare._id})
+                io.sockets.to(String(req.userId)).emit("allotted",{
+                    "message":`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly`,
+                })
                 break
             }
             waitCount=waitCount+1
