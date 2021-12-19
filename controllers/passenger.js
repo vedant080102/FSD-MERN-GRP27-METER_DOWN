@@ -42,11 +42,11 @@ const bookRide=async(req,res)=>{
     var blackList=[]
     
     drivers=await getDrivers(blackList,source)
-    
+    var allotted=0
       var driverIndex=0
       while(driverIndex<drivers.length){
 
-         await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:true})
+         await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:true,ongoingFare:fare._id})
         io.socketsLeave(String(fare._id));
         io.in(String(drivers[driverIndex]._id)).socketsJoin(String(fare._id));
         io.sockets.to(String(fare._id)).emit("ride",{
@@ -54,18 +54,19 @@ const bookRide=async(req,res)=>{
             "fareId":String(fare._id),
             "timestamp":Date.now()
         })
-        console.log("driverindex"+String(drivers[driverIndex]._id),Date.now())
+        // console.log("driverindex"+String(drivers[driverIndex]._id),Date.now())
         var waitCount=0
-        var allotted=0
+        
         while (waitCount<=10){
             console.log(waitCount)
             await sleep(5*1000)
             checkAccepted=await Fare.findOne({_id:fare._id}).lean()
-            console.log(checkAccepted._id,String(checkAccepted._id))
+            // console.log(checkAccepted._id,String(checkAccepted._id))
             if(String(checkAccepted.driver)==String(drivers[driverIndex]._id)){
                 allotted=1
                 console.log("allotted!")
                 await Fare.updateOne({_id:fare._id},{allotted:true})
+                await Passenger.updateOne({_id:req.userId,ongoingRide:fare._id})
                 break
             }
             waitCount=waitCount+1
@@ -75,7 +76,7 @@ const bookRide=async(req,res)=>{
         }
 
         blackList.push(drivers[driverIndex])
-        await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:false})
+        await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:false,ongoingFare:null})
         // driverIndex=driverIndex+1
         driverIndex=0
         drivers=await getDrivers(blackList,source)
@@ -83,6 +84,9 @@ const bookRide=async(req,res)=>{
         if(drivers.length==0){
             break
         }
+      }
+      if(allotted==0){
+          
       }
       console.log("function end")
 
