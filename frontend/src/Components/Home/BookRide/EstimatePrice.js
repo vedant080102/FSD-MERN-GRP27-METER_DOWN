@@ -7,13 +7,7 @@ export default function EstimatePrice() {
 
     const getEstimate = async () => {
         await axios.get('https://router.hereapi.com/v8/routes', {
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json',
-                    // 'Authorization': 'Bearer ' + APP_CODE_HERE,
-                    'withCredentials': true,
-                    // 'mode': 'no-cors',
-                },
+                
                 'params': {
                     'apiKey': APP_CODE_HERE,
                     'origin': '19.188169982132184,72.94374226308034',

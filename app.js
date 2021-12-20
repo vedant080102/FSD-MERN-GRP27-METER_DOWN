@@ -23,7 +23,18 @@ require('./config/passport')(passport);
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser("secret"))
-app.use(cors());
+var whitelist = ['http://localhost:3000', '*' ]
+var corsOptions = {
+  credentials: true,
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(null, true)
+    }
+  }
+}
+app.use(cors(corsOptions));
 
 app.use(express.static(path.join(__dirname, "frontend", "build")))
 
