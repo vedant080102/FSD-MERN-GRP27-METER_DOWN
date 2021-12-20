@@ -1,0 +1,92 @@
+.regdriv{
+    background-color:rgb(248, 241, 242);  
+    padding: 5%;
+}
+
+.driverForm{
+    background-color: white;
+}
+
+.image-cropper {
+    height: 200px;
+    width:200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    border-radius: 50%;
+    border:var(--purple) solid
+}
+
+.vehImage{
+    height:22vh;
+    width:100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    border:var(--purple) solid
+}
+
+.profile-pic {
+    display: inline;
+    margin: auto;
+    height: 100%;
+    width: auto;
+  }
+
+.profPic{
+    margin: 2%;
+    padding:3%;
+}
+
+.drinput{
+    width: 60%;
+    background-color: transparent;
+    border-bottom-style: groove;
+    color: black;
+    border-color: black;
+    font-size: 1.2rem;
+    font-family: 'Adobe Clean';
+    border-radius: 5px;
+    text-align: left;
+    display: block;
+}
+
+.drfinput{
+    width: 60%;
+    background-color: transparent;
+    text-align: left;
+    display: block;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0.3rem;
+    font-size: 1rem;
+}
+
+.drlabel{
+    text-align: left ;
+    font-weight: 600;
+    font-size: large;
+    display: block;
+}
+
+.drinfo{
+    padding-left: 7%;
+}
+
+.myHr{
+    border: 2px solid black !important;
+}
+
+#drSubmit{
+    background-color: transparent;
+    border: 1px solid;
+    cursor: pointer;
+    padding:0.5em 1em;
+    border-radius: 0.5em;
+    font-weight: 600;
+}
+
+#drSubmit:hover{
+    color: white;
+    background-color: gray;
+}

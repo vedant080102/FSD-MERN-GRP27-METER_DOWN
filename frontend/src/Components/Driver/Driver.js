@@ -184,7 +184,7 @@ function Driver() {
                         <div>Download the app and start driving</div>
                     </ul>
                     {/* <div className="w-100 flex"><hr className='w-75'/></div> */}
-                    <a className='mt-3 btn purple-btn'>Fill your application now!</a>
+                    <a className='mt-3 btn purple-btn' href='/driverInfo'>Fill your application now!</a>
                 </div>
 
 

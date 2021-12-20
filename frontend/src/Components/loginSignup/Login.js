@@ -35,10 +35,10 @@ function Login() {
             <br></br>
             <br></br>
             {/* <label htmlFor="Email" className="mylabel">Email</label><br></br> */}
-            <input className="myinput" type="tel" id="Phone" placeholder="   Phone Number" value={phone} onChange={(e)=>{setphone(e.target.value)}}/><br></br>
+            <input className="myinput" type="tel" id="Phone" placeholder="   Phone Number" value={phone} onChange={(e)=>{setphone(e.target.value)}} required/><br></br>
             <br></br>
             {/* <label htmlFor="pass" className="mylabel">Password</label><br></br> */}
-            <input  className="myinput" type="password" id="pass" placeholder="   Password" value={pass} onChange={(e)=>{setpass(e.target.value)}}/><br></br>
+            <input  className="myinput" type="password" id="pass" placeholder="   Password" value={pass} onChange={(e)=>{setpass(e.target.value)}} required/><br></br>
             <br></br>
             <br></br>
             <button type="submit" id="submit">Login</button>

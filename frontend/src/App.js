@@ -19,6 +19,7 @@ import Footer from './Components/base/Footer';
 
 import TestMap from './Components/TestMap/TestMap';
 import ScrollToTop from './ScrollToTop';
+import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
 
 
 function App() {
@@ -61,6 +62,11 @@ function App() {
 					<Route path="/become-driver" element={<>
 						<Navbar homepage={false}/>
 						<Driver />
+						</>}
+					/>
+					<Route path="/driverInfo" element={<>
+						<Navbar homepage={false}/>
+						<RegisterDriver/>
 						</>}
 					/>
 					{/* Test Routes */}
