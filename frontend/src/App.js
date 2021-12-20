@@ -19,6 +19,7 @@ import Footer from './Components/base/Footer';
 import BookRide from './Components/Home/BookRide/BookRide';
 
 import ScrollToTop from './ScrollToTop';
+import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
 
 
 function App() {
@@ -63,6 +64,13 @@ function App() {
 						<Driver />
 						</>}
 					/>
+					<Route path="/driverInfo" element={<>
+						<Navbar homepage={false}/>
+						<RegisterDriver/>
+						</>}
+					/>
+					{/* Test Routes */}
+					{/* <Route path="/Map" element={ */}
 					<Route path="/book-ride" element={<>
 						<Navbar homepage={false}/>
 						<BookRide />

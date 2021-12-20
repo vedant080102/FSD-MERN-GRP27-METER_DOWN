@@ -207,7 +207,11 @@ function Driver() {
                         </div>
                     </div>
                     {/* <div className="w-100 flex"><hr className='w-75'/></div> */}
+<<<<<<< HEAD
+                    <a className='mt-3 btn purple-btn' href='/driverInfo'>Fill your application now!</a>
+=======
                     <a className='mt-3 btn purple-btn shadow'>Fill your application now!</a>
+>>>>>>> 52045b209b8b8159aa213c8b32fa3e3091e75516
                 </div>
 
             </div>
