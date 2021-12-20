@@ -7,6 +7,7 @@ const geolib = require('geolib');
 const io = require("../config/socket")
 const FarePrice=require("../models/FarePrice")
 const Completedfares = require("../models/Completedfares")
+const Review = require("../models/Review")
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 
 const getDrivers=async(blackList,source)=>{
@@ -130,6 +131,17 @@ const getPastRides=async(req,res)=>{
     res.send(passenger.prevRides)
 }
 
+const giveReview=async(req,res)=>{
+    review=await Review.create({
+        "star":req.body.star,
+        "comment":req.body.comment,
+        "ride":req.body.rideId
+    })
+    ride=await Completedfares.findOneAndUpdate({_id:req.body.rideId},{review:review._id},{new:true})
+    res.send({
+        "msg":"Review recorded successfully"
+    })
+}
 
 // const createPrices=async(req,res)=>{
     
@@ -162,6 +174,6 @@ module.exports={
     bookRide,
     getOneRideData,
     getPriceEstimate,
-    getPastRides
-    
+    getPastRides,
+    giveReview
 }

@@ -9,10 +9,10 @@ const reviewSchema = mongoose.Schema({
         type:String,
         default:null
     },
-    author:{
+     ride:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Passenger'
-    }
+        ref: 'CompletedFare'
+    },
 })
 
 module.exports=mongoose.model("Review",reviewSchema)
