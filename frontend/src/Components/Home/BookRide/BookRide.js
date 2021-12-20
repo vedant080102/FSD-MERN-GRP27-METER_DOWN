@@ -43,18 +43,14 @@ function BookRide(props) {
                     <div className="row m-0 flex">
                         <div className='col-10 my-2 locations mx-2 p-2 rounded text-start' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}>
                             <div className="row w-100 m-0">
-                                <div className="col-3 col-xl-2 p-0 px-2">
-                                    Pickup:
-                                </div>
+                                <div className="col-3 col-xl-2 p-0 px-2">Pickup:</div>
                                 <div className="col-9">
                                     {pickupLoc.title ? <b>{pickupLoc.title}</b> : "Select pickup for estimation"}</div>
                             </div>
                         </div>
                         <div className='col-10 my-2 locations mx-2 p-2 rounded text-start' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}>
                             <div className="row w-100 m-0">
-                                <div className="col-3 col-xl-2 p-0 px-2">
-                                    Drop:
-                                </div>
+                                <div className="col-3 col-xl-2 p-0 px-2">Drop:</div>
                                 <div className="col-9">
                                     {destinationLoc.title ? <b>{destinationLoc.title}</b> : "Select drop for estimation"}</div>
                             </div>

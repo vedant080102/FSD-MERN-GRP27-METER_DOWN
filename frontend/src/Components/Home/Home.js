@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../base/Navbar";
 import './home.css'
 import logo from '../../Media/logo.png'
@@ -10,7 +10,7 @@ import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
 import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from './geocoding';
-import PopularRoutes from './PopularRoutes.js'
+// import PopularRoutes from './PopularRoutes.js'
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
 
@@ -173,7 +173,6 @@ function Home() {
                                 </div>
                             </div>
                             <div className='col-12 col-md-6 mt-3 mt-md-1'>
-                                <div className="flex">
                                     {/* <img src={mapImg} alt='map' height='150'/> */}
                                     {/* <lottie-player
                                         autoplay
@@ -182,8 +181,7 @@ function Home() {
                                         src="https://assets1.lottiefiles.com/packages/lf20_ZZ5gpp.json"
                                         style={{width: "320px"}}
                                     ></lottie-player> */}
-                                    <div ref={routeAnimationRef} id='select-route'></div>
-                                </div>
+                                <div ref={routeAnimationRef} id='select-route' className='flex h-100'></div>
                             </div>
                         </div>
                     </div>
@@ -220,8 +218,8 @@ function Home() {
                         <div className='rounded-pill fw-bold fs-2 p-5 my-5 yellow-bg' style={{color: 'var(--purple)'}}>
                             Redefining Mobility for Billions
                             <br/>
-                            <Rick height='150'/>
-                            <Taxi height='150'/>
+                            <Rick className='rides-svg' height='150'/>
+                            <Taxi className='rides-svg' height='150'/>
                         </div>
                     </div>
                 </div>

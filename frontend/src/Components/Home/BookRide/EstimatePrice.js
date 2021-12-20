@@ -7,35 +7,19 @@ export default function EstimatePrice() {
 
     const getEstimate = async () => {
         await axios.get('https://router.hereapi.com/v8/routes', {
-                'headers': {
-                    'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json',
-                    // 'Authorization': 'Bearer ' + APP_CODE_HERE,
-                    'withCredentials': true,
-                    // 'mode': 'no-cors',
-                },
-                'params': {
-                    'apiKey': APP_CODE_HERE,
-                    'origin': '19.188169982132184,72.94374226308034',
-                    'destination': '19.187228824224597,72.94566732213572',
-                    'transportMode': 'car',
-                    'return': 'summary',
-                }
-            })
-            .then((data) => {
-                console.log("data:", data)
-                // let temp = []
-                // let t = data.data.items
-                // t.forEach(x => {
-                //     temp.push({
-                //         position: x.position,
-                //         title: x.title,
-                //         address: x.address.label,
-                //     })
-                // });
-                // setResults(temp)
-                // console.log("results:", results);
-            });
+            'params': {
+                'apiKey': APP_CODE_HERE,
+                'origin': '19.188169982132184,72.94374226308034',
+                'destination': '19.187228824224597,72.94566732213572',
+                'transportMode': 'car',
+                'return': 'summary',
+            }
+        })
+        .then((data) => {
+            console.log("data:", data.data.routes[0].sections[0])
+            // let temp = data.data.routes.section.summary;
+            // console.log("data:", temp)
+        });
     }
 
     useEffect(() => getEstimate(), [1])

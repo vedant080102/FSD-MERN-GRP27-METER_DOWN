@@ -9,6 +9,7 @@ import driverImg1 from '../../Media/rickDriver1.jpg'
 import driverImg2 from '../../Media/rickDriver2.jpg'
 import { useState } from 'react';
 import ImageComp from './ImageComp';
+import { Link } from 'react-router-dom';
 
 function Driver() {
     const requirments = [{
@@ -207,7 +208,7 @@ function Driver() {
                         </div>
                     </div>
                     {/* <div className="w-100 flex"><hr className='w-75'/></div> */}
-                    <a className='mt-3 btn purple-btn' href='/driverInfo'>Fill your application now!</a>
+                    <Link className='mt-3 btn purple-btn' to={'/driverInfo'}>Fill your application now!</Link>
                 </div>
 
             </div>

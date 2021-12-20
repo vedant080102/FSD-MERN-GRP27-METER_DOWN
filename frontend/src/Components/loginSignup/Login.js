@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './login.css';
-import {Container,Form,Button} from 'react-bootstrap';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate } from "react-router-dom";
 
