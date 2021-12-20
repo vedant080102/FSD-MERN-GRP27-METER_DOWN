@@ -35,11 +35,16 @@ const getDriverData=async(req,res)=>{
    res.send({id:data._id,name:data.name,type:data.type,email:data.email,data:data.data})
 }
 
+const markBusy=async(req,res)=>{
+    data=await Driver.findOneAndUpdate({_id:req.userId},{busy:req.body.busy},{new:true})
+    res.send(data)
+}
 
 
 
 
 module.exports={
     updateDriverInfo,
-    getDriverData
+    getDriverData,
+    markBusy
 }
