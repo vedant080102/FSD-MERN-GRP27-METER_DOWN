@@ -1,35 +1,88 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import {ReactComponent as Rick} from '../../../Media/rickshaw.svg'
+import {ReactComponent as Taxi} from '../../../Media/taxi.svg'
+const humanizeDuration = require("humanize-duration");
 
-export default function EstimatePrice() {
+export default function EstimatePrice(props) {
+
+    const shortEnglishHumanizer = humanizeDuration.humanizer({
+        language: "shortEn",
+        languages: {
+          shortEn: {
+            h: () => "hr",
+            m: () => "min",
+          },
+        },
+        serialComma: false,
+        units: ["h", "m"],
+        maxDecimalPoints: 0,
+        conjunction: " "
+    });
 
     const APP_CODE_HERE = process.env.REACT_APP_HERE_API;
+    const [rideChosen, setrideChosen] = useState('');
+    const [duration, setduration] = useState('');
+    const [distance, setdistance] = useState('');
+
+    const selectRideChange = (e) => {
+        var val = e.currentTarget.value;
+        console.log(val)
+        setrideChosen(val)
+    }
 
     const getEstimate = async () => {
         await axios.get('https://router.hereapi.com/v8/routes', {
             'params': {
                 'apiKey': APP_CODE_HERE,
-                'origin': '19.188169982132184,72.94374226308034',
-                'destination': '19.187228824224597,72.94566732213572',
+                'origin': `${props.pickup.position.lat},${props.pickup.position.lng}`,
+                'destination': `${props.destination.position.lat},${props.destination.position.lng}`,
                 'transportMode': 'car',
-                'return': 'summary',
+                'return': 'summary,typicalDuration',
             }
         })
         .then((data) => {
             console.log("data:", data.data.routes[0].sections[0])
             // let temp = data.data.routes.section.summary;
             // console.log("data:", temp)
+            let dura = data.data.routes[0].sections[0].summary.typicalDuration * 1000;
+            let dis = data.data.routes[0].sections[0].summary.length / 1000;
+            console.log("duration:", shortEnglishHumanizer(Math.ceil(dura)), "len:", dis.toFixed(1));
+            setduration(shortEnglishHumanizer(Math.ceil(dura)))
+            setdistance(dis.toFixed(1));
         });
     }
 
     useEffect(() => getEstimate(), [1])
 
     return <>
-        <h3>Estimation</h3>
-        <div className="estimations flex flex-column flex-md-row">
-            <div className="p-2 my-2 my-md-0 mx-md-1">Arriving In:<br/><b>9:00</b></div>
-            <div className="p-2 my-2 my-md-0 mx-md-1">Journey Duration:<br/><b>9:00</b></div>
-            <div className="p-2 my-2 my-md-0 mx-md-1">Total Distance:<br/><b>9m</b></div>
+        <div id="rides"className="my-5">
+            <h3 className="text-start">Available Rides</h3>
+            <div className="row flex-start btn-group" role="group" aria-label="Basic radio toggle button group">
+                <div className="col-6">
+                    <input type="radio" className="btn-check" value='Auto' name="rideType" id="rideType1" autoComplete="off" onChange={selectRideChange}/>
+                    <label className="btn purple-btn rounded-pill border-2" htmlFor="rideType1">
+                        <Rick height='75'/>
+                        {/* <span>Get auto at your doorstep</span> */}
+                    </label>
+                </div>
+                <div className="col-6">
+                    <input type="radio" className="btn-check" value='Taxi' name="rideType" id="rideType2" autoComplete="off" onChange={selectRideChange}/>
+                    <label className="btn purple-btn rounded-pill border-2" htmlFor="rideType2">
+                        <Taxi height='75'/>
+                        {/* <span>Comfy Taxi at pocket-friendly rates</span> */}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div id="estimation" className="text-start">
+            <h3>Estimation</h3>
+            <div className="estimations flex flex-column flex-md-row">
+                {/* <div className="p-2 my-2 my-md-0 mx-md-1">Arriving In:<br/><b>9:00</b></div> */}
+                <div className="p-2 my-2 my-md-0 mx-md-1">Journey Duration:<br/><b>{duration}</b></div>
+                <div className="p-2 my-2 my-md-0 mx-md-1">Total Distance:<br/><b>{distance} km</b></div>
+            </div>
         </div>
     </>
 }

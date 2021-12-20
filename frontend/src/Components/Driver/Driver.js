@@ -3,11 +3,11 @@ import { useRef, useEffect } from 'react';
 import { Parallax, Background } from 'react-parallax';
 import lottie from "lottie-web/build/player/lottie_light";
 import bgimg from '../../Media/MUMBAITAXI-driver-pg.jpg'
-import sparkle from '../../Media/purple-sprinkle.svg'
+// import sparkle from '../../Media/purple-sprinkle.svg'
 import driverImg from '../../Media/MUMBAITAXI-driver-2.jpg'
 import driverImg1 from '../../Media/rickDriver1.jpg'
 import driverImg2 from '../../Media/rickDriver2.jpg'
-import { useState } from 'react';
+// import { useState } from 'react';
 import ImageComp from './ImageComp';
 import { Link } from 'react-router-dom';
 

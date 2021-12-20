@@ -36,10 +36,14 @@ function Navbar(props) {
 
     const history = useNavigate();
 
-    const getUser = async() =>{
-        const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true });
-        console.log(data.userData);
-        setuserInfo(data.userData);
+    const getUser = async() => {
+        try {
+            const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true })
+            console.log(data.userData);
+            setuserInfo(data.userData);
+        } catch (error) {
+            console.log("No user is logged in OR there might be some issues");
+        }
     }
 
     const logoutHandler = async(e) =>{
@@ -186,9 +190,9 @@ function Navbar(props) {
     </>
 
     const SideBar = () => <div className="side-col d-flex flex-column flex-shrink-0 p-3">
-        <div>
-            <h1 className='text-yellow'>{userInfo.name}</h1>
-        </div>
+        {/* <div>
+            <h1 className='text-white'>{userInfo.name}</h1>
+        </div> */}
         <a href="/" className="d-flex mb-3 mb-md-0 me-md-auto text-decoration-none mx-auto">
             <span className="side-comp fs-4">METER DOWN</span>
         </a>
@@ -218,29 +222,19 @@ function Navbar(props) {
         <div><InstallPWA/></div>
         <hr />
         <div>
-            {userInfo.name?<div></div>
-            :<Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>}
-            {/* <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link> */}
-        </div>
-        {/* <div className="dropdown">
-        <hr/>
-        {/* <div>
-            <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>
-        </div> */}
-
-        {userInfo.name?<div className="dropdown">
-            <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
-                <strong>{userInfo.name}</strong>
-            </a>
-            <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a className="dropdown-item" href="#">Settings</a></li>
-                <li><a className="dropdown-item" href="#">Profile</a></li>
-                <li><hr className="dropdown-divider"/></li>
-                <li><a className="dropdown-item" href="/" onClick={logoutHandler}>Sign out</a></li>
-            </ul>
-        </div>:<div></div>}
-        
+            {userInfo.name ? <div className="dropdown">
+                <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/> */}
+                    <i className="fas fs-5 fa-user-circle me-2"></i>Hi<strong className='ms-2'>{userInfo.name}</strong>!
+                </a>
+                <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    {/* <li><a className="dropdown-item" href="#">Settings</a></li>
+                    <li><a className="dropdown-item" href="#">Profile</a></li>
+                    <li><hr className="dropdown-divider"/></li> */}
+                    <li><button className="dropdown-item" onClick={logoutHandler}><i className="fas fa-sign-out-alt"></i> Sign out</button></li>
+                </ul>
+            </div> : <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>}
+        </div>      
     </div>
 
 

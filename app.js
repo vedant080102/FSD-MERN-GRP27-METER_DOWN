@@ -6,6 +6,16 @@ const path = require("path")
 const passport=require("passport")
 const app =express()
 
+
+server=app.listen(process.env.PORT,()=>{
+    console.log("Running on port ",process.env.PORT)
+})
+
+io=require("./config/socket")
+
+global.server=server
+
+
 require("./config/mongoose")
 require('./config/passport')(passport);
 
@@ -13,15 +23,24 @@ require('./config/passport')(passport);
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser("secret"))
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+var whitelist = ['http://localhost:3000', '*' ]
+var corsOptions = {
+  credentials: true,
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(null, true)
+    }
+  }
+}
+app.use(cors(corsOptions));
 
 app.use(express.static(path.join(__dirname, "frontend", "build")))
 
 app.use("/api/user",require("./routes/user"))
 app.use("/api/driver",require("./routes/driver"))
+app.use("/api/passenger",require("./routes/passenger"))
 
 
 app.use(function(req, res, next) {
@@ -34,6 +53,5 @@ app.get("*", (req, res) => {
 });
 
 
-app.listen(process.env.PORT,()=>{
-    console.log("Running on port ",process.env.PORT)
-})
+
+
