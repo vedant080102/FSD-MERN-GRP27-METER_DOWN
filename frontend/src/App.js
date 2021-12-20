@@ -16,11 +16,17 @@ import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
 import Footer from './Components/base/Footer';
+import BookRide from './Components/Home/BookRide/BookRide';
+
+import ScrollToTop from './ScrollToTop';
+import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
+
 
 function App() {
 	return (
 		<div className="App">
 			<Router>
+				<ScrollToTop />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					{/* <Route path="/index.html" element={<Home />} /> */}
@@ -58,12 +64,18 @@ function App() {
 						<Driver />
 						</>}
 					/>
-					{/* <Route path="/server" element={<>
-						<ServerAutoSuggest />
-						<AddressForm />
-						<GetAddress/>
+					<Route path="/driverInfo" element={<>
+						<Navbar homepage={false}/>
+						<RegisterDriver/>
 						</>}
-					/> */}
+					/>
+					{/* Test Routes */}
+					{/* <Route path="/Map" element={ */}
+					<Route path="/book-ride" element={<>
+						<Navbar homepage={false}/>
+						<BookRide />
+						</>}
+					/>
 				</Routes>
 				<Footer/>
 			</Router>

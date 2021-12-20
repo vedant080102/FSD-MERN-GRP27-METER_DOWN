@@ -14,6 +14,7 @@
     "react-autosuggest": "^10.1.0",
     "react-bootstrap": "^2.0.2",
     "react-dom": "^17.0.2",
+    "react-here-map": "^4.0.0-0",
     "react-parallax": "^3.3.0",
     "react-router-dom": "^6.0.1",
     "react-router-hash-link": "^2.4.3",
