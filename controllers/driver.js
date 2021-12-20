@@ -1,4 +1,5 @@
 const Driver = require("../models/Driver")
+const Fare = require("../models/Fare")
 const User = require("../models/User")
 
 const updateDriverInfo=async(req,res)=>{
@@ -40,11 +41,20 @@ const markBusy=async(req,res)=>{
     res.send(data)
 }
 
+const updateLocation=async(req,res)=>{
+    data=await Driver.findOneAndUpdate({_id:req.userId},{location:req.body.location},{new:true})
+    res.send(data)
+}
 
+const markStartRide=async(req,res)=>{
+    data=await Fare.findOneAndUpdate()
+}
 
 
 module.exports={
     updateDriverInfo,
     getDriverData,
-    markBusy
+    markBusy,
+    updateLocation,
+    markStartRide
 }
