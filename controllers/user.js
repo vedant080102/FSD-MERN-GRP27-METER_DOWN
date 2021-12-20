@@ -31,7 +31,7 @@ const loginUser=(req,res,next)=>{
         console.log(user)
 
         if (!user) {
-           res.status(401).json({ success: false, msg: "could not find user" });
+           res.status(401).json({ success: false, msg: "Could not find user" });
         }
         
         // Function defined at bottom of app.js
@@ -45,15 +45,16 @@ const loginUser=(req,res,next)=>{
 
                 // res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires });
             }else{
-                res.status(401).json({ success: false, msg: "you entered the wrong password" });
+                res.status(401).json({ success: false, msg: "You entered the wrong password" });
             }
         })
         
        
 
     })
-    .catch((err) => {
-        next(err);
+    .catch((error) => {
+        res.status(500).json({msg:error.message,userData:{}})
+
     });
 }
 
@@ -98,7 +99,7 @@ const registerUser=(req,res,next)=>{
                           return  res.status(200).json({msg:"Successfully registered",userData:user})
                         } catch (error) {
                             console.log(error)
-                            res.status(500).json({msg:error,userData:{}})
+                            res.status(500).json({msg:error.message,userData:{}})
                             
                         }
                         

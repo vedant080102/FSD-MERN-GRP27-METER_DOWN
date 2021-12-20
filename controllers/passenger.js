@@ -4,10 +4,8 @@ const Fare = require("../models/Fare")
 const Address=require("../models/Address")
 const Driver=require("../models/Driver")
 const geolib = require('geolib');
-const { Worker } = require("worker_threads");
 const io = require("../config/socket")
-// console.log(global.io)
-// io=require("../config/socket")
+const FarePrice=require("../models/FarePrice")
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 
 const getDrivers=async(blackList,source)=>{
@@ -112,11 +110,23 @@ const getOneRideData=async(req,res)=>{
     res.send(fare)
 }
 
+const getPriceEstimate=async(req,res)=>{
+    fareData=await FarePrice.findOne({distance:req.query.distance,vehicleType:req.query.type})
+    price=0
+    if(req.query.time=="day"){
+        price=fareData.dayPrice
+    }else{
+        price=fareData.nightPrice
 
+    }
+    res.send({
+        "price":price
+    })
+}
 
 // console.log(io.sockets.adapter.rooms)
 module.exports={
     bookRide,
     getOneRideData,
-    
+    getPriceEstimate
 }
