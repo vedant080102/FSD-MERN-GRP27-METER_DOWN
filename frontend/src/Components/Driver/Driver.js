@@ -92,11 +92,11 @@ function Driver() {
         return (
             <div className="accordion-item rounded">
                 <h2 className="accordion-header" id={"panelsStayOpen-heading" + n}>
-                <button className={"accordion-button rounded-top " + (n == 1 ? "": "collapsed")} type="button" data-bs-toggle="collapse" data-bs-target={"#panelsStayOpen-collapse" + n} aria-expanded={n == 1 ? "true" : 'false'} aria-controls={"panelsStayOpen-collapse" + n}>
+                <button className={"accordion-button rounded-top " + (n === 1 ? "": "collapsed")} type="button" data-bs-toggle="collapse" data-bs-target={"#panelsStayOpen-collapse" + n} aria-expanded={n === 1 ? "true" : 'false'} aria-controls={"panelsStayOpen-collapse" + n}>
                     {doc.title}
                 </button>
                 </h2>
-                <div id={"panelsStayOpen-collapse" + n} className={"accordion-collapse collapse " + (n == 1 ? "show" : '')} aria-labelledby={"panelsStayOpen-heading" + n}>
+                <div id={"panelsStayOpen-collapse" + n} className={"accordion-collapse collapse " + (n === 1 ? "show" : '')} aria-labelledby={"panelsStayOpen-heading" + n}>
                     <div className="accordion-body">
                         <ul>{docs.map((x,i) => <li key={i}>{x}</li>)}</ul>
                     </div>

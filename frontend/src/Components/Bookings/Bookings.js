@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactComponent as RouteSvg } from "../../Media/route-bookings.svg";
 import './Bookings.css';
 
 function Bookings() {

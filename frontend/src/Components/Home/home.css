@@ -191,12 +191,32 @@
     font-weight: bold;
     color: var(--purple);
 }
-
+#ride-booking .yellow-bg {
+    width: 570px;
+    margin: 2em auto;
+}
 #ride-booking .btn-check:checked+.purple-btn {
     background-color: var(--purple);
     color: var(--yellow);
+    box-shadow: 0 0 0 0.25rem #2b0a2c57 !important;
+}
+#ride-booking .purple-btn {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
 #ride-booking .locations {
     border: 1px solid var(--purple);
+}
+
+#ride-booking .estimations div {
+    width: 150px;
+    border: 1px solid var(--purple);
+    border-radius: 0.2em;
+    padding: 0.5em;
+}
+
+@media (max-width: 576px) {
+    #ride-booking .yellow-bg {
+        width: 90% !important;
+    }
 }
