@@ -28,6 +28,7 @@ function InstallPWA() {
         promptInstall.prompt();
     };
     if (!supportsPWA) {
+        navigator.getInstalledRelatedApps()
         console.log("pwa not supported!")
         return (
             <button className="btn btn-outline-danger">
