@@ -57,7 +57,7 @@ const bookRide=async(req,res)=>{
         
         var waitCount=0
         
-        while (waitCount<=10){
+        while (waitCount<=4){
             console.log(waitCount)
             await sleep(5*1000)
             checkAccepted=await Fare.findOne({_id:fare._id}).lean()
@@ -68,6 +68,7 @@ const bookRide=async(req,res)=>{
                 await Fare.updateOne({_id:fare._id},{allotted:true})
                 await Passenger.updateOne({_id:req.userId,ongoingRide:fare._id})
                 io.sockets.to(String(req.userId)).emit("allotted",{
+                    "status":"success",
                     "message":`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly`,
                 })
                 break
@@ -89,6 +90,10 @@ const bookRide=async(req,res)=>{
         }
       }
       if(allotted==0){
+        io.sockets.to(String(req.userId)).emit("allotted",{
+            "status":"failure",
+            "message":`Unfortunately no rides available currently :( . Try again later`,
+        })
           await Fare.findOneAndRemove({_id:fare._id})
       }
       console.log("function end")
