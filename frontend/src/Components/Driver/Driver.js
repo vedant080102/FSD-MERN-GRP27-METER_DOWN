@@ -44,7 +44,9 @@ function Driver() {
 
     var t = []
     const formAnimationRef = useRef();
+    const formAnimationRef2 = useRef();
     var animation;
+    var animation2;
     
     const animate = () => {
         // console.log("lottie animation")
@@ -59,6 +61,18 @@ function Driver() {
         })
         // animation.pause('form-svg')
         animation.play('form-svg')
+
+        formAnimationRef2.current.innerHTML = '';
+        animation2 = lottie.loadAnimation({
+            container: formAnimationRef2.current,
+            name: 'form-svg2',
+            path: 'https://assets2.lottiefiles.com/packages/lf20_fatyxr64.json',
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+        })
+        // animation.pause('form-svg')
+        animation2.play('form-svg2')
     }
     
     useEffect(()=> animate(), [1])
@@ -113,7 +127,7 @@ function Driver() {
                 </svg>
             </div>
 
-            <div className="container my-5 rounded py-3 py-sm-5 px-sm-5" style={{backgroundColor:`var(--purple)`}}>
+            <div className="container purple-bg my-5 rounded py-3 py-sm-5 px-sm-5">
                 <h3 className="fw-bold mt-3 mb-5 text-white">Here’s what you need to drive for <span style={{fontFamily: 'var(--brandFont)'}}>METER DOWN</span></h3> 
                 <div className="bg-white rounded py-3 mb-3">
                     <div className="w-100">
@@ -159,7 +173,7 @@ function Driver() {
                     </div>
                 </div>
                 <div className="flex w-100"><hr className='w-75'/></div>
-                <div className='container rounded my-3 py-4 px-md-4'style={{backgroundColor: 'var(--yellow)'}}>
+                <div className='container yellow-bg rounded my-3 py-4 px-md-4'>
                     <h3 className='fw-bold'>Drive to fulfil your dreams</h3>
                     <div className="row mx-0 mt-5 py-2 rounded bg-white shadow">
                         <div className="col-12 col-md-4 p-4">
@@ -175,18 +189,30 @@ function Driver() {
                     </div>
                 </div>
                 <div className="flex w-100"><hr className='w-75'/></div>
-                <div className="mt-3 py-4 rounded bg-white col-12 flex flex-column text-start " style={{backgroundColor: 'var(--purple)'}}>
-                    <ul className='instruction-list'>
-                        <div>Enter your details and register yourself</div>
-                        <div>Submit your documents</div>
-                        <div>Our team will contact you in the next 24 hours</div>
-                        <div>Faster document verification</div>
-                        <div>Download the app and start driving</div>
-                    </ul>
+                <div className="mt-3 py-4 rounded bg-white col-12 flex flex-column text-start">
+                    <div className="row w-100">
+                        <div className="col-12 col-md-6 flex">
+                            <ul className='instruction-list'>
+                                <div className='h5'>Enter your details and register yourself</div>
+                                <div className='h5'>Submit your documents</div>
+                                <div className='h5'>Our team will contact you in the next 24 hours</div>
+                                <div className='h5'>Faster document verification</div>
+                                <div className='h5'>Download the app and start driving</div>
+                            </ul>
+                        </div>
+                        <div className="col-12 col-md-6">
+                            <div className="flex">
+                                <div className='shadow' ref={formAnimationRef2}></div>
+                            </div>
+                        </div>
+                    </div>
                     {/* <div className="w-100 flex"><hr className='w-75'/></div> */}
+<<<<<<< HEAD
                     <a className='mt-3 btn purple-btn' href='/driverInfo'>Fill your application now!</a>
+=======
+                    <a className='mt-3 btn purple-btn shadow'>Fill your application now!</a>
+>>>>>>> 52045b209b8b8159aa213c8b32fa3e3091e75516
                 </div>
-
 
             </div>
             {/* <div className="vw-100 my-3 py-2 p-sm-4" style={{backgroundColor: 'var(--purple)'}}>

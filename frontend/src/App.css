@@ -242,6 +242,13 @@ body {
   border: 1px solid transparent;
 }
 
+.purple-bg {
+  background-color: var(--purple);
+}
+
+.yellow-bg {
+  background-color: var(--yellow);
+}
 /* FOOTER */
 footer {
   background-image: url('Media/purple-sprinkle.svg');

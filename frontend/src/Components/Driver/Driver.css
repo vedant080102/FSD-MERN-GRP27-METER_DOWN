@@ -88,8 +88,8 @@
 #become-driver img.driver-illustr~div {
     top: 0.5rem;
     left: 0.5rem;
-    /* background-color: var(--purple); */
-    background-image: url('../../Media/purple-sprinkle.svg');
+    background-color: var(--purple);
+    /* background-image: url('../../Media/purple-sprinkle.svg'); */
 }
 
 #become-driver img.driver-illustr,

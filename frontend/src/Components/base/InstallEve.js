@@ -29,13 +29,17 @@ function InstallPWA() {
     };
     if (!supportsPWA) {
         console.log("pwa not supported!")
-        return null;
+        return (
+            <button className="btn btn-outline-danger">
+                <i className="fas fa-exclamation-triangle"></i> Cannot Install App
+            </button>
+        )
     }
     return (
         <button className="btn yellow-btn" id="setup_button"
         aria-label="Install app" title="Install app"
         onClick={onClick}>
-            Install App <i class="fas fa-download"></i>
+            Install App <i className="fas fa-download"></i>
         </button>
     );
 };

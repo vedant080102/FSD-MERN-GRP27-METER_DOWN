@@ -1,27 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from "../base/Navbar";
 import './home.css'
 import logo from '../../Media/logo.png'
 import bgImg1 from '../../Media/MUMBAI-TAXI-landscape.jpg'
 import bgImg2 from '../../Media/MUMBAI-Rick.jpg'
 import { Parallax, Background } from "react-parallax";
-// import sprinkle from '../../Media/purple-sprinkle.svg'
-// import mapImg from '../../Media/map.svg'
 import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
 import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from './geocoding';
 import PopularRoutes from './PopularRoutes.js'
 import HowToRide from './howtoride';
-
+import { Alert } from 'react-bootstrap';
 
 function Home() {
 
     const [modalShow, setModalShow] = useState(false);
     const [locQuery, setLocQuery] = useState({})
     const [pickupLoc, setpickupLoc] = useState({})
+    const [alertModal, setalertModal] = useState(false);
     const [destinationLoc, setdestinationLoc] = useState({})
     const routeAnimationRef = useRef();
+    const navigate = useNavigate();
     var animation;
     
     const animate = () => {
@@ -63,6 +64,21 @@ function Home() {
 
     useEffect(()=>{console.log(pickupLoc, destinationLoc)}, [pickupLoc, destinationLoc])
     
+    const handleRoute = () => {
+        if (Object.keys(pickupLoc).length == 0 || Object.keys(destinationLoc).length == 0
+            // (pickupLoc.position || pickupLoc.title || pickupLoc.address) && 
+            // (destinationLoc.position || destinationLoc.title || destinationLoc.address)
+            ) {
+                setalertModal(true)
+        }
+        else {
+            console.log("all clear",pickupLoc, destinationLoc)
+            navigate("/book-ride", { state: {
+                pickup: pickupLoc,
+                destination: destinationLoc,
+            }})
+        }
+    }
 
     return(
         <>
@@ -129,25 +145,30 @@ function Home() {
                             </div>
                             <div className='col-12 col-md-6 mt-2 mt-md-1'>
                                 <div className='card justify-content-betwee p-3 p-md-4 w-100 h-100' id='location-card'>
-                                    <h5>Need a taxi?<br/>Request a ride from your phone with <br/>METER DOWN</h5>
-                                    <div className='row m-0 choose-location p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
+                                    <h5>Need a taxi?</h5>
+                                    <h5 className='mb-3'>Request a ride from your phone with <br/>METER DOWN</h5>
+                                    <div className='row m-0 choose-location p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
                                         onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
-                                            <div className="col-3 col-xl-2 p-0 px-xl-2">
+                                        <div className="col-3 col-xl-2 p-0 px-xl-2">
                                                 Pickup:
-                                            </div>
-                                            <div className="col-9">
-                                                {pickupLoc.title ? <span>{pickupLoc.title}</span> : "Select pickup for estimation"}</div>
-                                            </div>
-                                    <div className='row m-0 choose-location p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}
+                                        </div>
+                                        <div className="col-9">
+                                            {pickupLoc.title ? <span>{pickupLoc.title}</span> : "Select pickup for estimation"}</div>
+                                    </div>
+                                    <div className='row m-0 choose-location p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}
                                         onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>
-                                            <div className="col-3 col-xl-2 p-0 px-xl-2">
-                                                Drop:
-                                            </div>
-                                            <div className="col-9">
-                                                {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop for estimation"}</div>
-                                            </div>
+                                        <div className="col-3 col-xl-2 p-0 px-xl-2">
+                                            Drop:
+                                        </div>
+                                        <div className="col-9">
+                                            {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop for estimation"}</div>
+                                    </div>
+                                        {alertModal ? 
+                                        <Alert variant="danger" onClose={() => setalertModal(false)} dismissible>
+                                            Select both Pickup and Drop Locations First
+                                        </Alert> : ''}
                                     <div className="w-100 flex">
-                                        <button className='buton yellow-btn mt-2 center'>Search Rides</button>
+                                        <button className='buton yellow-btn mt-2 center text-decoration-none' onClick={handleRoute}>Search Rides</button>
                                     </div>
                                 </div>
                             </div>
@@ -196,11 +217,9 @@ function Home() {
                         </Background>
                     </Parallax>
                     <div className='w-100 flex' style={{position: 'absolute', top: '27%', zIndex: '2'}}>
-                        <div className='rounded-pill fw-bold fs-2 p-5 my-5' style={{backgroundColor: 'var(--yellow)', color: 'var(--purple)'}}>
+                        <div className='rounded-pill fw-bold fs-2 p-5 my-5 yellow-bg' style={{color: 'var(--purple)'}}>
                             Redefining Mobility for Billions
                             <br/>
-                            {/* <img src={Rick} alt='rickshaw' height='150'/> */}
-                            {/* <img src={Taxi} alt='taxi' height='150'/> */}
                             <Rick height='150'/>
                             <Taxi height='150'/>
                         </div>
@@ -211,7 +230,7 @@ function Home() {
                     <HowToRide/>
                 </div>
 
-                <GetAddress locQuery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>
+                <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>
             </main>
         </>
     )
