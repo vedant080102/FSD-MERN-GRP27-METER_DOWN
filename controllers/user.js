@@ -67,7 +67,7 @@ const registerUser=(req,res,next)=>{
             if(user){
                 
                return res.status(409).json({
-                msg:"User already exists",
+                msg:"User already exists, try logging in with that account!",
                     
                 })
             }else{

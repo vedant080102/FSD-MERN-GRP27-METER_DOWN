@@ -8,7 +8,7 @@ function Login() {
 
 	const [phone, setphone] = useState("");
 	const [pass, setpass] = useState("");
-	const [statusMsg, setstatusMsg] = useState("");
+	const [statusMsg, setstatusMsg] = useState();
 	const [modalShow, setModalShow] = useState(false);
 	const navigate = useNavigate();
 
@@ -28,7 +28,10 @@ function Login() {
 			}, 2500);
 		}).catch((err) => {
 			console.log(err.response.data);
-			setstatusMsg("❗Some error occured");
+			setstatusMsg(<>
+				<h4 className="mb-3 pb-1">❗Some error occured</h4>
+				<span className="mt-3">{err.response.data.msg}</span>
+			</>);
 			setModalShow(true);
 		})
 	}
@@ -38,7 +41,7 @@ function Login() {
 			<div className="container-fluid bg">
 				<div className="container login">
 					<form onSubmit={submitHandler}>
-						<h1 id="sign-head">Sign in</h1>New user? <a className="link mylink" href="/signup">Create an account</a>
+						<h1 id="sign-head">Sign in</h1>New user? <a className="text-warning" href="/signup">Create an account</a>
 						{/* <label htmlFor="Email" className="mylabel">Email</label> */}
 						<div className="my-5">
 							<input className="myinput mb-3" type="tel" id="Phone" placeholder="   Phone Number" value={phone} onChange={(e)=>{setphone(e.target.value)}} required/>

@@ -9,7 +9,7 @@ export default function MyModal(props) {
             centered
         >
             <Modal.Body className="flex my-5">
-            <h4>{props.msg}</h4>
+                <div className="text-center">{props.msg}</div>
             </Modal.Body>
         </Modal>
     );
