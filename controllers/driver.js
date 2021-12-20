@@ -1,5 +1,8 @@
+
+const CompletedFare=require("../models/Completedfares")
 const Driver = require("../models/Driver")
 const Fare = require("../models/Fare")
+const Passenger = require("../models/Passenger")
 const User = require("../models/User")
 
 const updateDriverInfo=async(req,res)=>{
@@ -47,7 +50,51 @@ const updateLocation=async(req,res)=>{
 }
 
 const markStartRide=async(req,res)=>{
-    data=await Fare.findOneAndUpdate()
+    driver=await Driver.findOne({_id:req.userId})
+    data=await Fare.findOne({_id:driver.ongoingFare})
+    if(req.body.passenger==String(data.passenger)){
+        await Fare.findOneAndUpdate({_id:driver.ongoingFare},{rideStart:Date.now()})
+        res.json({
+            "msg":"Passenger picked up!"
+        })
+    }else{
+        res.status(409).json({
+            "msg":"Invalid Passenger Data!"
+        })
+    }
+}
+
+const markRideComplete=async(req,res)=>{
+    driver=await Driver.findOne({_id:req.userId})
+    data=await Fare.findOne({_id:driver.ongoingFare})
+    if(req.body.passenger==String(data.passenger)){
+
+      fare= await Fare.findOneAndUpdate({_id:driver.ongoingFare},{completed:true},{new:true})
+      var completedAt=Date.now()
+      timeTaken=completedAt-fare.rideStart
+
+       completedfare=await CompletedFare.create({
+           fareData:fare._id,
+           completedAt: completedAt,
+           paidAmt:req.body.paidAmt,
+           timeTaken:timeTaken
+
+       })
+
+        await Driver.findOneAndUpdate({_id:req.userId},{ongoingFare:null,busy:false,$push:{
+            pastFares:completedfare._id
+        }})
+        await Passenger.findOneAndUpdate({_id:req.body.passenger},{ongoingRide:null,$push:{
+            pastFares:completedfare._id
+        }})
+        res.json({
+            "msg":"Fare completed"
+        })
+    }else{
+        res.status(409).json({
+            "msg":"Invalid Passenger Data!"
+        })
+    }
 }
 
 
@@ -56,5 +103,6 @@ module.exports={
     getDriverData,
     markBusy,
     updateLocation,
-    markStartRide
+    markStartRide,
+    markRideComplete
 }

@@ -6,6 +6,7 @@ const Driver=require("../models/Driver")
 const geolib = require('geolib');
 const io = require("../config/socket")
 const FarePrice=require("../models/FarePrice")
+const Completedfares = require("../models/Completedfares")
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 
 const getDrivers=async(blackList,source)=>{
@@ -124,9 +125,43 @@ const getPriceEstimate=async(req,res)=>{
     })
 }
 
+const getPastRides=async(req,res)=>{
+    passenger=await Passenger.findOne({_id:req.userId}).populate("revRides")
+    res.send(passenger.prevRides)
+}
+
+
+// const createPrices=async(req,res)=>{
+    
+//     dr=[]
+//     dist=0.1
+//     dp=25
+//     np=32
+//     for(i=0;i<1000;i++){
+//         dr.push({
+//             "vehicleType":"Taxi",
+//             "dayPrice":dp,
+//             "nightPrice":np,
+//             "distance":Math.round((dist+(0.1*i)) * 10) / 10
+//         })
+//         if((Math.round((dist+(0.1*i)) * 10) / 10)>1.4){
+//             dp=dp+2
+//             np=np+2
+//         }
+//     }
+//     da=await FarePrice.insertMany(dr)
+    
+//     res.send({est:(21/1.5)*22.2,lst:da})
+// }
+
 // console.log(io.sockets.adapter.rooms)
+
+
+
 module.exports={
     bookRide,
     getOneRideData,
-    getPriceEstimate
+    getPriceEstimate,
+    getPastRides
+    
 }
