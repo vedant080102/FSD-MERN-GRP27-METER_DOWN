@@ -126,7 +126,7 @@ const getPriceEstimate=async(req,res)=>{
 }
 
 const getPastRides=async(req,res)=>{
-    passenger=await Passenger.findOne({_id:req.userId}).populate("revRides")
+    passenger=await Passenger.findOne({_id:req.userId}).populate({path:"prevRides",populate:{"path":"fareData"}})
     res.send(passenger.prevRides)
 }
 

@@ -85,7 +85,7 @@ const markRideComplete=async(req,res)=>{
             pastFares:completedfare._id
         }})
         await Passenger.findOneAndUpdate({_id:req.body.passenger},{ongoingRide:null,$push:{
-            pastFares:completedfare._id
+            prevRides:completedfare._id
         }})
         res.json({
             "msg":"Fare completed"
