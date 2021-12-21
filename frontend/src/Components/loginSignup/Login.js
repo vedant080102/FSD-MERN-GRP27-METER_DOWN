@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MyModal from "../base/MyModal";
 
 function Login() {
@@ -41,7 +41,7 @@ function Login() {
 			<div className="container-fluid bg">
 				<div className="container login">
 					<form onSubmit={submitHandler}>
-						<h1 id="sign-head">Sign in</h1>New user? <a className="text-warning" href="/signup">Create an account</a>
+						<h1 id="sign-head">Sign in</h1>New user? <Link className="text-warning" to="/signup">Create an account</Link>
 						{/* <label htmlFor="Email" className="mylabel">Email</label> */}
 						<div className="my-5">
 							<input className="myinput mb-3" type="tel" id="Phone" placeholder="   Phone Number" value={phone} onChange={(e)=>{setphone(e.target.value)}} required/>
