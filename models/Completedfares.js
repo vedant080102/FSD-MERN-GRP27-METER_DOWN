@@ -9,21 +9,22 @@ const completedFareSchema=mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    distance:{
-        type:Number,
-        default:null
-    },
+    // distance:{
+    //     type:Number,
+    //     default:null
+    // },
     paidAmt:{
         type:Number,
         default:null
     },
-    paymentMethod:{
-        type:String,
-        default:null
-    },
+    // paymentMethod:{
+    //     type:String,
+    //     default:null
+    // },
     review:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Review'
+        ref: 'Review',
+        default:null
     },
     timeTaken:{
         type:Number,
