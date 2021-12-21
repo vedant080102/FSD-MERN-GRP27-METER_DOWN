@@ -47,6 +47,7 @@ if (io === undefined) {
                 })
                 socket.on("chat",(event)=>{
                   console.log(event)
+                  socket.to(event.room).emit("chat",event.chat)
                 })
 
                 socket.on("accept",async(event)=>{

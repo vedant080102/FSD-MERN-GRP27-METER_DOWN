@@ -69,7 +69,13 @@ const bookRide=async(req,res)=>{
                 await Passenger.updateOne({_id:req.userId,ongoingRide:fare._id})
                 io.sockets.to(String(req.userId)).emit("allotted",{
                     "status":"success",
+                    "fareid":fare._id,
                     "message":`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly`,
+                })
+                io.sockets.to(String(drivers[driverIndex]._id)).emit("allotted",{
+                    "status":"success",
+                    "fareid":fare._id,
+                    "message":`Ride booked successfully! `,
                 })
                 io.in(String(req.userId)).socketsJoin(String(fare._id));
 

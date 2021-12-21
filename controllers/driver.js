@@ -57,6 +57,8 @@ const markStartRide=async(req,res)=>{
         res.json({
             "msg":"Passenger picked up!"
         })
+        io.socketsLeave(String(data._id));
+
     }else{
         res.status(409).json({
             "msg":"Invalid Passenger Data!"
