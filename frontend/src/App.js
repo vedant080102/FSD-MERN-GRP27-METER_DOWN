@@ -20,6 +20,7 @@ import BookRide from './Components/Home/BookRide/BookRide';
 
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
+import Hmap from './Components/Hmap/Hmap';
 
 
 function App() {
@@ -74,6 +75,12 @@ function App() {
 					<Route path="/book-ride" element={<>
 						<Navbar homepage={false}/>
 						<BookRide />
+						</>}
+					/>
+
+					<Route path="/hmap" element={<>
+						<Navbar homepage={false}/>
+						<Hmap/>
 						</>}
 					/>
 				</Routes>
