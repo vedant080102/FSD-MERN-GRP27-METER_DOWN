@@ -1,28 +1,14 @@
 import { useEffect, useState } from 'react';
 import logo from '../../Media/logo.png';
+import userP from '../../Media/user.svg';
 import Sidebar from "react-sidebar";
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { axiosInstance } from '../../AxiosSetUp';
 import InstallPWA from './InstallEve';
 
-function Navbar(props) {
+function Navbar(props) {    
 
-    // // Initialize deferredPrompt for use later to show browser install prompt.
-    // let deferredPrompt;
-
-    // window.addEventListener('beforeinstallprompt', (e) => {
-    //     // Prevent the mini-infobar from appearing on mobile
-    //     e.preventDefault();
-    //     // Stash the event so it can be triggered later.
-    //     deferredPrompt = e;
-    //     // Update UI notify the user they can install the PWA
-    //     showInstallPromotion();
-    //     // Optionally, send analytics event that PWA install promo was shown.
-    //     console.log(`'beforeinstallprompt' event was fired.`);
-    // });
-    
-    // const [hamActive, setHamActive] = useState(false);
     const [userInfo,setuserInfo] = useState("");
     const [isHome, setIsHome] = useState(props.homepage);
     const [sidebarOpen, setsidebarOpen] = useState(false);
@@ -39,7 +25,7 @@ function Navbar(props) {
     const getUser = async() => {
         try {
             const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true })
-            console.log(data.userData);
+            // console.log(data.userData);
             setuserInfo(data.userData);
         } catch (error) {
             console.log(error);
@@ -78,7 +64,7 @@ function Navbar(props) {
     useEffect(() => {
         let page = window.location.pathname.slice(1);
         page = page.split("/")[0]
-        console.log("page:", page)
+        // console.log("page:", page)
 
         setActivePage({
             home: false,
@@ -118,7 +104,6 @@ function Navbar(props) {
             }))
         }
         setsidebarOpen(false)
-        // console.log("page:", activePage);
     }, [history])
 
     useEffect(()=>{
@@ -200,10 +185,6 @@ function Navbar(props) {
         <hr/>
         <ul className="nav nav-pills flex-column mb-auto text-white">
             <li className="nav-item">
-                {/* <Link to={{
-                    pathname: "/home",
-                    hash: "#book-a-ride",
-                }} className={"nav-link " + (activePage.home ? "active" : "")}>Book a Ride</Link> */}
                 <HashLink to='/home#book-a-ride' className={"nav-link " + (activePage.home ? "active" : "")}>Book a Ride</HashLink>
             </li>
             <li>
@@ -222,20 +203,20 @@ function Navbar(props) {
         <hr/>
         <div><InstallPWA/></div>
         <hr />
-        <div>
-            {userInfo.name ? <div className="dropdown">
-                <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/> */}
-                    <i className="fas fs-5 fa-user-circle me-2"></i>Hi<strong className='ms-2'>{userInfo.name}</strong>!
-                </a>
-                <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    {/* <li><a className="dropdown-item" href="#">Settings</a></li>
-                    <li><a className="dropdown-item" href="#">Profile</a></li>
-                    <li><hr className="dropdown-divider"/></li> */}
-                    <li><button className="dropdown-item" onClick={logoutHandler}><i className="fas fa-sign-out-alt"></i> Sign out</button></li>
-                </ul>
-            </div> : <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>}
-        </div>      
+        {userInfo.name ? <div className="dropdown">
+            <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/> */}
+                <img src={userP} alt="" width="32" height="32" className="rounded-circle me-2"/>
+                {/* <i className="fas fs-5 fa-user-circle me-2"></i> */}
+                Hi<strong className='ms-2'>{userInfo.name}</strong>!
+            </a>
+            <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                {/* <li><a className="dropdown-item" href="#">Settings</a></li>
+                <li><a className="dropdown-item" href="#">Profile</a></li>
+                <li><hr className="dropdown-divider"/></li> */}
+                <li><button className="dropdown-item" onClick={logoutHandler}><i className="fas fa-sign-out-alt"></i> Sign out</button></li>
+            </ul>
+        </div> : <Link className='text-white text-decoration-none btn border purple-btn' to='/login'>Login / Register</Link>}
     </div>
 
 

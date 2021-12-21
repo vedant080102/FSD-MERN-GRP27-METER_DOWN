@@ -48,6 +48,15 @@ To build the project run the following command in your terminal:
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
 
 ## BACKEND
+In the root folder
+<br/>
+Install the dependencies:
+
+    npm install
+
+To start the project run following command in your terminal:
+
+    npm run dev
 
 <br/>
 
