@@ -28,6 +28,7 @@ function Navbar(props) {
             // console.log(data.userData);
             setuserInfo(data.userData);
         } catch (error) {
+            console.log(error);
             console.log("No user is logged in OR there might be some issues");
         }
     }
