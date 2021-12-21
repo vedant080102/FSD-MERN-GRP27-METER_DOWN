@@ -42,24 +42,37 @@
     background-repeat: no-repeat;
 }
 
-.source {
-    background-image: url("../../Media/icons8-green-circle-48.png");
+.source::before, .destn::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: '\f111';
+    margin-right: 1em;
+}
+
+.source::before {
+    /* background-image: url("../../Media/icons8-green-circle-48.png");
     background-position-y: 30%;
     background-position-x: 50%;
     background-size: 35%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    color: #53b53c;
 }
 
-.destn {
+.destn::before {
+    /* 
     background-image: url("../../Media/icons8-red-circle-48.png");
     background-position-y: 30%;
     background-position-x: 50%;
     background-size: 35%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    color: #e73838;
 }
 
 .srcinfo {
     text-align: left !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .mybtn {
@@ -121,11 +134,11 @@
         background-size: 53%;
     }
 
-    .source {
+    /* .source {
         background-size: 25%;
     }
 
     .destn {
         background-size: 25%;
-    }
+    } */
 }

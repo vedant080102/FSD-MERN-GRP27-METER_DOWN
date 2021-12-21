@@ -30,21 +30,11 @@ function Bookings() {
                         <div class="card-body shadow">
                             <div className="row rideinf"> 
                                 <div className="col-lg-9 col-md-9">
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 source">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>A-14,Rameshwar CHS, Premnagar, Kharegaon </p>
-                                        </div>
+                                    <div className="w-100 srcinfo source">
+                                        A-14,Rameshwar CHS, Premnagar, Kharegaon
                                     </div>
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 destn">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai </p>
-                                        </div>
+                                    <div className="w-100 srcinfo destn">
+                                        KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3">
@@ -72,21 +62,11 @@ function Bookings() {
                         <div class="card-body shadow">
                             <div className="row rideinf"> 
                                 <div className="col-lg-9 col-md-9">
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 source">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>A-14,Rameshwar CHS, Premnagar, Kharegaon </p>
-                                        </div>
+                                    <div className="w-100 srcinfo source">
+                                        A-14,Rameshwar CHS, Premnagar, Kharegaon
                                     </div>
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 destn">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai </p>
-                                        </div>
+                                    <div className="w-100 srcinfo destn">
+                                        KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3">
@@ -114,21 +94,11 @@ function Bookings() {
                         <div class="card-body shadow">
                             <div className="row rideinf"> 
                                 <div className="col-lg-9 col-md-9">
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 source">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>A-14,Rameshwar CHS, Premnagar, Kharegaon </p>
-                                        </div>
+                                    <div className="w-100 srcinfo source">
+                                        A-14,Rameshwar CHS, Premnagar, Kharegaon
                                     </div>
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 destn">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai </p>
-                                        </div>
+                                    <div className="w-100 srcinfo destn">
+                                        KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3">
@@ -155,21 +125,11 @@ function Bookings() {
                         <div class="card-body shadow">
                             <div className="row rideinf"> 
                                 <div className="col-lg-9 col-md-9">
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 source">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>A-14,Rameshwar CHS, Premnagar, Kharegaon </p>
-                                        </div>
+                                    <div className="w-100 srcinfo source">
+                                        A-14,Rameshwar CHS, Premnagar, Kharegaon
                                     </div>
-                                    <div className="row">
-                                        <div className="col-lg-1 col-md-1 col-sm-1 col-2 destn">
-
-                                        </div>
-                                        <div className="col-lg-11 col-md-11 col-sm-11 col-10 srcinfo">
-                                            <p>KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai </p>
-                                        </div>
+                                    <div className="w-100 srcinfo destn">
+                                        KJ Somaiya, Vidyanagar, Vidyavihar(E), Mumbai
                                     </div>
                                 </div>
                                 <div className="col-lg-3 col-md-3">

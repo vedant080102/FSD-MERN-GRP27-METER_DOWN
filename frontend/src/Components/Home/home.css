@@ -176,6 +176,9 @@
     #select-route svg {
         height: 250px;
     }
+    .rides-svg {
+        width: 50%;
+    }
 }
 
 /* BookRide.js */
