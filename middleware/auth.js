@@ -62,6 +62,7 @@ const isDriver=(req,res,next)=>{
     User.findOne({_id:req.userId})
     .then(user=>{
         if(!user){
+            console.log("hell")
             res.status(403).send("Not a judge")
         }else{
             if(user.type=="driver"){
@@ -69,6 +70,7 @@ const isDriver=(req,res,next)=>{
                 next()
             }
             else{
+                console.log("hi")
                 res.status(403).send("Not a driver")
             }
         }
