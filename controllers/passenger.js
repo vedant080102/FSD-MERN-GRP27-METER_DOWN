@@ -8,6 +8,7 @@ const io = require("../config/socket")
 const FarePrice=require("../models/FarePrice")
 const Completedfares = require("../models/Completedfares")
 const Review = require("../models/Review")
+const Chat=require("../models/Chat")
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 
 const getDrivers=async(blackList,source)=>{
@@ -153,6 +154,21 @@ const giveReview=async(req,res)=>{
     })
 }
 
+const getChats=async(req,res)=>{
+    chats=await Chat.find({fare:req.params.fare}).lean()
+    chats.forEach((chat,index)=>{
+        if(String(chat._id)==req.userId){
+            chat[index].origin=0
+        }else{
+            chat[index].origin=1
+
+        }
+    })
+    chats=chats.sort(function(x, y){
+        return x.timestamp - y.timestamp;
+    })
+    res.send(chats)
+}
 // const createPrices=async(req,res)=>{
     
 //     dr=[]
@@ -185,5 +201,6 @@ module.exports={
     getOneRideData,
     getPriceEstimate,
     getPastRides,
-    giveReview
+    giveReview,
+    getChats
 }

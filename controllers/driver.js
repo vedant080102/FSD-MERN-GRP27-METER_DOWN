@@ -4,6 +4,7 @@ const Driver = require("../models/Driver")
 const Fare = require("../models/Fare")
 const Passenger = require("../models/Passenger")
 const User = require("../models/User")
+const Chat=require("../models/Chat")
 
 const updateDriverInfo=async(req,res)=>{
     
@@ -99,6 +100,24 @@ const markRideComplete=async(req,res)=>{
     }
 }
 
+const getChats=async(req,res)=>{
+    chats=await Chat.find({fare:req.params.fare}).lean()
+    console.log(chats)
+    //0 self 1 other
+    chats.forEach((chat,index)=>{
+        if(String(chat.sender)==req.userId){
+            chats[index].origin=0
+        }else{
+            chats[index].origin=1
+
+        }
+    })
+    chats=chats.sort(function(x, y){
+        return x.timestamp - y.timestamp;
+    })
+    res.send(chats)
+}
+
 
 module.exports={
     updateDriverInfo,
@@ -106,5 +125,6 @@ module.exports={
     markBusy,
     updateLocation,
     markStartRide,
-    markRideComplete
+    markRideComplete,
+    getChats
 }
