@@ -71,6 +71,8 @@ const bookRide=async(req,res)=>{
                     "status":"success",
                     "message":`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly`,
                 })
+                io.in(String(req.userId)).socketsJoin(String(fare._id));
+
                 break
             }
             waitCount=waitCount+1
@@ -94,6 +96,8 @@ const bookRide=async(req,res)=>{
             "status":"failure",
             "message":`Unfortunately no rides available currently :( . Try again later`,
         })
+        io.socketsLeave(String(fare._id));
+
           await Fare.findOneAndRemove({_id:fare._id})
       }
       console.log("function end")
