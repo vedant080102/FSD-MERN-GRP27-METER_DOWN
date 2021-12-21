@@ -30,7 +30,8 @@
     display: inline;
     margin: auto;
     height: 100%;
-    width: auto;
+    width: auto; 
+
   }
 
 .profPic{
@@ -89,4 +90,19 @@
 #drSubmit:hover{
     color: white;
     background-color: gray;
+}
+
+.drPreview{
+    text-align: left !important;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+@media (max-width: 576px){
+    .drinput{
+        width: 100%;
+    }
+    .drfinput{
+        width:100%;
+    }
 }
