@@ -45,6 +45,9 @@ if (io === undefined) {
                   console.log(io.sockets.adapter.rooms)
                   
                 })
+                socket.on("chat",(event)=>{
+                  console.log(event)
+                })
 
                 socket.on("accept",async(event)=>{
                   fareid=event.fareId
