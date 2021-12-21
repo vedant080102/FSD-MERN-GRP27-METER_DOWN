@@ -43,8 +43,6 @@ const RegisterDriver = () =>{
         formData.append('registration',registration);
         formData.append('driverPhoto',driverPhoto);
         formData.append('vehicleType',type);
-
-       
         
         for(var i=0;i<carPhoto.length;i++){
             console.log(carPhoto[i]);
@@ -57,7 +55,7 @@ const RegisterDriver = () =>{
         
         axiosInstance.post("/api/driver/updateDriverInfo",formData ,{ withCredentials:true }).then((rs)=>{
             console.log(rs.data);
-            //window.location.reload(false);
+            window.location.reload(false);
         }).catch((er)=>{
             console.log(er.data);
         });
