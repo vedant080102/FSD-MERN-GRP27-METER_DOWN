@@ -8,13 +8,13 @@ function InstallPWA() {
     const [supportsPWA, setSupportsPWA] = useState(false);
     const [promptInstall, setPromptInstall] = useState(null);
 
+    const handler = e => {
+        e.preventDefault();
+        console.log("we are being triggered :D");
+        setSupportsPWA(true);
+        setPromptInstall(e);
+    };
     useEffect(() => {
-        const handler = e => {
-            e.preventDefault();
-            console.log("we are being triggered :D");
-            setSupportsPWA(true);
-            setPromptInstall(e);
-        };
         window.addEventListener("beforeinstallprompt", handler);
 
         return () => window.removeEventListener("transitionend", handler);
@@ -28,6 +28,7 @@ function InstallPWA() {
         promptInstall.prompt();
     };
     if (!supportsPWA) {
+        navigator.getInstalledRelatedApps()
         console.log("pwa not supported!")
         return (
             <button className="btn btn-outline-danger">

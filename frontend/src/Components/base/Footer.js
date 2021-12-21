@@ -23,9 +23,9 @@ function Footer() {
                     <div className='my-1 py-1'>
                         {/* SOCIAL LINKS */}
                         <ul id='social-links' className='d-flex -flex-row text-decoration-none ps-0'>
-                            <li className='mx-2 flex'><a href='javascript:void(0)'><i className="fab fa-facebook-f"></i></a></li>
-                            <li className='mx-2 flex'><a href='javascript:void(0)'><i className="fab fa-instagram"></i></a></li>
-                            <li className='mx-2 flex'><a href='javascript:void(0)'><i className="fab fa-twitter"></i></a></li>
+                            <li className='mx-2 flex'><a href='#'><i className="fab fa-facebook-f"></i></a></li>
+                            <li className='mx-2 flex'><a href='#'><i className="fab fa-instagram"></i></a></li>
+                            <li className='mx-2 flex'><a href='#'><i className="fab fa-twitter"></i></a></li>
                         </ul>
                     </div>
                 </div>

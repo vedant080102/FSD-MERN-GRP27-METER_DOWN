@@ -1,24 +1,27 @@
 .login{
     width: 40%;
     margin: 5% 5% 55%;
-    background-color: rgba(61, 4, 61,0.9);
-    color: yellow;
+    background-color: var(--purple);
+    border-radius: 0.25em;
+    color: var(--yellow);
     padding: 2%;
     position: absolute;
 }
 
 .signup{
     width: 40%;
-    margin: 3% 3% 55%;
-    background-color: rgba(61, 4, 61,0.9);
-    color: yellow;
+    margin: 3% 5% 55%;
+    background-color: var(--purple);
+    border-radius: 0.25em;
+    color: var(--yellow);
     padding: 2%;
     position: absolute;
 }
 
 .bg{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../../Media/login2.png");;
+    background-image: linear-gradient(#2b0a2c45, #2b0a2cab), url("../../Media/login2.png");
     background-size: cover;
+    background-attachment: fixed;
     height: 100vh;
     display: block;
     width: 100%;
@@ -32,10 +35,9 @@
     /* border-block-style: none; */
     border-bottom-style: groove;
     /* border-inline: none; */
-    color: yellow;
-    border-color: yellow;
+    color: var(--yellow);
+    border-color: var(--yellow);
     font-size: 25px;
-    font-family: 'Adobe Clean';
     border-radius: 5px;
   }
 
@@ -46,13 +48,12 @@
 
   #submit {
     background-color: transparent;
-    color: yellow;
+    color: var(--yellow);
     padding: 14px 20px;
     border: 1px solid;
     cursor: pointer;
     width: 50%;
     border-radius: 100px;
-    font-family: 'Varela Round';
     font-size: 20px;
     font-weight: bold;
     
@@ -60,17 +61,16 @@
   
   #submit:hover {
     color: rgba(61, 4, 61,1);
-    background-color: yellow;
+    background-color: var(--yellow);
     transition: all 0.4s ease 0s;
   }
 
   .mylink{
- 
-      color: yellow;
+      color: var(--yellow);
   }
 
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: yellow;
+    color: var(--yellow);
     opacity: 0.75; /* Firefox */
     text-align: left;
     margin-left: 10%;
@@ -89,8 +89,8 @@
     .login{
       width: 70%;
       margin: 5% 15%;
-      background-color: rgba(61, 4, 61,0.9);
-      color: yellow;
+      background-color: var(--purple);
+      color: var(--yellow);
       padding: 2%;
       position: center;
   }

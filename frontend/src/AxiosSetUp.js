@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseURL = 'http://localhost:3001'
+export const baseURL = 'https://meter-down.herokuapp.com'//'http://localhost:3001'
 
 // axios.defaults.withCredentials = true;
 export const axiosInstance = axios.create({
