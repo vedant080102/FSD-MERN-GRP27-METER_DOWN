@@ -5,8 +5,8 @@ import Sidebar from "react-sidebar";
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { axiosInstance } from '../../AxiosSetUp';
-import { useSelector, useDispatch } from 'react-redux'
-import {login, logout} from '../../Redux/Features/userSlice' 
+// import { useSelector, useDispatch } from 'react-redux'
+// import {login, logout} from '../../Redux/Features/userSlice' 
 import InstallPWA from './InstallEve';
 
 function Navbar(props) {    
@@ -21,8 +21,8 @@ function Navbar(props) {
         about: false,
         contact: false
     });
-    const user = useSelector((state) => state.user.value)
-    const dispatch = useDispatch();
+    // const user = useSelector((state) => state.user.value)
+    // const dispatch = useDispatch();
     const history = useNavigate();
 
     const getUser = async() => {
@@ -30,14 +30,14 @@ function Navbar(props) {
             const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true })
             // console.log(data.userData);
             setuserInfo(data.userData);
-            dispatch(login(data.userData));
+            // dispatch(login(data.userData));
         } catch (error) {
             console.log(error);
             console.log("No user is logged in OR there might be some issues");
         }
     }
 
-    useEffect(()=> console.log("user:", user),[user])
+    // useEffect(()=> console.log("user:", user),[user])
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
