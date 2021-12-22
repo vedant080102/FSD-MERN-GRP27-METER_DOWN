@@ -32,7 +32,7 @@ function ImageComp(props) {
 
     return (
         <div className="position-relative pe-3 pb-3">
-            <img className='driver-illustr img-fluid shadow' ref={driverImgRef} src={props.img} alt='Driver-img' draggable="false" dragstart="false;"/>
+            <img className='driver-illustr img-fluid shadow img-no-drag' ref={driverImgRef} src={props.img} alt='Driver-img' draggable="false" dragstart="false;"/>
             <div className="position-absolute shadow" style={{
                 height:`${blockDimension.height}px`,
                 width:`${blockDimension.width}px`,
