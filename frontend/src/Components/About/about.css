@@ -2,16 +2,25 @@
 #about-page {
     color: white;
 }
+#about-page h2,
+#about-page h1{
+    font-weight: bold;
+    color: var(--yellow);
+}
 
-#about-page h3{
+#about-page .about-points {
+    text-align: left;
+}
+#about-page .about-points h2{
     font-weight: bold;
     color: var(--yellow);
     margin-bottom: 0.5em;
+    margin-top: 2.5em;
+    text-align: center;
 }
 
-#about-page h3:not(:first-child) {
-    margin-top: 2.5em;
-}
+/* #about-page h2:not(:first-child) {
+} */
 
 #about-page .about-icons{
     background-color: white;
@@ -65,5 +74,21 @@
         width: 100vw;
         border-top-right-radius: 3em;
     border-bottom-left-radius: 3em;
+    }
+}
+
+@media (min-width: 756px) {
+    #about-page .about-points {
+        text-align: right;
+    }
+    #about-page .about-points h2{
+        text-align: right;
+    }
+    .about-points .row:nth-child(even) {
+        text-align: left;
+        flex-direction: row-reverse!important;
+    }
+    .about-points .row:nth-child(even) h2 {
+        text-align: left !important;
     }
 }
