@@ -90,8 +90,9 @@ function Hmap() {
 return (
     <div>
         <div id="marker">
-            {lat && lon?<DisplayMapClass lat={lat} lon={lon} />:<div></div>}
+            {lat && lon?<DisplayMapClass lat={lat} lon={lon} setCL={setpickupLoc} setDL={setdestinationLoc} source={sourceLoc} dest={destLoc} />:<div></div>}
         </div>
+
         <div id="route">
             {sourceLoc && destLoc?<MyRoute lat={lat} lon={lon} source={sourceLoc} dest={destLoc}/>:<div></div>}
         </div>
@@ -128,7 +129,7 @@ return (
             <div className='container bg-purple srchR rounded shadow'>
                 <div className='row'>
                     <div className='col-lg-4'>
-                            
+
                     </div>
                     <div className='col-lg-4'>
 
