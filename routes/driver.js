@@ -1,7 +1,7 @@
 const express= require("express")
 const router=express.Router()
 
-const {getDriverData, updateDriverInfo, markBusy, updateLocation, markStartRide, markRideComplete}=require("../controllers/driver")
+const {getDriverData, updateDriverInfo, markBusy, updateLocation, markStartRide, markRideComplete, getChats, getBusyStatus}=require("../controllers/driver")
 const { isDriver, checkToken } = require("../middleware/auth")
 const { upload } = require("../middleware/multer")
 
@@ -12,5 +12,8 @@ router.put("/markBusy",checkToken,isDriver,markBusy)
 router.put("/updateLocation",checkToken,isDriver,updateLocation)
 router.put("/startRide",checkToken,isDriver,markStartRide)
 router.post("/rideComplete",checkToken,isDriver,markRideComplete)
+router.get("/rideChat/:fare",checkToken,isDriver,getChats)
+router.get("/getDriverStatus",checkToken,isDriver,getBusyStatus)
+
 
 module.exports=router

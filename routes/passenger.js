@@ -1,5 +1,5 @@
 const express= require("express")
-const { bookRide, getOneRideData, getPriceEstimate, createPrices, getPastRides, giveReview } = require("../controllers/passenger")
+const { bookRide, getOneRideData, getPriceEstimate, createPrices, getPastRides, giveReview, getChats } = require("../controllers/passenger")
 const router=express.Router()
 
 const {  checkToken, isPassenger } = require("../middleware/auth")
@@ -11,6 +11,8 @@ router.get("/getOneRide/:rideId",checkToken,isPassenger,getOneRideData)
 router.get("/priceEstimate",getPriceEstimate)
 router.get("/getPrevRides",checkToken,isPassenger,getPastRides)
 router.post("/giveReview",checkToken,isPassenger,giveReview)
+router.get("/rideChat/:fare",checkToken,isPassenger,getChats)
+
 // router.get("/createprice",createPrices)
 
 module.exports=router
