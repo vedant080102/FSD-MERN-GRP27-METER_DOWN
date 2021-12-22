@@ -31,8 +31,9 @@ function Footer() {
                 </div>
             </div>
             <div className="w-100 footer-end-part- px-2 py-3" style={{color: 'var(--yellow)'}}>
-                <div className='quote'>Everyone should try a taxi, as it is part of the Mumbai experience.</div>
-                <div className="muted">Credits: Lorem, ipsum dolor.</div>
+                <div className='quote mb-2'>Everyone should try a taxi, as it is part of the Mumbai experience.</div>
+                <p>Image Credits: <a className='link-warning' target={'_blank'} href='https://markkuphoto.com/personal/mumbai-taxi-company/'>Markkuphoto</a></p>
+                {/* <div className="muted">Credits: Lorem, ipsum dolor.</div> */}
             </div>
         </footer>
     </>

@@ -114,9 +114,9 @@ function Navbar(props) {
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
                 <div className='w-100 flex'>
-                    <a className="navbar-brand m-0" href="/">
+                    <Link className="navbar-brand m-0" to="/">
                         <img src={logo} className="App-logo" alt="logo" />
-                    </a>
+                    </Link>
                 </div>
                 <div id='hamburg'>
                     <svg className={sidebarOpen ? 'active' : ''} width="50" height="50" viewBox="0 0 36 22" 
@@ -207,7 +207,6 @@ function Navbar(props) {
             <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/> */}
                 <img src={userP} alt="" width="32" height="32" className="rounded-circle me-2"/>
-                {/* <i className="fas fs-5 fa-user-circle me-2"></i> */}
                 Hi<strong className='ms-2'>{userInfo.name}</strong>!
             </a>
             <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">

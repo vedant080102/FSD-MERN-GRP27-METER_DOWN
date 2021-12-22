@@ -108,17 +108,17 @@ function Driver() {
 
     return (
         <div id='become-driver'  className='pb-2'>
-            <Parallax strength={500} className='w-100' style={{height: '75vh'}}>
+            <Parallax strength={500} className='w-100' style={{height:'calc(100vh - 76px)'}}>
                 <Background className="custom-bg">
                     <div style={{
-                        height: '75vh',
+                        height: '105vh',
                         width: '100vw',
                         backgroundImage: `linear-gradient(#2b0a2ca6, #2b0a2ca6), url(${bgimg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}/>
                 </Background>
-                <div className='flex w-100 text-white' style={{height: '75vh'}}>
+                <div className='flex w-100 text-white' style={{height:'calc(100vh - 76px)'}}>
                     <h1 className='fw-bold'>Work as a driver</h1>
                 </div>
             </Parallax>
@@ -174,9 +174,9 @@ function Driver() {
                     </div>
                 </div>
                 <div className="flex w-100"><hr className='w-75'/></div>
-                <div className='container yellow-bg rounded my-3 py-4 px-md-4'>
+                <div className='container bg-white rounded my-3 py-4 px-md-4'>{/* yellow-bg */}
                     <h3 className='fw-bold'>Drive to fulfil your dreams</h3>
-                    <div className="row mx-0 mt-5 py-2 rounded bg-white shadow">
+                    <div className="row mx-0 mt-5 py-2 rounded ">{/* bg-white shadow */}
                         <div className="col-12 col-md-4 p-4">
                             <ImageComp img={driverImg1}/>
                         </div>
