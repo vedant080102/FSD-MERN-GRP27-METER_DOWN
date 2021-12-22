@@ -1,0 +1,17 @@
+#contact-page h2,
+#contact-page h4
+{
+    color: var(--purple);
+}
+#contact-page {
+    color: var(--yellow);
+}
+#contact-map {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-top-right-radius: 5em;
+    border-bottom-left-radius: 5em;
+    overflow: hidden;
+    border: 6px solid var(--yellow);
+}
