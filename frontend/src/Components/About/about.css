@@ -19,9 +19,6 @@
     text-align: center;
 }
 
-/* #about-page h2:not(:first-child) {
-} */
-
 #about-page .about-icons{
     background-color: white;
     border-radius: 2em;
@@ -73,7 +70,7 @@
     #about-page #region-map {
         width: 100vw;
         border-top-right-radius: 3em;
-    border-bottom-left-radius: 3em;
+        border-bottom-left-radius: 3em;
     }
 }
 
