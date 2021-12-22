@@ -106,7 +106,7 @@ function Home() {
                         </Background>
                     </Parallax>
                     <div className='home-logo'>
-                        <img src={logo} width='200' alt='meter down'/>
+                        <img className='img-no-drag' src={logo} width='200' alt='meter down'/>
                         <span>METER DOWN</span>
                     </div>
                 </div>

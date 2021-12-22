@@ -49,11 +49,12 @@ body {
   background: transparent;
   margin: 2px 0;
 }
+
 /* SCROLL END */
 
 ::selection {
   color: white;
-  background-color: #7209b7;
+  background-color: #3f37c9;
 }
 
 .App-logo {
@@ -227,15 +228,18 @@ body {
   border: 1px solid var(--purple);
   transition: 0.4s;
 }
+
 .purple-btn:hover {
   background-color: var(--purple);
   color: var(--yellow);
 }
+
 .yellow-btn {
   color: var(--yellow);
   background-color: transparent;
   border: 1px solid var(--yellow);
 }
+
 .yellow-btn:hover {
   color: var(--purple);
   background-color: var(--yellow);
@@ -249,6 +253,16 @@ body {
 .yellow-bg {
   background-color: var(--yellow);
 }
+
+.img-no-drag {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 /* FOOTER */
 footer {
   background-image: url('Media/purple-sprinkle.svg');

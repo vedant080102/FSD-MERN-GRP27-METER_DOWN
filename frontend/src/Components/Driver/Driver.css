@@ -7,14 +7,14 @@
     height: 4px;
 }
 
-#become-driver .react-parallax-background-children {
+/* #become-driver .react-parallax-background-children {
     top: 7%;
-}
+} */
 
-#become-driver .custom-shape-divider-top-1636559095 {
+/* #become-driver .custom-shape-divider-top-1636559095 {
     position: absolute;
     top: calc(75vh - 23px);
-}
+} */
 
 #become-driver .accordion-body {
     background-color: var(--yellow);
@@ -76,13 +76,6 @@
     padding: 0.5em; */
     z-index: 2;
     position: relative;
-
-    user-drag: none;
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
 }
 
 #become-driver img.driver-illustr~div {
