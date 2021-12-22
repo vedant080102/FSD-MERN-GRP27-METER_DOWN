@@ -1,4 +1,5 @@
-const {Server, Socket}=require("socket.io")
+const {Server, Socket}=require("socket.io");
+const Chat = require("../models/Chat");
 const Fare =require("../models/Fare")
 // module.exports=function (io) {
 //     // const io= new Server(server,{
@@ -47,6 +48,12 @@ if (io === undefined) {
                 })
                 socket.on("chat",(event)=>{
                   console.log(event)
+                  socket.broadcast.to(event.room).emit("chat",event.chat)
+                  Chat.create({
+                    "sender":event.sender,
+                    "fare":event.room,
+                    "message":event.chat
+                  })
                 })
 
                 socket.on("accept",async(event)=>{

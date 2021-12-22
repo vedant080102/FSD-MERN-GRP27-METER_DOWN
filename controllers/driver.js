@@ -4,6 +4,7 @@ const Driver = require("../models/Driver")
 const Fare = require("../models/Fare")
 const Passenger = require("../models/Passenger")
 const User = require("../models/User")
+const Chat=require("../models/Chat")
 
 const updateDriverInfo=async(req,res)=>{
     
@@ -41,7 +42,7 @@ const getDriverData=async(req,res)=>{
 
 const markBusy=async(req,res)=>{
     data=await Driver.findOneAndUpdate({_id:req.userId},{busy:req.body.busy},{new:true})
-    res.send(data)
+    res.send({busy:data.busy})
 }
 
 const updateLocation=async(req,res)=>{
@@ -57,6 +58,8 @@ const markStartRide=async(req,res)=>{
         res.json({
             "msg":"Passenger picked up!"
         })
+        io.socketsLeave(String(data._id));
+
     }else{
         res.status(409).json({
             "msg":"Invalid Passenger Data!"
@@ -97,6 +100,29 @@ const markRideComplete=async(req,res)=>{
     }
 }
 
+const getChats=async(req,res)=>{
+    chats=await Chat.find({fare:req.params.fare}).lean()
+    console.log(chats)
+    //0 self 1 other
+    chats.forEach((chat,index)=>{
+        if(String(chat.sender)==req.userId){
+            chats[index].origin=0
+        }else{
+            chats[index].origin=1
+
+        }
+    })
+    chats=chats.sort(function(x, y){
+        return x.timestamp - y.timestamp;
+    })
+    res.send(chats)
+}
+
+const getBusyStatus=async(req,res)=>{
+    driver=await Driver.findOne({_id:req.userId})
+    res.send({"busy":driver.busy})
+}
+
 
 module.exports={
     updateDriverInfo,
@@ -104,5 +130,7 @@ module.exports={
     markBusy,
     updateLocation,
     markStartRide,
-    markRideComplete
+    markRideComplete,
+    getChats,
+    getBusyStatus
 }

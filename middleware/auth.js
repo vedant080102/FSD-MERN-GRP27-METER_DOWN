@@ -21,7 +21,7 @@ const checkToken=(req,res,next)=>{
             jwt.verify(token, PUB_KEY, function(err, decoded) {
                 console.log(decoded)
                 if(err){
-                    res.status(401).send("error")
+                    res.status(401).send({msg:"error"})
                 }else{
     
                    if(decoded.exp<Date.now()){
@@ -45,14 +45,18 @@ const isPassenger=(req,res,next)=>{
     User.findOne({_id:req.userId})
     .then(user=>{
         if(!user){
-            res.status(403).send("Not a judge")
+            res.status(403).send({
+                "msg":"No user logged in"
+            })
         }else{
             if(user.type=="passenger"){
                 req.Passenger=true
                 next()
             }
             else{
-                res.status(403).send("Not a passenger")
+                res.status(403).send({
+                    "msg":"Not a passenger"
+                }   )
             }
         }
     })
@@ -62,16 +66,20 @@ const isDriver=(req,res,next)=>{
     User.findOne({_id:req.userId})
     .then(user=>{
         if(!user){
-            console.log("hell")
-            res.status(403).send("Not a judge")
+            
+            res.status(403).send({
+                "msg":"No user logged in"
+            })
         }else{
             if(user.type=="driver"){
                 req.isDriver=true
                 next()
             }
             else{
-                console.log("hi")
-                res.status(403).send("Not a driver")
+                
+                res.status(403).send({
+                    "msg":"Not a driver"
+                } )
             }
         }
     })
