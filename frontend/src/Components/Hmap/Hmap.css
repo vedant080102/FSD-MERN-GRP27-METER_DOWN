@@ -1,0 +1,61 @@
+.srchD{
+    background-color: var(--yellow);
+    padding: 2%;
+    margin: 0% 15%;
+    width: 70%;
+}
+
+.srchR{
+    background-color: var(--yellow);
+    padding: 2%;
+    margin: 5% 15%;
+    width: 70%;
+}
+
+.srchB{
+    background-color: whitesmoke;
+    padding: 2%;
+}
+
+.mpInput{
+    width: 70%;
+    background-color: transparent;
+    border-bottom-style: groove;
+    color: var(--purple);
+    border-color: var(--purple);
+    font-size: 1.4em;
+    border-radius: 5px;
+}
+
+.choose-locM {
+    /* background-color: #ffffff0d; */
+    border: 2px solid var(--purple);
+    /* background-color: #823585a6; */
+    color: rgb(85, 12, 85);
+    /* font-weight: 100; */
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+}
+.choose-locM  {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.choose-loc span {
+    color: var(--purple);
+}
+
+#mpBut{
+    padding: 0.4em 1em;
+    background-color: transparent;
+    border-radius: 0.4em;
+    color: var(--purple);
+    border-color: var(--purple);
+    font-weight: 600;
+}
+
+#mpBut:hover{
+    color: var(--yellow);
+    background-color: var(--purple);
+}
