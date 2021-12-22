@@ -42,7 +42,7 @@ const getDriverData=async(req,res)=>{
 
 const markBusy=async(req,res)=>{
     data=await Driver.findOneAndUpdate({_id:req.userId},{busy:req.body.busy},{new:true})
-    res.send(data)
+    res.send({busy:data.busy})
 }
 
 const updateLocation=async(req,res)=>{
@@ -118,6 +118,11 @@ const getChats=async(req,res)=>{
     res.send(chats)
 }
 
+const getBusyStatus=async(req,res)=>{
+    driver=await Driver.findOne({_id:req.userId})
+    res.send({"busy":driver.busy})
+}
+
 
 module.exports={
     updateDriverInfo,
@@ -126,5 +131,6 @@ module.exports={
     updateLocation,
     markStartRide,
     markRideComplete,
-    getChats
+    getChats,
+    getBusyStatus
 }
