@@ -5,6 +5,13 @@
     width: 70%;
 }
 
+.srchR{
+    background-color: var(--yellow);
+    padding: 2%;
+    margin: 5% 15%;
+    width: 70%;
+}
+
 .srchB{
     background-color: whitesmoke;
     padding: 2%;
@@ -35,7 +42,7 @@
     white-space: nowrap;
     overflow: hidden;
 }
-.choose-location span {
+.choose-loc span {
     color: var(--purple);
 }
 

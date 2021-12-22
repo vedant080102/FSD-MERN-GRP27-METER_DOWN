@@ -122,7 +122,25 @@ return (
                 <button onClick={mpHandler} id="mpBut">Proceed</button>
             </div>
             <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>
+            
         </div>
+        <div className='container-fluid srchB'>
+            <div className='container bg-purple srchR rounded shadow'>
+                <div className='row'>
+                    <div className='col-lg-4'>
+                            
+                    </div>
+                    <div className='col-lg-4'>
+
+                    </div>
+                    <div className='col-lg-4'>
+
+                    </div>
+
+                </div>   
+            </div>
+        </div>
+        
     </div>
 );
 }
