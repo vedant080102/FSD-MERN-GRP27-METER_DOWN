@@ -1,6 +1,8 @@
 // src/DisplayMapClass.js
 import * as React from 'react';
 import axios from 'axios';
+import destP from '../../../Media/source.svg';
+import sourceP from '../../../Media/destination.svg';
 
 export class DisplayMapClass extends React.Component {
   mapRef = React.createRef();
@@ -8,19 +10,41 @@ export class DisplayMapClass extends React.Component {
 
   state = {
     // The map instance to use during cleanup
-    map: null
+    map: null,
+    ref: false,
   };
+
+  constructor({someprop}){
+    super(someprop)
+
+    this.state={someprop}
+   
+  }
 
   
 
-  componentDidMount() {
+  // componentDidUpdate(prevprops){
+  //   console.log(prevprops);
+  //   console.log(this.props);
+  //   if(prevprops){
+  //     if(prevprops.route!=this.props.route){
+  //       console.log("hello");
+  //       console.log(this);
+  //       this.setState({someprop:this.props});
+  //       console.log(this);
+  //     }
+  //   }
+  // }
+  
 
+  componentDidMount() {
+    
     const H = window.H;
     const platform = new H.service.Platform({
         apikey: process.env.REACT_APP_HERE_API
     });
 
-    console.log(this.props);
+    console.log("Rendered!!!");
 
     const layers = platform.createDefaultLayers();
 
@@ -31,7 +55,7 @@ export class DisplayMapClass extends React.Component {
       {
         // This map is centered over Europe
         center: { lat: this.props.lat, lng: this.props.lon },
-        zoom: 14,
+        zoom: 12,
         pixelRatio: window.devicePixelRatio || 1
       }
     );
@@ -49,8 +73,9 @@ export class DisplayMapClass extends React.Component {
 
     // console.log(this.props.lat)
     // map.addObject(marker);
-
-    var marker = new H.map.Marker({lat: this.props.lat, lng: this.props.lon});
+    var icon1 = new H.map.Icon(sourceP);
+    var icon2 = new H.map.Icon(destP);
+    var marker = new H.map.Marker({lat: this.props.lat, lng: this.props.lon},{icon:icon1});
             window.addEventListener('resize', () => {
                 mapObj.getViewPort().resize();
                 console.log("map resize")
@@ -59,7 +84,7 @@ export class DisplayMapClass extends React.Component {
     marker.draggable = true;
     mapObj.addObject(marker);
 
-    var marker2 = new H.map.Marker({lat: this.props.lat, lng: this.props.lon});
+    var marker2 = new H.map.Marker({lat: this.props.lat, lng: this.props.lon},{icon:icon2});
             window.addEventListener('resize', () => {
                 mapObj.getViewPort().resize();
                 console.log("map resize")
@@ -90,6 +115,7 @@ export class DisplayMapClass extends React.Component {
       await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${process.env.REACT_APP_HERE_API}`).then((data)=>{
                 console.log(data.data.items[0]);
                 this.props.setCL(data.data.items[0]);
+                
             }).catch((err)=>{
                 console.log(err);
             });
@@ -101,6 +127,10 @@ export class DisplayMapClass extends React.Component {
                 console.log(err);
             });
       }
+
+      setTimeout(() => {
+        this.props.chngR();
+      }, 50); 
         
       if (target instanceof H.map.Marker) {
       behavior.enable();
@@ -125,7 +155,7 @@ export class DisplayMapClass extends React.Component {
     // Add the marker to the map:
     mapObj.addObject(marker);
     // setMap(mapObj);
-    if(this.props.source && this.props.dest){
+    if(this.props.route){
     const ori = String(this.props.source.lat) + ',' + String(this.props.source.lng)
     console.log(ori)
 
@@ -156,10 +186,13 @@ export class DisplayMapClass extends React.Component {
             // });
     
             // Create a marker for the start point:
-            let startMarker = new H.map.Marker(section.departure.place.location);
+            //let startMarker = new H.map.Marker(section.departure.place.location);
+            marker.setGeometry(section.departure.place.location);
+            marker2.setGeometry(section.arrival.place.location);
+          
     
             // Create a marker for the end point:
-            let endMarker = new H.map.Marker(section.arrival.place.location);
+            // let endMarker = new H.map.Marker(section.arrival.place.location);
     
            
 
@@ -189,7 +222,7 @@ export class DisplayMapClass extends React.Component {
             routeLin.addObjects([routeOutline, routeArrows]);
 
              // Add the route polyline and the two markers to the map:
-             mapObj.addObjects([routeLin, startMarker, endMarker]);
+             mapObj.addObjects([routeLin, marker, marker2]);
     
              // Set the map's viewport to make the whole route visible:
              mapObj.getViewModel().setLookAtData({bounds: routeLin.getBoundingBox()});
@@ -211,10 +244,14 @@ export class DisplayMapClass extends React.Component {
     this.setState({ mapObj });
   }
 
-  componentWillUnmount() {
-    // Cleanup after the map to avoid memory leaks when this component exits the page
-    this.state.map.dispose();
-  }
+  // componentWillUnmount() {
+  //   // Cleanup after the map to avoid memory leaks when this component exits the page
+  //   this.state.map.dispose();
+  // }
+
+ 
+
+
 
   render() {
     return (
