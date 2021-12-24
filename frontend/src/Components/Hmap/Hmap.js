@@ -3,10 +3,28 @@ import { DisplayMapClass } from './Map/DisplayMapClass';
 import './Hmap.css';
 import GetAddress from '../Home/geocoding';
 import axios from 'axios';
+import { axiosInstance } from '../../AxiosSetUp';
 import { MyRoute } from './RouteMap/Route';
+import Maptest from './Map/maptest';
+const humanizeDuration = require("humanize-duration");
+
 
 
 function Hmap() {
+
+    const shortEnglishHumanizer = humanizeDuration.humanizer({
+        language: "shortEn",
+        languages: {
+          shortEn: {
+            h: () => "hr",
+            m: () => "min",
+          },
+        },
+        serialComma: false,
+        units: ["h", "m"],
+        maxDecimalPoints: 0,
+        conjunction: " "
+    });
 
     const [modalShow, setModalShow] = useState(false)
     const [locQuery, setLocQuery] = useState({})
@@ -18,6 +36,12 @@ function Hmap() {
     const [destLoc,setdestLoc] = useState()
     const [showRoute,setshowRoute] =useState(false)
     const [showMark,setshowMark] = useState(true)
+    const [refresh,setrefresh] =useState(true);
+    const [toggle,settoggle] = useState(true);
+    const [duration,setduration] = useState();
+    const [distance,setdistance] = useState();
+    const [autoF,setautoF] = useState();
+    const [taxiF,settaxiF] = useState();
 
     const getLocationModal = (type, location, loc) => {
         setLocQuery({
@@ -31,6 +55,10 @@ function Hmap() {
     useEffect(()=>{console.log(pickupLoc, destinationLoc)}, [pickupLoc, destinationLoc])
 
     const APP_CODE_HERE = process.env.REACT_APP_HERE_API;
+
+    const refreshMap =()=>{
+        setrefresh(!refresh);
+    }
 
     const getUserLoc = async() =>{
         var options = {
@@ -49,17 +77,28 @@ function Hmap() {
             setlat(String(crd.latitude));
             setlon(String(crd.longitude));
             console.log(lat,lon);
+            
             setshowMark(true);
             
             const creds = String(crd.latitude) + String('%2C') + String(crd.longitude);
             console.log(creds)
     
-            await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${APP_CODE_HERE}`).then((data)=>{
+            // await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${APP_CODE_HERE}`).then((data)=>{
+            //     console.log(data.data.items[0]);
+            //     setpickupLoc(data.data.items[0]);
+            //     setdestLoc(data.data.items[0]);
+            // }).catch((err)=>{
+            //     console.log(err);
+            // })
+
+            try {
+                var data =await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${APP_CODE_HERE}`) 
                 console.log(data.data.items[0]);
                 setpickupLoc(data.data.items[0]);
-            }).catch((err)=>{
-                console.log(err);
-            })
+                await setdestinationLoc(data.data.items[0]); 
+            } catch (error) {
+                console.log(error);
+            }
           }
           
           function error(err) {
@@ -73,29 +112,81 @@ function Hmap() {
         getUserLoc()
     },[1]);
     
-    const mpHandler = (e) =>{
-        e.preventDefault();
-        setsourceLoc(pickupLoc.position);
-        setdestLoc(destinationLoc.position);
+    const mpHandler = async(e) =>{
+        //e.preventDefault();
+        await setsourceLoc(pickupLoc.position);
+        await setdestLoc(destinationLoc.position);
         console.log(sourceLoc,destLoc);
         setshowMark(false);
-        setshowRoute(true);
-        document.getElementById("marker").style.display = "none";
-        document.getElementById("mpBut").style.display = "none";
+        if(showRoute==false){
+            await setshowRoute(true);
+        }
+        await settoggle(!toggle)
+        console.log("proceeded")
+        // document.getElementById("marker").style.display = "none";
+        // document.getElementById("mpBut").style.display = "none";
     }
 
+    const estimateH = async() => {
+        await axios.get('https://router.hereapi.com/v8/routes', {
+            'params': {
+                'apiKey': APP_CODE_HERE,
+                'origin': `${pickupLoc.position.lat},${pickupLoc.position.lng}`,
+                'destination': `${destinationLoc.position.lat},${destinationLoc.position.lng}`,
+                'transportMode': 'car',
+                'return': 'summary,typicalDuration',
+            }
+        }).then((data) => {
+            console.log("data:", data.data.routes[0].sections[0])
+            let dura = data.data.routes[0].sections[0].summary.typicalDuration * 1000;
+            let dis = data.data.routes[0].sections[0].summary.length / 1000;
+            console.log("duration:", shortEnglishHumanizer(Math.ceil(dura)), "len:", dis.toFixed(1));
+            setduration(shortEnglishHumanizer(Math.ceil(dura)))
+            setdistance(dis.toFixed(1));
+        }).catch((e)=> console.log(e));
 
+        //getTaxiFare();
+        document.getElementById("mdRide").style.display="block";
+        
+    }
+
+    const getTaxiFare = async() =>{
+        await axiosInstance.get(`/api/passenger/priceEstimate?time=day&type=Taxi&distance=${distance}`, { withCredentials: true })
+        .then((data) => {
+            console.log("estimation:", data.data.price);
+            settaxiF(data.data.price);
+        }).catch(e=> console.log(e.response));
+    }
+
+    const getAutoFare = async() =>{
+        await axiosInstance.get(`/api/passenger/priceEstimate?time=day&type=Auto&distance=${distance}`, { withCredentials: true })
+        .then((data) => {
+            console.log("estimation:", data.data.price);
+            setautoF(data.data.price);
+        }).catch(e=> console.log(e.response));
+    }
+
+    useEffect(()=>{
+        getTaxiFare()
+    },[distance]);
+
+    useEffect(()=>{
+        getAutoFare()
+    },[distance]);
     
 
 return (
     <div>
-        <div id="marker">
-            {lat && lon?<DisplayMapClass lat={lat} lon={lon} setCL={setpickupLoc} setDL={setdestinationLoc} source={sourceLoc} dest={destLoc} />:<div></div>}
+        <div id="marker" key={toggle}>
+            {lat && lon?<DisplayMapClass lat={lat} lon={lon} setCL={setpickupLoc} setDL={setdestinationLoc} source={pickupLoc.position} dest={destinationLoc.position} route={showRoute} setroute={setshowRoute} chngR={mpHandler} />:<div></div>}
         </div>
 
-        <div id="route">
+        {/* <div>
+            <Maptest lat={lat} lon={lon} setCL={setpickupLoc} setDL={setdestinationLoc} source={sourceLoc} dest={destLoc} route={showRoute} setroute={setshowRoute} />
+        </div> */}
+        {/* <div id="route">
             {sourceLoc && destLoc?<MyRoute lat={lat} lon={lon} source={sourceLoc} dest={destLoc}/>:<div></div>}
-        </div>
+        </div> */}
         
     
       
@@ -118,29 +209,44 @@ return (
                     </div>
                     <div className="col-9">
                         {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop location for your ride"}</div>
-                </div>
+                </div><br /><br />
+                <div id='mdRide'>
+                <div className='row mdrides shadow'>
+                    <div className='col-lg-4 mdauto'>
 
-                <button onClick={mpHandler} id="mpBut">Proceed</button>
+                    </div>
+                    <div className='col-lg-4'>
+                        <b>Auto</b><br></br>
+                        Estimated Time: <b>{duration}</b>
+                    </div>
+                    <div className='col-lg-4'>
+                        Estimated Fare: <b>{autoF}</b><br />
+                        Estimated Distance: <b>{distance} km</b>
+                    </div>
+
+                </div>  
+                <div className='row mdrides shadow'>
+                    <div className='col-lg-4 mdtaxi'>
+
+                    </div>
+                    <div className='col-lg-4'>
+                        <b>Taxi</b><br />
+                        Estimated Time: <b>{duration}</b>
+                    </div>
+                    <div className='col-lg-4'>
+                        Estimated Fare: <b>{taxiF}</b><br />
+                        Estimated Distance: <b>{distance} km</b>
+                    </div>
+
+                </div> 
+                </div>  
+
+                <button onClick={estimateH}  id="mpBut">Proceed</button>
             </div>
             <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>
             
         </div>
-        <div className='container-fluid srchB'>
-            <div className='container bg-purple srchR rounded shadow'>
-                <div className='row'>
-                    <div className='col-lg-4'>
-
-                    </div>
-                    <div className='col-lg-4'>
-
-                    </div>
-                    <div className='col-lg-4'>
-
-                    </div>
-
-                </div>   
-            </div>
-        </div>
+        
         
     </div>
 );
