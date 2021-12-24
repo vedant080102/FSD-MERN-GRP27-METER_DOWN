@@ -38,7 +38,7 @@ function Navbar(props) {
         }
     }
 
-    // useEffect(()=> console.log("hi user:", user), [user]);
+    useEffect(()=> console.log("hi user:", user), [user]);
     // useEffect(()=> console.log("home status:", isHome), [isHome]);
 
     const logoutHandler = async(e) =>{

@@ -17,7 +17,7 @@ import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
 import Footer from './Components/base/Footer';
-import BookRide from './Components/Home/BookRide/BookRide';
+import GetEstimate from './Components/Home/BookRide/GetEstimate';
 import ProtectedRoute from './ProtectedRoute'
 
 import ScrollToTop from './ScrollToTop';
@@ -44,17 +44,17 @@ function App() {
 					<Route exact path="/bookings" element={<ProtectedRoute usertype='passenger'/>}>
 						<Route path="/bookings" element={<Bookings />}/>
 					</Route>
-					<Route exact path="/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/book-ride" element={<BookRide />}/>
+					<Route path="/ride/get-estimate" element={<GetEstimate/>}/>
+					<Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/ride/book-ride" element={<Hmap/>}/>
 					</Route>
-					
-					<Route path="/become-driver" element={<Driver />}/>
+
+					<Route path="/become-driver" element={<Driver/>}/>
 					
 					{/* <Route path="/driver-details" element={<RegisterDriver/>}/> */}
 					{/* Test Routes */}
 					{/* <Route path="/Map" element={ */}
 
-					<Route path="/hmap" element={<Hmap/>}/>
 					<Route exact path="/driver-details" element={<ProtectedRoute usertype='driver' />}>
 						<Route exact path="/driver-details" element={<RegisterDriver/>}/>
 					</Route>

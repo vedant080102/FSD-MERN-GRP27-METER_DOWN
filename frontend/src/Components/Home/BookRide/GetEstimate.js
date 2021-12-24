@@ -4,13 +4,17 @@ import '../home.css'
 import { useEffect } from "react"
 import { HashLink } from "react-router-hash-link"
 import EstimatePrice from "./EstimatePrice"
+import { Link } from "react-router-dom"
+import {setAddresses} from '../../../Redux/features/journeyAddressesSlice'
+import { useDispatch } from "react-redux"
 
-function BookRide(props) {
+function GetEstimate(props) {
     
     const location = useLocation()
     const [pickupLoc, setpickupLoc] = useState({});
     const [destinationLoc, setdestinationLoc] = useState({});
     const [noData, setnoData] = useState(false);
+    const dispatch = useDispatch();
     
     const getLoc = () => {
         var pickup, destination;
@@ -53,15 +57,20 @@ function BookRide(props) {
                     </div> */}
 
                     <EstimatePrice pickup={pickupLoc} destination={destinationLoc}/>
+                    <hr/>
+                    <div className="w-100 flex pt-3">
+                        <Link className="btn purple-btn" 
+                        onClick={()=> dispatch(setAddresses({pickup: pickupLoc, destination: destinationLoc}))}
+                        to={'/ride/book-ride'}>Book Ride Now</Link>
+                    </div>
 
                 </> : <>
                     <h2>Provide <b>pickup</b> and <b>drop locations</b> to estimate prices,<br/> get journey details and much more</h2>
                     <HashLink to='/home#book-a-ride' className="purple-btn btn mt-4">Proceed to next step</HashLink>
-                </>
-                }
+                </>}
             </div>
         </div> 
     )
 }
 
-export default BookRide;
+export default GetEstimate;

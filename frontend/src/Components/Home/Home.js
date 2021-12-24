@@ -61,18 +61,15 @@ function Home() {
         setModalShow(true)
     }
 
-    useEffect(()=>{console.log('pickup:',pickupLoc, '\ndestination:',destinationLoc)}, [pickupLoc, destinationLoc])
+    // useEffect(()=>{console.log('pickup:',pickupLoc, '\ndestination:',destinationLoc)}, [pickupLoc, destinationLoc])
     
     const handleRoute = () => {
-        if (Object.keys(pickupLoc).length === 0 || Object.keys(destinationLoc).length === 0
-            // (pickupLoc.position || pickupLoc.title || pickupLoc.address) && 
-            // (destinationLoc.position || destinationLoc.title || destinationLoc.address)
-            ) {
+        if (Object.keys(pickupLoc).length === 0 || Object.keys(destinationLoc).length === 0) {
                 setalertModal(true)
         }
         else {
             console.log("all clear",pickupLoc, destinationLoc)
-            navigate("/book-ride", { state: {
+            navigate("/ride/get-estimate", { state: {
                 pickup: pickupLoc,
                 destination: destinationLoc,
             }})

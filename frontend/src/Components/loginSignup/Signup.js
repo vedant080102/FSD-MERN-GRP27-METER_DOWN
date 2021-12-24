@@ -3,8 +3,9 @@ import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate } from "react-router-dom";
 import MyModal from "../base/MyModal";
-import { useDispatch } from "react-redux";
 import {login} from '../../Redux/features/userSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from "react";
 
 
 function Signup() {
@@ -19,6 +20,8 @@ function Signup() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.user);
+
 
 
     const submitHandler = (e) => {
@@ -55,7 +58,9 @@ function Signup() {
           setModalShow(true);
         });
     }
-
+    useEffect(()=>{
+      (user) ? navigate('/') : console.log("No user")
+    },[user])
     return(
        
         <div>
