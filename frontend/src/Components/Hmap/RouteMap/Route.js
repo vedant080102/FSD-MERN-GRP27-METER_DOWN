@@ -30,7 +30,7 @@ export class MyRoute extends React.Component{
           defaultLayers.vector.normal.map,
           {
             // This map is centered over Europe
-            center: { lat: this.props.lat, lng: this.props.lon },
+            center: { lat: this.props.source.lat, lng: this.props.source.lng },
             zoom: 14,
             pixelRatio: window.devicePixelRatio || 1
           }
@@ -120,10 +120,10 @@ export class MyRoute extends React.Component{
         this.setState({ map });
       }
     
-      componentWillUnmount() {
-        // Cleanup after the map to avoid memory leaks when this component exits the page
-        this.state.map.dispose();
-      }
+      // componentWillUnmount() {
+      //   // Cleanup after the map to avoid memory leaks when this component exits the page
+      //   this.state.map.dispose();
+      // }
 
       render() {
         return (

@@ -1,0 +1,20 @@
+.drinfo{
+    background-color: var(--yellow);
+    color: var(--purple);
+    padding: 1.5em;
+    font-size: 1em;
+}
+
+.drCont{
+    padding: 1em;
+}
+
+.drpic {
+    height: 200px;
+    width:200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    border-radius: 50%;
+    border:var(--purple) solid;
+}
