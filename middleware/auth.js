@@ -7,7 +7,7 @@ const User = require("../models/User")
 
 const checkToken=(req,res,next)=>{
     if (req.signedCookies.jwt == undefined){
-        res.status(401).send({msg:"no token",userData:{}})
+        res.status(404).send({msg:"no token",userData:{}})
     }else{
        let token
             try {
