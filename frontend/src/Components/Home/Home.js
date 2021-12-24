@@ -10,7 +10,6 @@ import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
 import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from './geocoding';
-// import PopularRoutes from './PopularRoutes.js'
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
 
@@ -62,7 +61,7 @@ function Home() {
         setModalShow(true)
     }
 
-    useEffect(()=>{console.log(pickupLoc, destinationLoc)}, [pickupLoc, destinationLoc])
+    useEffect(()=>{console.log('pickup:',pickupLoc, '\ndestination:',destinationLoc)}, [pickupLoc, destinationLoc])
     
     const handleRoute = () => {
         if (Object.keys(pickupLoc).length === 0 || Object.keys(destinationLoc).length === 0
@@ -97,10 +96,9 @@ function Home() {
                             <div style={{
                                 height: '100vh',
                                 width: '100vw',
-                                backgroundImage: `linear-gradient(#2b0a2ca6, #2b0a2ca6), url(${bgImg1}), url(${bgImg2})`,
+                                backgroundImage: `linear-gradient(#2b0a2ca6, #2b0a2ca6), url(${bgImg1})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                animation: '30s parallel infinite linear',
                             }}
                             />
                         </Background>
@@ -116,23 +114,8 @@ function Home() {
 
             <main className='home-main'>
                 <div className="custom-shape-divider-top-1636559095">
-                    {/* <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" className="shape-fill"></path>
-                    </svg> */}
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                         <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" className="shape-fill"></path>
-                        {/* <defs>
-                            <pattern id="img1" patternUnits="userSpaceOnUse" width="1440" height="560">
-                                <image href={sprinkle} x="0" y="0" width="1440" height="560"/>
-                                <div x='0' y='0' style={{
-                                    width: "1440px",
-                                    height: "560px",
-                                    backgroundImage: `url(${sprinkle})`,
-                                    // backgroundSize: 'cover',
-                                    // backgroundPosition: 'center',
-                                }}></div>
-                            </pattern>
-                        </defs> */}
                     </svg>
                 </div>
                 
@@ -173,14 +156,6 @@ function Home() {
                                 </div>
                             </div>
                             <div className='col-12 col-md-6 mt-3 mt-md-1'>
-                                    {/* <img src={mapImg} alt='map' height='150'/> */}
-                                    {/* <lottie-player
-                                        autoplay
-                                        loop
-                                        mode="normal"
-                                        src="https://assets1.lottiefiles.com/packages/lf20_ZZ5gpp.json"
-                                        style={{width: "320px"}}
-                                    ></lottie-player> */}
                                 <div ref={routeAnimationRef} id='select-route' className='flex h-100'></div>
                             </div>
                         </div>

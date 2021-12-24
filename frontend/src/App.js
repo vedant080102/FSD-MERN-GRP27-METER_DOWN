@@ -7,6 +7,7 @@ import {
 	Route,
 } from "react-router-dom";
 
+
 import Navbar from './Components/base/Navbar';
 import Home from './Components/Home/Home';
 import Bookings from './Components/Bookings/Bookings';
@@ -17,6 +18,7 @@ import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
 import Footer from './Components/base/Footer';
 import BookRide from './Components/Home/BookRide/BookRide';
+import ProtectedRoute from './ProtectedRoute'
 
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
@@ -28,60 +30,45 @@ function App() {
 		<div className="App">
 			<Router>
 				<ScrollToTop />
+				<Navbar homepage={false}/>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					{/* <Route path="/index.html" element={<Home />} /> */}
-					<Route path="/home" element={<Home />} />
-					<Route path="/login" element={<>
-						<Navbar homepage={false}/>
-						<Login />
-					</>} />
-					<Route path="/signup" element={<>
-						<Navbar homepage={false}/>
-						<Signup/>
-					</>} />
-					<Route path="/bookings" element={<>
-						<Navbar homepage={false}/>
-						<Bookings />
-						</>}
-					/>
-					<Route path="/about" element={<>
-						<Navbar homepage={false}/>
-						<About />
-						</>}
-					/>
-					<Route path="/contact" element={<>
-						<Navbar homepage={false}/>
-						<Contact />
-						</>}
-					/>
-					<Route path="/login" element={<>
-						<Navbar homepage={false}/>
-						<Login />
-						</>}
-					/>
-					<Route path="/become-driver" element={<>
-						<Navbar homepage={false}/>
-						<Driver />
-						</>}
-					/>
-					<Route path="/driverInfo" element={<>
-						<Navbar homepage={false}/>
-						<RegisterDriver/>
-						</>}
-					/>
+					<Route path="/home" element={<Home />}/>
+					<Route path="/login" element={<Login />}/>
+					<Route path="/signup" element={<Signup/>}/>
+					<Route path="/about" element={<About />}/>
+					<Route path="/contact" element={<Contact />}/>
+					<Route path="/login" element={<Login />}/>
+					
+					<Route exact path="/bookings" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/bookings" element={<Bookings />}/>
+					</Route>
+					<Route exact path="/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/book-ride" element={<BookRide />}/>
+					</Route>
+					
+					<Route path="/become-driver" element={<Driver />}/>
+					
+					{/* <Route path="/driver-details" element={<RegisterDriver/>}/> */}
 					{/* Test Routes */}
 					{/* <Route path="/Map" element={ */}
-					<Route path="/book-ride" element={<>
-						<Navbar homepage={false}/>
-						<BookRide />
-						</>}
-					/>
 
-					<Route path="/hmap" element={<>
-						<Navbar homepage={false}/>
-						<Hmap/>
-						</>}
+					<Route path="/hmap" element={<Hmap/>}/>
+					<Route exact path="/driver-details" element={<ProtectedRoute usertype='driver' />}>
+						<Route exact path="/driver-details" element={<RegisterDriver/>}/>
+					</Route>
+
+					<Route path="*"
+						element={
+							<main className='flex' style={{ padding: "1rem", height:'60vh', backgroundColor:'var(--yellow)' }}>
+								<div style={{color:'var(--purple)'}}>
+									<h1 className='fw-bold'>404</h1>
+									<h2 className='fw-bold'>PAGE NOT FOUND</h2>
+									<p>There's nothing here!</p>
+								</div>
+							</main>
+						}
 					/>
 				</Routes>
 				<Footer/>

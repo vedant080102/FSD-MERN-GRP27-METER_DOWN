@@ -7,7 +7,7 @@ const User = require("../models/User")
 
 const checkToken=(req,res,next)=>{
     if (req.signedCookies.jwt == undefined){
-        res.status(401).send({msg:"no token",userData:{}})
+        res.status(404).send({msg:"no token",userData:{}})
     }else{
        let token
             try {
@@ -16,8 +16,6 @@ const checkToken=(req,res,next)=>{
                 res.status(401).clearCookie('jwt').send({msg:"invalid token",userData:{}})
                 return 
             }
-            
-      
             jwt.verify(token, PUB_KEY, function(err, decoded) {
                 console.log(decoded)
                 if(err){

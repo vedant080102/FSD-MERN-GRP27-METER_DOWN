@@ -3,6 +3,8 @@ import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate } from "react-router-dom";
 import MyModal from "../base/MyModal";
+import { useDispatch } from "react-redux";
+import {login} from '../../Redux/features/userSlice'
 
 
 function Signup() {
@@ -16,6 +18,8 @@ function Signup() {
     const [modalShow, setModalShow] = useState(false);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -34,6 +38,7 @@ function Signup() {
           axiosInstance.post("/api/user/login", data, { withCredentials: true })
           .then((res) => {
             console.log("User Logged in!!", res);
+            dispatch(login(res.data.user))
             setstatusMsg(<>
               <h4 className="mb-3 pb-1">Account created Successfully!</h4>
               <span className="mt-3">Welcome to METER DOWN! 🎉</span>

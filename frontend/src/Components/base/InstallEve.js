@@ -9,7 +9,6 @@ function InstallPWA() {
     
     const handler = e => {
         e.preventDefault();
-        console.log("we are being triggered :D");
         setSupportsPWA(true);
         setPromptInstall(e);
     };
@@ -39,31 +38,15 @@ function InstallPWA() {
         });
     };
 
-    useEffect(()=> {
-        if ('getInstalledRelatedApps' in window.navigator) {
-            const relatedApps = navigator.getInstalledRelatedApps();
-            console.log("hi", relatedApps)
-            // relatedApps.forEach((app) => {
-            //   //if your PWA exists in the array it is installed
-            //   console.log(app.platform, app.url);
-            // });
-        }
-        else console.log("fuck's sake")
-    },[])
-
-    if (!supportsPWA) {
-        
-
-        console.log("pwa not supported!")
-        return (<span className="text-danger">App is already installed or cannot be installed on your device</span>)
-    }
     return (
         <>
-            <button className="btn yellow-btn" id="setup_button"
-            aria-label="Install app" title="Install app"
-            onClick={onClick}>
+            {supportsPWA ? 
+            <button className="btn yellow-btn" id="setup_button" aria-label="Install app" title="Install app" onClick={onClick}>
                 Install App <i className="fas fa-download"></i>
             </button>
+                : 
+            <span className="text-danger">App is already installed or cannot be installed on your device</span>}
+            
             <MyModal
 				show={modalShow}
 				onHide={() => setModalShow(false)}

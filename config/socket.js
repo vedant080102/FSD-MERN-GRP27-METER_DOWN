@@ -48,7 +48,7 @@ if (io === undefined) {
                 })
                 socket.on("chat",(event)=>{
                   console.log(event)
-                  socket.broadcast.to(event.room).emit("chat",event.chat)
+                  socket.broadcast.to(event.room).emit("chat",event)
                   Chat.create({
                     "sender":event.sender,
                     "fare":event.room,

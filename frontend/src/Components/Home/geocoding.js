@@ -22,7 +22,7 @@ function GetAddress(props) {
             'apiKey': APP_CODE_HERE,
             'q': query,
             'lang': 'en',
-            'in': 'circle:19.07316,72.89973;r=25000',
+            'in': 'circle:19.092172567483823,72.9119350918738;r=25000',
             'maxresults': 15,
             }})
             .then((data)=> {

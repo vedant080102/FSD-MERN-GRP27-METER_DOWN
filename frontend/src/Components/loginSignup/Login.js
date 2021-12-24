@@ -3,6 +3,8 @@ import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate, Link } from "react-router-dom";
 import MyModal from "../base/MyModal";
+import { useDispatch } from "react-redux";
+import {login} from '../../Redux/features/userSlice'
 
 function Login() {
 
@@ -11,6 +13,7 @@ function Login() {
 	const [statusMsg, setstatusMsg] = useState();
 	const [modalShow, setModalShow] = useState(false);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -20,7 +23,9 @@ function Login() {
 		}
 		axiosInstance.post("/api/user/login", data, { withCredentials: true })
 		.then((res) => {
-			console.log("User Logged in!!");
+			// dispatch(login())
+			console.log("User Logged in!!", res.data.user);
+			dispatch(login(res.data.user))
 			setstatusMsg("Logged In Successfully! 🎉");
 			setModalShow(true);
 			setTimeout(() => {

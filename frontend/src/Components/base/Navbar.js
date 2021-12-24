@@ -5,14 +5,15 @@ import Sidebar from "react-sidebar";
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { axiosInstance } from '../../AxiosSetUp';
-// import { useSelector, useDispatch } from 'react-redux'
-// import {login, logout} from '../../Redux/Features/userSlice' 
+import { useSelector, useDispatch } from 'react-redux'
+import {login, logout} from '../../Redux/features/userSlice'
 import InstallPWA from './InstallEve';
 
 function Navbar(props) {    
 
-    const [userInfo,setuserInfo] = useState("");
-    const [isHome, setIsHome] = useState(props.homepage);
+    let page = window.location.pathname.slice(1).split("/")[0]
+    // const [userInfo,setuserInfo] = useState("");
+    const [isHome, setIsHome] = useState(page === '' || page === 'home' ? true : false);
     const [sidebarOpen, setsidebarOpen] = useState(false);
     const [activePage, setActivePage] = useState({
         home: false,
@@ -21,28 +22,30 @@ function Navbar(props) {
         about: false,
         contact: false
     });
-    // const user = useSelector((state) => state.user.value)
-    // const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.user);
+    const dispatch = useDispatch();
     const history = useNavigate();
 
     const getUser = async() => {
         try {
             const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true })
             // console.log(data.userData);
-            setuserInfo(data.userData);
-            // dispatch(login(data.userData));
+            // setuserInfo(data.userData);
+            dispatch(login(data.userData));
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             console.log("No user is logged in OR there might be some issues");
         }
     }
 
-    // useEffect(()=> console.log("user:", user),[user])
+    // useEffect(()=> console.log("hi user:", user), [user]);
+    // useEffect(()=> console.log("home status:", isHome), [isHome]);
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
         console.log(data.userData);
-        setuserInfo(data.userData);
+        // setuserInfo(data.userData);
+        dispatch(logout());
     }
     
     useEffect(()=> {
@@ -59,19 +62,20 @@ function Navbar(props) {
                 (distanceFromTop >= navbarHeight) ? navbar.classList.add("fixed-top") : navbar.classList.remove("fixed-top");
             }
         });
-        if (!props.homepage) {
+        if (!isHome) {
             document.querySelector(".navbar").classList.add('fixed-top');
             // document.querySelector('.header-content').querySelector('.brand').style.display = 'none';
         }
         // else if (props.component === 'home') {
             // document.querySelector('.header-content').querySelector('.brand').style.display = 'flex';
-    })
+    },[])
 
     useEffect(() => {
-        let page = window.location.pathname.slice(1);
+        page = window.location.pathname.slice(1);
         page = page.split("/")[0]
         // console.log("page:", page)
 
+        setIsHome(false)
         setActivePage({
             home: false,
             bookings: false,
@@ -80,6 +84,7 @@ function Navbar(props) {
             contact: false
         })
         if (page === '' || page === 'home') {
+            setIsHome(true)
             setActivePage(prevState => ({
                 ...prevState,
                 home: true
@@ -113,7 +118,7 @@ function Navbar(props) {
     }, [history])
 
     useEffect(()=>{
-        getUser()
+        if (!user) getUser()
     },[1]);
 
     const Nav = () => <>
@@ -209,11 +214,11 @@ function Navbar(props) {
         <hr/>
         <div><InstallPWA/></div>
         <hr />
-        {userInfo.name ? <div className="dropdown">
+        {user ? <div className="dropdown">
             <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 {/* <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/> */}
                 <img src={userP} alt="" width="32" height="32" className="rounded-circle me-2"/>
-                Hi<strong className='ms-2'>{userInfo.name}</strong>!
+                Hi<strong className='ms-2'>{user.name}</strong>!
             </a>
             <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 {/* <li><a className="dropdown-item" href="#">Settings</a></li>
@@ -226,12 +231,11 @@ function Navbar(props) {
 
 
     return(
-        isHome ? 
-            <>{Nav()}</>
-                :
-            <header className="App-header">
-                {Nav()}
-            </header>
+        isHome ? (!props.homepage) ? <></>
+         : 
+        <>{Nav()}</>
+         :
+        <header className="App-header">{Nav()}</header>
     )
 }
 

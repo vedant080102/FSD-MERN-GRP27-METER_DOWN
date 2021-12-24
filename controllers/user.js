@@ -31,7 +31,7 @@ const loginUser=(req,res,next)=>{
         console.log(user)
 
         if (!user) {
-           res.status(401).json({ success: false, msg: "Could not find user" });
+           res.status(401).json({ success: false, msg: "No such user found!" });
         }
         
         // Function defined at bottom of app.js
@@ -41,7 +41,7 @@ const loginUser=(req,res,next)=>{
     
             if(isMatch){
                 const tokenObject = utils.issueJWT(user);
-                res.status(202).cookie('jwt',tokenObject.token,{ expires: new Date(Date.now() + tokenObject.expires), httpOnly: true,signed:true }).json({ success: true, msg: "Successfully logged in" })
+                res.status(202).cookie('jwt',tokenObject.token,{ expires: new Date(Date.now() + tokenObject.expires), httpOnly: true,signed:true }).json({ success: true, msg: "Successfully logged in", user: user})
 
                 // res.status(200).json({ success: true, token: tokenObject.token, expiresIn: tokenObject.expires });
             }else{

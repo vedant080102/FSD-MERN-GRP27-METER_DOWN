@@ -208,7 +208,7 @@ function Driver() {
                         </div>
                     </div>
                     {/* <div className="w-100 flex"><hr className='w-75'/></div> */}
-                    <Link className='mt-3 btn purple-btn' to={'/driverInfo'}>Fill your application now!</Link>
+                    <Link className='mt-3 btn purple-btn' to={'/driver-details'}>Fill your application now!</Link>
                 </div>
 
             </div>

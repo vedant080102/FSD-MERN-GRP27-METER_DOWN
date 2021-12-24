@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../../AxiosSetUp";
+import { useSelector } from 'react-redux'
 import './RegisterDriver.css';
 
 const RegisterDriver = () =>{
 
-    const [userInfo,setuserinfo] = useState("");
     const [driverInfo,setdriverInfo] = useState("")
-
     const [ vehN,setvehN ] = useState("");
     const [ permit,setpermit ] = useState("");
     const [ liscence,setliscence ] = useState("");
@@ -17,13 +16,9 @@ const RegisterDriver = () =>{
     const [ type,settype ] = useState("");
     const [ carPhoto,setcarPhoto ] = useState([]);
 
-    const navigate = useNavigate();
+    const user = useSelector((state) => state.user.user);
 
-    const getUser = async() =>{
-        const { data } = await axiosInstance.get("/api/user/user",{ withCredentials:true });
-        console.log(data.userData);
-        setuserinfo(data.userData);
-    }
+    const navigate = useNavigate();
 
     const getDriver = async() => {
         const driver = await axiosInstance.get("/api/driver/getonedriverdata",{ withCredentials:true });
@@ -63,10 +58,6 @@ const RegisterDriver = () =>{
     }
 
     useEffect(()=>{
-        getUser()
-    },[1]);
-
-    useEffect(()=>{
         getDriver()
     },[1]);
 
@@ -97,38 +88,38 @@ const RegisterDriver = () =>{
                             </div>
                             <div className="col-lg-7 drinfo">
                                 <label htmlFor="name" className="drlabel">Name</label><br />
-                                <input type="text" name="Name" value={userInfo.name} className="drinput" id="name" disabled={true}/><br />
+                                <input type="text" name="Name" value={user.name} className="drinput" id="name" disabled={true}/><br />
 
                                 <label htmlFor="email" className="drlabel">Email</label><br />
-                                <input type="text" name="Email" value={userInfo.email} className="drinput" id="email" disabled={true} /><br />
+                                <input type="text" name="Email" value={user.email} className="drinput" id="email" disabled={true} /><br />
 
                                 <label htmlFor="phone" className="drlabel">Phone</label><br />
-                                <input type="tel" name="Phone" value={userInfo.phone} className="drinput" id="phone" disabled={true} /><br/>
+                                <input type="tel" name="Phone" value={user.phone} className="drinput" id="phone" disabled={true} /><br/>
 
                                 <label htmlFor="vehno" className="drlabel">Vehicle Number</label><br />
                                 <input type="text" name="vehicleNumber" defaultValue={driverInfo.vehicleNumber} onChange={(e)=>{setvehN(e.target.value)}} className="drinput" id="vehno" /><br/>
 
-                                {driverInfo.vehicleType=="Taxi"?
+                                {driverInfo.vehicleType==="Taxi"?
                                 <div><label htmlFor="vehtype" className="drlabel">Vehicle Type</label><br />
                                 <div id="vehtype" className="drlabel">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="Auto" name="inlineRadioOptions" id="inlineRadio1" onChange={(e)=>{settype(e.target.value)}}/>
-                                    <label class="form-check-label" for="inlineRadio1">Auto</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" value="Auto" name="inlineRadioOptions" id="inlineRadio1" onChange={(e)=>{settype(e.target.value)}}/>
+                                    <label className="form-check-label" htmlFor="inlineRadio1">Auto</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Taxi" onChange={(e)=>{settype(e.target.value)}} checked/>
-                                    <label class="form-check-label" for="inlineRadio2">Taxi</label>
+                                    <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Taxi" onChange={(e)=>{settype(e.target.value)}} checked/>
+                                    <label className="form-check-label" htmlFor="inlineRadio2">Taxi</label>
                                 </div>
                                 </div><br /></div>:
                                 <div><label htmlFor="vehtype" className="drlabel">Vehicle Type</label><br />
                                 <div id="vehtype" className="drlabel">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="Auto" name="inlineRadioOptions" id="inlineRadio1" onChange={(e)=>{settype(e.target.value)}} checked/>
-                                    <label class="form-check-label" for="inlineRadio1">Auto</label>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" value="Auto" name="inlineRadioOptions" id="inlineRadio1" onChange={(e)=>{settype(e.target.value)}} checked/>
+                                    <label className="form-check-label" htmlFor="inlineRadio1">Auto</label>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Taxi" onChange={(e)=>{settype(e.target.value)}}/>
-                                    <label class="form-check-label" for="inlineRadio2">Taxi</label>
+                                    <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Taxi" onChange={(e)=>{settype(e.target.value)}}/>
+                                    <label className="form-check-label" htmlFor="inlineRadio2">Taxi</label>
                                 </div>
                                 </div><br /></div>
                                 }
@@ -137,7 +128,7 @@ const RegisterDriver = () =>{
                                 <label htmlFor="permit" className="drlabel">Permit </label><br />
                                 {driverInfo.permit? 
                                 <div className="drPreview">
-                                    <span>Preview Permit : <a href={driverInfo.permit} className="drPreview" target="_blank">Here</a></span><br/>
+                                    <span>Preview Permit : <a href={driverInfo.permit} className="drPreview" rel="noreferrer" target="_blank">Here</a></span><br/>
                                     Update : <input type="file" name="permit" defaultValue={permit}  onChange={(e)=>{setpermit(e.target.files[0])}} className="drfinput" id="permit" />
                                 </div>
                             
@@ -148,7 +139,7 @@ const RegisterDriver = () =>{
                                 <label htmlFor="license" className="drlabel">License </label><br />
                                 {driverInfo.liscence? 
                                 <div className="drPreview">
-                                    <span>Preview liscence : <a href={driverInfo.liscence} className="drPreview" target="_blank">Here</a></span><br/>
+                                    <span>Preview liscence : <a href={driverInfo.liscence} className="drPreview" rel="noreferrer" target="_blank">Here</a></span><br/>
                                     Update : <input type="file" name="permit" defaultValue={liscence}  onChange={(e)=>{setliscence(e.target.files[0])}} className="drfinput" id="liscence" />
                                 </div>
                             
@@ -158,7 +149,7 @@ const RegisterDriver = () =>{
                                 <label htmlFor="registration" className="drlabel">Registration </label><br />
                                 {driverInfo.registration? 
                                 <div className="drPreview">
-                                    <span>Preview registration : <a href={driverInfo.registration} className="drPreview" target="_blank">Here</a></span><br/>
+                                    <span>Preview registration : <a href={driverInfo.registration} className="drPreview" rel="noreferrer" target="_blank">Here</a></span><br/>
                                     Update : <input type="file" name="registration" defaultValue={registration}  onChange={(e)=>{setregistration(e.target.files[0])}} className="drfinput" id="registration" />
                                 </div>
                             
@@ -173,7 +164,7 @@ const RegisterDriver = () =>{
                                             <div className="profPic">
                                                 <div className="vehImage m-auto">
                                                     
-                                                    <img src={e}  className='profile-pic' />
+                                                    <img src={e}  className='profile-pic' alt="profile-pic"/>
                                                 </div>
                                                 
                                             </div>
