@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
-import '../home.css'
+import '../Home/home.css'
 import { useEffect } from "react"
 import { HashLink } from "react-router-hash-link"
 import EstimatePrice from "./EstimatePrice"
 import { Link } from "react-router-dom"
-import {setAddresses} from '../../../Redux/features/journeyAddressesSlice'
+import {setAddresses} from '../../Redux/features/journeyAddressesSlice'
 import { useDispatch } from "react-redux"
 
 function GetEstimate(props) {

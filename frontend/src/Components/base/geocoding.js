@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import axios from "axios";
 import {Modal, Button, Form} from 'react-bootstrap'
-import './home.css'
+import '../Home/home.css'
 
 function GetAddress(props) {
 

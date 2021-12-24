@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {ReactComponent as Rick} from '../../../Media/rickshaw.svg'
-import {ReactComponent as Taxi} from '../../../Media/taxi.svg'
-import { axiosInstance } from "../../../AxiosSetUp";
+import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
+import {ReactComponent as Taxi} from '../../Media/taxi.svg'
+import { axiosInstance } from "../../AxiosSetUp";
 const humanizeDuration = require("humanize-duration");
 
 export default function EstimatePrice(props) {

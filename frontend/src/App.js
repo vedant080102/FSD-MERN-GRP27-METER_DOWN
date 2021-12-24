@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 
-import Navbar from './Components/base/Navbar';
+import Navbar from './Components/Base/Navbar';
 import Home from './Components/Home/Home';
 import Bookings from './Components/Bookings/Bookings';
 import Driver from './Components/Driver/Driver';
@@ -16,14 +16,14 @@ import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
-import Footer from './Components/base/Footer';
-import GetEstimate from './Components/Home/BookRide/GetEstimate';
+import Footer from './Components/Base/Footer';
+import GetEstimate from './Components/Estimation/GetEstimate';
 import ProtectedRoute from './ProtectedRoute'
 
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
-import Hmap from './Components/Hmap/Hmap';
-
+import BookRide from './Components/BookRide/BookRide';
+import RideChat from './Components/RideChat/RideChat.js';
 
 function App() {
 	return (
@@ -42,12 +42,15 @@ function App() {
 					<Route path="/login" element={<Login />}/>
 					
 					<Route exact path="/bookings" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/bookings" element={<Bookings />}/>
+						<Route exact path="/bookings" element={<Bookings />}/>
 					</Route>
 					<Route path="/ride/get-estimate" element={<GetEstimate/>}/>
 					<Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/ride/book-ride" element={<Hmap/>}/>
+						<Route path="/ride/book-ride" element={<BookRide/>}/>
 					</Route>
+					{/* <Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}> */}
+						<Route path="/ride/ride-chat" element={<RideChat/>}/>
+					{/* </Route> */}
 
 					<Route path="/become-driver" element={<Driver/>}/>
 					
