@@ -17,13 +17,13 @@ function GetAddress(props) {
     }, [props.show])
 
     const getDetails = (query) => {
-        axios.get('https://geocode.search.hereapi.com/v1/geocode',
+        axios.get('https://discover.search.hereapi.com/v1/discover',
         {'params': {
             'apiKey': APP_CODE_HERE,
             'q': query,
             'lang': 'en',
-            'in': 'countryCode:IND',
-            'maxresults': 5,
+            'in': 'circle:19.07316,72.89973;r=25000',
+            'maxresults': 15,
             }})
             .then((data)=> {
                 // console.log("data:", data.data.items)
