@@ -166,6 +166,28 @@ function Hmap() {
         }).catch(e=> console.log(e.response));
     }
 
+    const bookRide = async(e) =>{
+        console.log(e)
+        const apiData = {}
+        const dur = duration.slice(0,3);
+        
+        console.log(dur);
+        apiData["source"] = {"lat":pickupLoc.position.lat,"lng":pickupLoc.position.lng,"address":pickupLoc.title}
+        apiData["destination"] = {"lat":destinationLoc.position.lat,"lng":destinationLoc.position.lng,"address":destinationLoc.title}
+        apiData["distanceEstimate"] = Number(distance)
+        apiData["timeEstimate"] = Number(dur)
+        if(e=="auto"){
+            apiData["fareEstimate"] = autoF
+        }else{
+            apiData["fareEstimate"] = taxiF
+        }
+        apiData["time"] = "day"
+        apiData["startType"] = "now"
+        console.log(apiData);
+
+        // await axiosInstance.post('/api/passenger/bookRide')
+    }
+
     useEffect(()=>{
         getTaxiFare()
     },[distance]);
@@ -211,8 +233,8 @@ return (
                         {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop location for your ride"}</div>
                 </div><br /><br />
                 <div id='mdRide'>
-                <div className='row mdrides shadow'>
-                    <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdauto'>
+                <div onClick={()=>{bookRide("auto")}} className='row mdrides shadow' value="AUTO">
+                    <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdauto' >
 
                     </div>
                     <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
