@@ -22,8 +22,14 @@ import ProtectedRoute from './ProtectedRoute'
 
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
+<<<<<<< HEAD
+import Hmap from './Components/Hmap/Hmap';
+import RideSum from './Components/RideSummary/RideSum';
+
+=======
 import BookRide from './Components/BookRide/BookRide';
 import RideChat from './Components/RideChat/RideChat.js';
+>>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1
 
 function App() {
 	return (
@@ -72,6 +78,12 @@ function App() {
 								</div>
 							</main>
 						}
+					/>
+
+					<Route path="/ride-summary" element={<>
+						<Navbar homepage={false}/>
+						<RideSum/>
+						</>}
 					/>
 				</Routes>
 				<Footer/>

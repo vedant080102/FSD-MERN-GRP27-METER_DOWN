@@ -183,6 +183,28 @@ function Hmap(props) {
         }).catch(e=> console.log(e.response));
     }
 
+    const bookRide = async(e) =>{
+        console.log(e)
+        const apiData = {}
+        const dur = duration.slice(0,3);
+        
+        console.log(dur);
+        apiData["source"] = {"lat":pickupLoc.position.lat,"lng":pickupLoc.position.lng,"address":pickupLoc.title}
+        apiData["destination"] = {"lat":destinationLoc.position.lat,"lng":destinationLoc.position.lng,"address":destinationLoc.title}
+        apiData["distanceEstimate"] = Number(distance)
+        apiData["timeEstimate"] = Number(dur)
+        if(e=="auto"){
+            apiData["fareEstimate"] = autoF
+        }else{
+            apiData["fareEstimate"] = taxiF
+        }
+        apiData["time"] = "day"
+        apiData["startType"] = "now"
+        console.log(apiData);
+
+        // await axiosInstance.post('/api/passenger/bookRide')
+    }
+
     useEffect(()=>{
         getTaxiFare()
     // },[distance]);
@@ -209,8 +231,15 @@ return (
       
         
         <div className='container-fluid srchB'>
+<<<<<<< HEAD:frontend/src/Components/Hmap/Hmap.js
+            <div className='container-fluid bg-purple srchD rounded shadow'>
+                
+                <div className='row m-0 choose-locM p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
+                    onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
+=======
             <div className='container bg-purple srchD rounded shadow'>
                 <div className='row m-0 choose-locM p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}>
+>>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1:frontend/src/Components/BookRide/BookRide.js
                     <div className="col-3 col-xl-2 p-0 px-xl-2">
                             Pickup:
                     </div>
@@ -235,29 +264,29 @@ return (
                 <br /><br />
 
                 <div id='mdRide'>
-                <div className='row mdrides shadow'>
-                    <div className='col-lg-4 mdauto'>
+                <div onClick={()=>{bookRide("auto")}} className='row mdrides shadow' value="AUTO">
+                    <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdauto' >
 
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         <b>Auto</b><br></br>
                         Estimated Time: <b>{duration}</b>
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         Estimated Fare: <b>{autoF}</b><br />
                         Estimated Distance: <b>{distance} km</b>
                     </div>
 
                 </div>  
-                <div className='row mdrides shadow'>
-                    <div className='col-lg-4 mdtaxi'>
+                <div  className='row mdrides shadow'>
+                    <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdtaxi'>
 
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         <b>Taxi</b><br />
                         Estimated Time: <b>{duration}</b>
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         Estimated Fare: <b>{taxiF}</b><br />
                         Estimated Distance: <b>{distance} km</b>
                     </div>
