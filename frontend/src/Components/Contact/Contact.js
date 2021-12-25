@@ -15,7 +15,7 @@ function Contact() {
                 apikey: process.env.REACT_APP_HERE_API
             });
             const layers = platform.createDefaultLayers();
-            console.log(layers);
+            // console.log(layers);
 
             const mapObj = new H.Map(
                 mapRef.current,
@@ -27,46 +27,10 @@ function Contact() {
             );
 
             var marker = new H.map.Marker({lat: 19.07316,lng: 72.89973});
-            window.addEventListener('resize', () => {
-                mapObj.getViewPort().resize();
-                console.log("map resize")
-            });
+            window.addEventListener('resize', () => mapObj.getViewPort().resize());
 
-            marker.draggable = true;
+            marker.draggable = false;
             mapObj.addObject(marker);
-
-            // disable the default draggability of the underlying map
-            // and calculate the offset between mouse and target's position
-            // when starting to drag a marker object:
-            mapObj.addEventListener('dragstart', function(ev) {
-                var target = ev.target,
-                    pointer = ev.currentPointer;
-                if (target instanceof H.map.Marker) {
-                var targetPosition = mapObj.geoToScreen(target.getGeometry());
-                target['offset'] = new H.math.Point(pointer.viewportX - targetPosition.x, pointer.viewportY - targetPosition.y);
-                behavior.disable();
-                }
-            }, false);
-
-
-            // re-enable the default draggability of the underlying map
-            // when dragging has completed
-            mapObj.addEventListener('dragend', function(ev) {
-                var target = ev.target;
-                if (target instanceof H.map.Marker) {
-                behavior.enable();
-                }
-            }, false);
-
-            // Listen to the drag event and move the position of the marker
-            // as necessary
-            mapObj.addEventListener('drag', function(ev) {
-                var target = ev.target,
-                    pointer = ev.currentPointer;
-                if (target instanceof H.map.Marker) {
-                target.setGeometry(mapObj.screenToGeo(pointer.viewportX - target['offset'].x, pointer.viewportY - target['offset'].y));
-                }
-            }, false);
 
             var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(mapObj), {
                 enabled: H.mapevents.Behavior.DRAGGING | H.mapevents.Behavior.DBLTAPZOOM
@@ -77,14 +41,15 @@ function Contact() {
             mapObj.addObject(marker);
             setMap(mapObj);
         }
-    },[1]);
+        return () => map ? map.dispose() : null;
+    },[]);
 
     return (<div id="contact-page" className="yellow-bg p-2">
         <div className="container my-5">
             <h2>Get in Touch</h2>
             <h4>Tell us what you think</h4>
 
-            <div className="container purple-bg p-3">
+            <div className="container purple-bg p-4 rounded">
                 <div className="row">
                     <div className="col-12 col-md-8">
                         <div id="contact-map" ref={mapRef}/>

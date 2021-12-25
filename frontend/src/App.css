@@ -234,6 +234,10 @@ body {
   color: var(--yellow);
 }
 
+.purple-btn:focus {
+  box-shadow: 0 0 0 0.25rem #2b0a2c1c !important;
+}
+
 .yellow-btn {
   color: var(--yellow);
   background-color: transparent;
@@ -244,6 +248,10 @@ body {
   color: var(--purple);
   background-color: var(--yellow);
   border: 1px solid transparent;
+}
+
+.yellow-btn:focus {
+  box-shadow: 0 0 0 0.25rem #ffcf151c !important;
 }
 
 .purple-bg {

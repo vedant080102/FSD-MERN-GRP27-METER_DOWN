@@ -1,7 +1,4 @@
-import { useRef } from 'react';
-import { useEffect } from 'react';
 import { Parallax, Background } from 'react-parallax';
-import mapImg from '../../Media/region.png'
 import { ReactComponent as Sustain} from '../../Media/sustainable.svg'
 import { ReactComponent as Taxi} from '../../Media/taxi.svg'
 import { ReactComponent as Safety} from '../../Media/safety.svg'

@@ -7,7 +7,8 @@ import {
 	Route,
 } from "react-router-dom";
 
-import Navbar from './Components/base/Navbar';
+
+import Navbar from './Components/Base/Navbar';
 import Home from './Components/Home/Home';
 import Bookings from './Components/Bookings/Bookings';
 import Driver from './Components/Driver/Driver';
@@ -15,74 +16,68 @@ import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
-import Footer from './Components/base/Footer';
-import BookRide from './Components/Home/BookRide/BookRide';
+import Footer from './Components/Base/Footer';
+import GetEstimate from './Components/Estimation/GetEstimate';
+import ProtectedRoute from './ProtectedRoute'
 
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
+<<<<<<< HEAD
 import Hmap from './Components/Hmap/Hmap';
 import RideSum from './Components/RideSummary/RideSum';
 
+=======
+import BookRide from './Components/BookRide/BookRide';
+import RideChat from './Components/RideChat/RideChat.js';
+>>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1
 
 function App() {
 	return (
 		<div className="App">
 			<Router>
 				<ScrollToTop />
+				<Navbar homepage={false}/>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					{/* <Route path="/index.html" element={<Home />} /> */}
-					<Route path="/home" element={<Home />} />
-					<Route path="/login" element={<>
-						<Navbar homepage={false}/>
-						<Login />
-					</>} />
-					<Route path="/signup" element={<>
-						<Navbar homepage={false}/>
-						<Signup/>
-					</>} />
-					<Route path="/bookings" element={<>
-						<Navbar homepage={false}/>
-						<Bookings />
-						</>}
-					/>
-					<Route path="/about" element={<>
-						<Navbar homepage={false}/>
-						<About />
-						</>}
-					/>
-					<Route path="/contact" element={<>
-						<Navbar homepage={false}/>
-						<Contact />
-						</>}
-					/>
-					<Route path="/login" element={<>
-						<Navbar homepage={false}/>
-						<Login />
-						</>}
-					/>
-					<Route path="/become-driver" element={<>
-						<Navbar homepage={false}/>
-						<Driver />
-						</>}
-					/>
-					<Route path="/driverInfo" element={<>
-						<Navbar homepage={false}/>
-						<RegisterDriver/>
-						</>}
-					/>
+					<Route path="/home" element={<Home />}/>
+					<Route path="/login" element={<Login />}/>
+					<Route path="/signup" element={<Signup/>}/>
+					<Route path="/about" element={<About />}/>
+					<Route path="/contact" element={<Contact />}/>
+					<Route path="/login" element={<Login />}/>
+					
+					<Route exact path="/bookings" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route exact path="/bookings" element={<Bookings />}/>
+					</Route>
+					<Route path="/ride/get-estimate" element={<GetEstimate/>}/>
+					<Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/ride/book-ride" element={<BookRide/>}/>
+					</Route>
+					{/* <Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}> */}
+						<Route path="/ride/ride-chat" element={<RideChat/>}/>
+					{/* </Route> */}
+
+					<Route path="/become-driver" element={<Driver/>}/>
+					
+					{/* <Route path="/driver-details" element={<RegisterDriver/>}/> */}
 					{/* Test Routes */}
 					{/* <Route path="/Map" element={ */}
-					<Route path="/book-ride" element={<>
-						<Navbar homepage={false}/>
-						<BookRide />
-						</>}
-					/>
 
-					<Route path="/hmap" element={<>
-						<Navbar homepage={false}/>
-						<Hmap/>
-						</>}
+					<Route exact path="/driver-details" element={<ProtectedRoute usertype='driver' />}>
+						<Route exact path="/driver-details" element={<RegisterDriver/>}/>
+					</Route>
+
+					<Route path="*"
+						element={
+							<main className='flex' style={{ padding: "1rem", height:'60vh', backgroundColor:'var(--yellow)' }}>
+								<div style={{color:'var(--purple)'}}>
+									<h1 className='fw-bold'>404</h1>
+									<h2 className='fw-bold'>PAGE NOT FOUND</h2>
+									<p>There's nothing here!</p>
+								</div>
+							</main>
+						}
 					/>
 
 					<Route path="/ride-summary" element={<>
