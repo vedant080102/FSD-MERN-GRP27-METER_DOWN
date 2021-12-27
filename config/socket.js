@@ -46,6 +46,10 @@ if (io === undefined) {
                   console.log(io.sockets.adapter.rooms)
                   
                 })
+                socket.on("rejoinchat",(event)=>{
+                   io.in(event.sender).socketsJoin(event.room);
+
+                })
                 socket.on("chat",(event)=>{
                   console.log(event)
                   socket.broadcast.to(event.room).emit("chat",event)

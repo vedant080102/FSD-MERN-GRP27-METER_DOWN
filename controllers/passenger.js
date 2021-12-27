@@ -11,6 +11,9 @@ const Review = require("../models/Review")
 const Chat=require("../models/Chat")
 const axios = require('axios');
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
+const webpush = require('web-push')
+const Subsciption = require("../models/Subsciption")
+
 
 const getDrivers=async(blackList,source,vehicleType)=>{
     driversList= await Driver.find({busy:false,vehicleType:vehicleType}).lean()
@@ -77,11 +80,33 @@ const bookRide=async(req,res)=>{
                     "fareid":fare._id,
                     "message":`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly`,
                 })
+                var subscription=await Subsciption.findOne({user:req.userId}).lean()
+                var payload = JSON.stringify({
+                    title: 'Ride booked successfully!',
+                    body: `Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly. Your OTP for your ride is:${otp}`,
+                  })
+                
+                  webpush.sendNotification(subscription, payload)
+                    .then(result => console.log(result))
+                    .catch(e => console.log(e.stack))
+
+
                 io.sockets.to(String(drivers[driverIndex]._id)).emit("allottedDriver",{
                     "status":"success",
                     "fareid":fare._id,
                     "message":`Ride booked successfully! `,
                 })
+                var subscription2=await Subsciption.findOne({user:drivers[driverIndex]._id}).lean()
+                var payload = JSON.stringify({
+                    title: 'Ride booked successfully!',
+                    body: `Your passenger is waiting at the pickup location`,
+                  })
+                
+                  webpush.sendNotification(subscription2, payload)
+                    .then(result => console.log(result))
+                    .catch(e => console.log(e.stack))
+
+
                 io.in(String(req.userId)).socketsJoin(String(fare._id));
                 us=await User.findOne({_id:req.userId})
                
