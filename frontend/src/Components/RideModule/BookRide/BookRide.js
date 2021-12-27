@@ -1,12 +1,14 @@
-import React,{useState,useEffect} from 'react'
-import { DisplayMapClass } from './Map/DisplayMapClass'
-import './BookRide.css'
-import GetAddress from '../../Base/geocoding'
-import axios from 'axios'
-import { axiosInstance } from '../../../AxiosSetUp'
-import { MyRoute } from './RouteMap/Route'
-import Maptest from './Map/maptest'
-import { useSelector } from 'react-redux'
+import React,{useState,useEffect} from 'react';
+import { DisplayMapClass } from './Map/DisplayMapClass';
+import './ride.css';
+import GetAddress from '../base/geocoding';
+import axios from 'axios';
+import { axiosInstance } from '../../AxiosSetUp';
+import { MyRoute } from './RouteMap/Route';
+import Maptest from './Map/maptest';
+import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
+import socket from '../../socket';
 const humanizeDuration = require("humanize-duration");
 
 
@@ -45,6 +47,8 @@ function BookRide(props) {
     const [autoF,setautoF] = useState();
     const [taxiF,settaxiF] = useState();
 
+   
+
     const getLocationModal = (type, location, loc) => {
         setLocQuery({
             type: type,
@@ -54,18 +58,8 @@ function BookRide(props) {
         setModalShow(true)
     }
 
-    // useEffect(()=>{
-    //     if(journeyAddresses) {
-    //         setpickupLoc(journeyAddresses.pickup)
-    //         setdestinationLoc(journeyAddresses.destination)
-    //         console.log("props",journeyAddresses.pickup, journeyAddresses.destination);
-    //         // setlat(String(crd.latitude));
-    //         // setlon(String(crd.longitude));
-    //         // console.log(lat,lon);
-            
-    //         setshowMark(true);
-    //     }
-    // },[journeyAddresses])
+    const navigate = useNavigate();
+
 
     useEffect(()=>{console.log(pickupLoc, destinationLoc)}, [pickupLoc, destinationLoc])
 
@@ -98,20 +92,15 @@ function BookRide(props) {
             const creds = String(crd.latitude) + String('%2C') + String(crd.longitude);
             console.log(creds)
     
-            // await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${APP_CODE_HERE}`).then((data)=>{
-            //     console.log(data.data.items[0]);
-            //     setpickupLoc(data.data.items[0]);
-            //     setdestLoc(data.data.items[0]);
-            // }).catch((err)=>{
-            //     console.log(err);
-            // })
+           
 
             try {
                 var data =await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${APP_CODE_HERE}`) 
                 console.log(data.data.items[0].label);
-                // setData(data.data.items[0]);
-                setpickupLoc(data.data.items[0]);
-                setdestinationLoc(data.data.items[0]);
+                setData(data.data.items[0]);
+                mpHandler();
+                
+
             } catch (error) {
                 console.log(error);
             }
@@ -182,7 +171,7 @@ function BookRide(props) {
         }).catch(e=> console.log(e.response));
     }
 
-    const bookRide = async(e) =>{
+    const book = async(e) =>{
         console.log(e)
         const apiData = {}
         const dur = duration.slice(0,3);
@@ -194,15 +183,33 @@ function BookRide(props) {
         apiData["timeEstimate"] = Number(dur)
         if(e=="auto"){
             apiData["fareEstimate"] = autoF
+            apiData["vehicleType"] = "Auto"
         }else{
             apiData["fareEstimate"] = taxiF
+            apiData["vehicleType"] = "Taxi"
         }
         apiData["time"] = "day"
         apiData["startType"] = "now"
         console.log(apiData);
 
-        // await axiosInstance.post('/api/passenger/bookRide')
+        await axiosInstance.post(`/api/passenger/bookRide`,apiData,{withCredentials:true}).then((res)=>{
+            console.log(res);
+            console.log("Worked");
+            // navigate('/ride-summary');
+        }).catch((e)=>{
+            console.log(e);
+        });
     }
+
+    // useEffect(()=>{
+    //     socket.on("allottedPassenger",(data)=>{
+    //         console.log("allotted")
+    //         console.log(data)
+    //         // setRide(data.fareid)  
+    //       })
+
+        
+    // },[])
 
     useEffect(()=>{
         getTaxiFare()
@@ -211,6 +218,20 @@ function BookRide(props) {
     // useEffect(()=>{
         getAutoFare()
     },[distance]);
+
+    useEffect(()=>{
+            if(journeyAddresses) {
+                setpickupLoc(journeyAddresses.pickup)
+                setdestinationLoc(journeyAddresses.destination)
+                console.log("props",journeyAddresses.pickup, journeyAddresses.destination);
+                mpHandler();
+                // setlat(String(crd.latitude));
+                // setlon(String(crd.longitude));
+                // console.log(lat,lon);
+                
+                setshowMark(true);
+            }
+        },[journeyAddresses])
     
 
 return (
@@ -238,7 +259,7 @@ return (
                     <div className="col" onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
                         {pickupLoc.title ? pickupLoc.title : "Select pickup location for your ride"}</div>                        
                     <div className="col-auto">
-                        <button className='btn purple-btn' onClick={() => getUserLoc(setpickupLoc)}><i class="fas fa-location-arrow"></i></button>
+                        <button className='btn purple-btn' onClick={()=>{getUserLoc(setpickupLoc)}}><i class="fas fa-location-arrow"></i></button>
                     </div>
                 </div>
 
@@ -249,14 +270,14 @@ return (
                     <div className="col" onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>
                         {destinationLoc.title ? destinationLoc.title : "Select drop location for your ride"}</div>
                     <div className="col-auto">
-                        <button className='btn purple-btn' onClick={() => getUserLoc(setdestLoc)}><i class="fas fa-location-arrow"></i></button>
+                        <button className='btn purple-btn' onClick={()=>{getUserLoc(setdestinationLoc)}}><i class="fas fa-location-arrow"></i></button>
                     </div>
                 </div>
 
                 <br /><br />
 
                 <div id='mdRide'>
-                <div onClick={()=>{bookRide("auto")}} className='row mdrides shadow' value="AUTO">
+                <div onClick={()=>{book("auto")}} className='row mdrides shadow' value="AUTO">
                     <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdauto' >
 
                     </div>
@@ -270,7 +291,7 @@ return (
                     </div>
 
                 </div>  
-                <div  className='row mdrides shadow'>
+                <div onClick={()=>{book("taxi")}} className='row mdrides shadow'>
                     <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdtaxi'>
 
                     </div>
@@ -287,7 +308,7 @@ return (
 
                 <button onClick={estimateH}  id="mpBut">Proceed</button>
             </div>
-            <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>
+            <GetAddress locquery={locQuery} show={modalShow} changeMarker={mpHandler} onHide={() => setModalShow(false)}/>
             
         </div>
         

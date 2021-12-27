@@ -45,6 +45,8 @@ app.use(express.static(path.join(__dirname, "frontend", "build")))
 app.use("/api/user",require("./routes/user"))
 app.use("/api/driver",require("./routes/driver"))
 app.use("/api/passenger",require("./routes/passenger"))
+app.use("/api/admin",require("./routes/admin"))
+
 app.post('/notifications/subscribe', (req, res) => {
   const subscription = req.body
 

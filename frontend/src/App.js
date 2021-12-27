@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import './App.css';
 
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
+	Navigate,
+	useNavigate,
 } from "react-router-dom";
 
 
@@ -32,8 +34,37 @@ import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
 
 import ProtectedRoute from './ProtectedRoute'
 
+import socket from './socket';
 
 function App() {
+
+	const [acceptmsg,setAccept]= useState("");
+
+
+	useEffect(()=>{
+
+		socket.on("ride",(data)=>{
+            console.log("ride")
+            console.log(data)
+            setAccept(data)
+        })
+
+		socket.on("allottedPassenger",(data)=>{
+		console.log("allotted")
+		console.log(data)
+		return(
+			<Navigate to='/ride/summary'/>
+		)
+		// setRide(data.fareid)  
+		});
+
+		socket.on("allottedDriver",(data)=>{
+			console.log("allotted")
+			console.log(data)
+			// setRide(data.fareid)
+		})
+	})
+
 	return (
 		<div className="App">
 			<Router>
@@ -75,16 +106,20 @@ function App() {
 						<Route path="/driver/fill-details" element={<RegisterDriver/>}/>
 					</Route>
 
+					<Route path="/driver/booking" element={<ProtectedRoute usertype='driver' />}>
+						<Route path="/driver/booking" element={<DriverBooking/>}/>
+					</Route>
+
 					<Route path="/admin/*" element={<AdminModule/>}/>
 
 					<Route path="*" element={
-							<main className='flex' style={{ padding: "1rem", height:'60vh', backgroundColor:'var(--yellow)' }}>
-								<div style={{color:'var(--purple)'}}>
-									<h1 className='fw-bold'>404</h1>
-									<h2 className='fw-bold'>PAGE NOT FOUND</h2>
-									<p>There's nothing here!</p>
-								</div>
-							</main>
+						<main className='flex' style={{ padding: "1rem", height:'60vh', backgroundColor:'var(--yellow)' }}>
+							<div style={{color:'var(--purple)'}}>
+								<h1 className='fw-bold'>404</h1>
+								<h2 className='fw-bold'>PAGE NOT FOUND</h2>
+								<p>There's nothing here!</p>
+							</div>
+						</main>
 					}/>
 				</Routes>
 				<Footer/>

@@ -51,6 +51,9 @@ function GetAddress(props) {
         e.preventDefault();
         props.locquery.setLoc(userChoice)
         props.onHide()
+        if(props.changeMarker){
+            props.changeMarker();
+        }
     }
 
     useEffect(()=> {
