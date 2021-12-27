@@ -60,3 +60,18 @@ export function subscribeUser() {
       })
   }
 }
+
+export function unsubscribeUser() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(function(reg) {
+      reg.pushManager.getSubscription().then(function(subscription) {
+        subscription.unsubscribe().then(function(successful) {
+          console.log("subscription removed")
+        }).catch(function(e) {
+          // Unsubscription failed
+          console.log("error",e)
+        })
+      })
+    });
+  }
+}
