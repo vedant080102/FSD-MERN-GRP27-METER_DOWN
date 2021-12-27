@@ -1,16 +1,17 @@
 import React,{useState,useEffect} from 'react';
 import { DisplayMapClass } from './Map/DisplayMapClass';
-import './Hmap.css';
-import GetAddress from '../Home/geocoding';
+import './BookRide.css';
+import GetAddress from '../Base/geocoding';
 import axios from 'axios';
 import { axiosInstance } from '../../AxiosSetUp';
 import { MyRoute } from './RouteMap/Route';
 import Maptest from './Map/maptest';
+import { useSelector } from 'react-redux';
 const humanizeDuration = require("humanize-duration");
 
 
 
-function Hmap() {
+function Hmap(props) {
 
     const shortEnglishHumanizer = humanizeDuration.humanizer({
         language: "shortEn",
@@ -25,6 +26,8 @@ function Hmap() {
         maxDecimalPoints: 0,
         conjunction: " "
     });
+
+    const journeyAddresses = useSelector((state)=> state.journeyAddresses.addresses);
 
     const [modalShow, setModalShow] = useState(false)
     const [locQuery, setLocQuery] = useState({})
@@ -52,6 +55,19 @@ function Hmap() {
         setModalShow(true)
     }
 
+    // useEffect(()=>{
+    //     if(journeyAddresses) {
+    //         setpickupLoc(journeyAddresses.pickup)
+    //         setdestinationLoc(journeyAddresses.destination)
+    //         console.log("props",journeyAddresses.pickup, journeyAddresses.destination);
+    //         // setlat(String(crd.latitude));
+    //         // setlon(String(crd.longitude));
+    //         // console.log(lat,lon);
+            
+    //         setshowMark(true);
+    //     }
+    // },[journeyAddresses])
+
     useEffect(()=>{console.log(pickupLoc, destinationLoc)}, [pickupLoc, destinationLoc])
 
     const APP_CODE_HERE = process.env.REACT_APP_HERE_API;
@@ -60,7 +76,7 @@ function Hmap() {
         setrefresh(!refresh);
     }
 
-    const getUserLoc = async() =>{
+    const getUserLoc = async(setData) =>{
         var options = {
             enableHighAccuracy: true,
             timeout: 5000,
@@ -93,9 +109,10 @@ function Hmap() {
 
             try {
                 var data =await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${APP_CODE_HERE}`) 
-                console.log(data.data.items[0]);
+                console.log(data.data.items[0].label);
+                // setData(data.data.items[0]);
                 setpickupLoc(data.data.items[0]);
-                await setdestinationLoc(data.data.items[0]); 
+                setdestinationLoc(data.data.items[0]);
             } catch (error) {
                 console.log(error);
             }
@@ -166,11 +183,33 @@ function Hmap() {
         }).catch(e=> console.log(e.response));
     }
 
-    useEffect(()=>{
-        getTaxiFare()
-    },[distance]);
+    const bookRide = async(e) =>{
+        console.log(e)
+        const apiData = {}
+        const dur = duration.slice(0,3);
+        
+        console.log(dur);
+        apiData["source"] = {"lat":pickupLoc.position.lat,"lng":pickupLoc.position.lng,"address":pickupLoc.title}
+        apiData["destination"] = {"lat":destinationLoc.position.lat,"lng":destinationLoc.position.lng,"address":destinationLoc.title}
+        apiData["distanceEstimate"] = Number(distance)
+        apiData["timeEstimate"] = Number(dur)
+        if(e=="auto"){
+            apiData["fareEstimate"] = autoF
+        }else{
+            apiData["fareEstimate"] = taxiF
+        }
+        apiData["time"] = "day"
+        apiData["startType"] = "now"
+        console.log(apiData);
+
+        // await axiosInstance.post('/api/passenger/bookRide')
+    }
 
     useEffect(()=>{
+        getTaxiFare()
+    // },[distance]);
+
+    // useEffect(()=>{
         getAutoFare()
     },[distance]);
     
@@ -192,48 +231,62 @@ return (
       
         
         <div className='container-fluid srchB'>
-            <div className='container bg-purple srchD rounded shadow'>
+<<<<<<< HEAD:frontend/src/Components/Hmap/Hmap.js
+            <div className='container-fluid bg-purple srchD rounded shadow'>
                 
                 <div className='row m-0 choose-locM p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
                     onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
+=======
+            <div className='container bg-purple srchD rounded shadow'>
+                <div className='row m-0 choose-locM p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}>
+>>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1:frontend/src/Components/BookRide/BookRide.js
                     <div className="col-3 col-xl-2 p-0 px-xl-2">
-                            Your Location:
+                            Pickup:
                     </div>
-                    <div className="col-9">
-                        {pickupLoc.title ? <span>{pickupLoc.title}</span> : "Select pickup location for your ride"}</div>
+                    <div className="col" onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
+                        {pickupLoc.title ? pickupLoc.title : "Select pickup location for your ride"}</div>                        
+                    <div className="col-auto">
+                        <button className='btn purple-btn' onClick={() => getUserLoc(setpickupLoc)}><i class="fas fa-location-arrow"></i></button>
+                    </div>
                 </div>
-                <div className='row m-0 choose-locM p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}
-                    onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>
+
+                <div className='row m-0 choose-locM p-2 mb-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={destinationLoc.address}>
                     <div className="col-3 col-xl-2 p-0 px-xl-2">
-                        Destination Location:
+                        Drop:
                     </div>
-                    <div className="col-9">
-                        {destinationLoc.title ? <span>{destinationLoc.title}</span> : "Select drop location for your ride"}</div>
-                </div><br /><br />
+                    <div className="col" onClick={() => getLocationModal('Drop Location', setdestinationLoc, destinationLoc)}>
+                        {destinationLoc.title ? destinationLoc.title : "Select drop location for your ride"}</div>
+                    <div className="col-auto">
+                        <button className='btn purple-btn' onClick={() => getUserLoc(setdestLoc)}><i class="fas fa-location-arrow"></i></button>
+                    </div>
+                </div>
+
+                <br /><br />
+
                 <div id='mdRide'>
-                <div className='row mdrides shadow'>
-                    <div className='col-lg-4 mdauto'>
+                <div onClick={()=>{bookRide("auto")}} className='row mdrides shadow' value="AUTO">
+                    <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdauto' >
 
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         <b>Auto</b><br></br>
                         Estimated Time: <b>{duration}</b>
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         Estimated Fare: <b>{autoF}</b><br />
                         Estimated Distance: <b>{distance} km</b>
                     </div>
 
                 </div>  
-                <div className='row mdrides shadow'>
-                    <div className='col-lg-4 mdtaxi'>
+                <div  className='row mdrides shadow'>
+                    <div className='col-lg-4 col-md-2 col-sm-2 col-2 mdtaxi'>
 
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         <b>Taxi</b><br />
                         Estimated Time: <b>{duration}</b>
                     </div>
-                    <div className='col-lg-4'>
+                    <div className='col-lg-4 col-md-5 col-sm-5 col-5'>
                         Estimated Fare: <b>{taxiF}</b><br />
                         Estimated Distance: <b>{distance} km</b>
                     </div>

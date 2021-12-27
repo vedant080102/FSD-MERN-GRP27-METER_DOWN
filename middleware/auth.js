@@ -16,8 +16,6 @@ const checkToken=(req,res,next)=>{
                 res.status(401).clearCookie('jwt').send({msg:"invalid token",userData:{}})
                 return 
             }
-            
-      
             jwt.verify(token, PUB_KEY, function(err, decoded) {
                 console.log(decoded)
                 if(err){

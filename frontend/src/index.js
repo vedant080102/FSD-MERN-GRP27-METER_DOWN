@@ -4,17 +4,22 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+<<<<<<< HEAD
 import { subscribeUser } from './subscription';
 
 // import store from './Redux/store'
 // import { Provider } from 'react-redux'
+=======
+import store from './Redux/store.js'
+import { Provider } from 'react-redux'
+>>>>>>> e5a27df58bd1982f28676e61ff44871e10481cbe
 
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <App />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

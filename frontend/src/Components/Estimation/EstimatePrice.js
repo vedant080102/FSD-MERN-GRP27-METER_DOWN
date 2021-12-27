@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {ReactComponent as Rick} from '../../../Media/rickshaw.svg'
-import {ReactComponent as Taxi} from '../../../Media/taxi.svg'
-import { axiosInstance } from "../../../AxiosSetUp";
+import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
+import {ReactComponent as Taxi} from '../../Media/taxi.svg'
+import { axiosInstance } from "../../AxiosSetUp";
 const humanizeDuration = require("humanize-duration");
 
 export default function EstimatePrice(props) {
@@ -83,13 +83,17 @@ export default function EstimatePrice(props) {
             </div>
         </div>
 
-        <div id="estimation" className="text-start">
-            <h3>Estimation</h3>
-            <div className="estimations flex flex-column flex-md-row">
+        <div id="estimation" className="text-start mb-4 pb-1">
+            <h3>Journey Details</h3>
+            <div className="estimations flex flex-column flex-md-row mb-5">
                 <div className="p-2 my-2 my-md-0 mx-md-1">Journey Duration:<br/><b>{duration}</b></div>
                 <div className="p-2 my-2 my-md-0 mx-md-1">Total Distance:<br/><b>{distance} km</b></div>
             </div>
-            <div className="p-2 my-2 my-md-0 mx-md-1">Total estimated fare:<br/><b>&#8377;{estimation ? estimation : '-'}</b></div>
+            <h3>Estimation</h3>
+            <p className="fw-lighter">*select vehicle type to check estimate</p>
+            <div className="estimations flex">
+                <div className="p-2">Total estimated fare:<br/><b>&#8377;{estimation ? estimation : '-'}</b></div>
+            </div>
         </div>
     </>
 }

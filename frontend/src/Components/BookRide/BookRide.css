@@ -31,16 +31,28 @@
     /* background-color: #ffffff0d; */
     border: 2px solid var(--purple);
     /* background-color: #823585a6; */
-    color: rgb(85, 12, 85);
+    /* color: rgb(85, 12, 85); */
     /* font-weight: 100; */
     cursor: pointer;
     font-weight: 600;
+<<<<<<< HEAD:frontend/src/Components/Hmap/Hmap.css
+    font-size: 0.8rem;
+=======
     font-size: 1em;
+    /* overflow: hidden; */
+    text-align: left;
+>>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1:frontend/src/Components/BookRide/BookRide.css
 }
-.choose-locM  {
+.choose-locM .col-9,
+.choose-locM .col-8,
+.choose-locM .col
+ {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.choose-locM button {
+    z-index: 3;
 }
 .choose-loc span {
     color: var(--purple);
@@ -64,15 +76,15 @@
     color: var(--purple);
     background-color: var(--yellow);
     padding: 0.5em 1em;
-   
+   font-size: 0.8em;
     border: 2px solid var(--purple);
     margin: 0.7em 0em;
-    height: 5em;
+    height: auto;
     border-radius: 0.4em;
 }
 
 .mdrides:hover{
-    border:2px solid var(--white);
+    border:2px solid var(--red);
 }
 
 .mdauto{
@@ -91,4 +103,21 @@
 
 #mdRide{
     display: none;
+}
+
+@media (max-width: 1000px) {
+    .srchD{
+        background-color: var(--yellow);
+        padding: 2%;
+        margin: 0% !important;
+        width: 100%;
+    }
+
+    .mdauto{
+        background-size: 100%;
+    }
+
+    .mdtaxi{
+        background-size: 100%;
+    }
 }
