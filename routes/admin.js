@@ -1,5 +1,5 @@
 const express= require("express")
-const { getAllPassengers, getAllDrivers, approveDriver, getOnePassenger, getOneDriver, getAllRides, getAllCompletedFares } = require("../controllers/admin")
+const { getAllPassengers, getAllDrivers, approveDriver, getOnePassenger, getOneDriver, getAllRides, getAllCompletedFares, deleteUser } = require("../controllers/admin")
 const router=express.Router()
 
 router.get("/allPassengers",getAllPassengers)
@@ -9,6 +9,7 @@ router.get("/getOnePassenger/:id",getOnePassenger)
 router.get("/getOneDriver/:id",getOneDriver)
 router.get("/getAllFares",getAllRides)
 router.get("/getAllCompletedFares",getAllCompletedFares)
+router.delete("/deleteUser",deleteUser)
 
 
 

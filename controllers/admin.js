@@ -2,6 +2,7 @@ const Driver = require("../models/Driver")
 const Fare = require("../models/Fare")
 const Passenger = require("../models/Passenger")
 const Completedfares = require("../models/Completedfares")
+const User = require("../models/User")
 
 const getAllPassengers=async(req,res)=>{
     passengers =await Passenger.find().populate("account")
@@ -38,6 +39,19 @@ const getAllCompletedFares=async(req,res)=>{
     res.send(completedFares)
 }
 
+const deleteUser=async(req,res)=>{
+    user=await User.findOne({_id:req.body.user})
+    if(user.type=="driver"){
+        delUser= await Driver.deleteOne({_id:user.data})
+    }else if(user.type=="passenger"){
+        delUser= await Passenger.deleteOne({_id:user.data})
+
+    }
+    userDel= await User.deleteOne({_id:user._id})
+    res.send(userDel)
+
+}
+
 module.exports={
     getAllDrivers,
     getAllPassengers,
@@ -45,5 +59,6 @@ module.exports={
     getOnePassenger,
     getOneDriver,
     getAllRides,
-    getAllCompletedFares
+    getAllCompletedFares,
+    deleteUser
 }
