@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate, Link } from "react-router-dom";
-import MyModal from "../Base/MyModal";
+import MyModal from "../base/MyModal";
 import { useSelector, useDispatch } from 'react-redux'
 import {login} from '../../Redux/features/userSlice'
 import { subscribeUser } from '../../subscription';
-
+import socket from '../../socket';
 
 function Login() {
 
@@ -30,6 +30,8 @@ function Login() {
 			// subscribeUser();
 			console.log("User Logged in!!", res.data.user);
 			setstatusMsg("Logged In Successfully! 🎉");
+			socket.connect()
+    		socket.emit("join",{"user":res.data.user._id});
 			setModalShow(true);
 			setTimeout(() => {
 				dispatch(login(res.data.user))

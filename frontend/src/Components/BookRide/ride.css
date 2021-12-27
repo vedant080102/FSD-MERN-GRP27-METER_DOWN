@@ -35,13 +35,9 @@
     /* font-weight: 100; */
     cursor: pointer;
     font-weight: 600;
-<<<<<<< HEAD:frontend/src/Components/Hmap/Hmap.css
-    font-size: 0.8rem;
-=======
     font-size: 1em;
     /* overflow: hidden; */
     text-align: left;
->>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1:frontend/src/Components/BookRide/BookRide.css
 }
 .choose-locM .col-9,
 .choose-locM .col-8,

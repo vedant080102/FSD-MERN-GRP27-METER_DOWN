@@ -50,6 +50,7 @@ const bookRide=async(req,res)=>{
          await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:true,ongoingFare:fare._id})
         io.socketsLeave(String(fare._id));
         io.in(String(drivers[driverIndex]._id)).socketsJoin(String(fare._id));
+        console.log(io.sockets.adapter.rooms)
         io.sockets.to(String(fare._id)).emit("ride",{
             "driverId":String(drivers[driverIndex]._id),
             "fareId":String(fare._id),
@@ -68,12 +69,12 @@ const bookRide=async(req,res)=>{
                 console.log("allotted!")
                 await Fare.updateOne({_id:fare._id},{allotted:true})
                 await Passenger.updateOne({_id:req.userId,ongoingRide:fare._id})
-                io.sockets.to(String(req.userId)).emit("allotted",{
+                io.sockets.to(String(req.userId)).emit("allottedPassenger",{
                     "status":"success",
                     "fareid":fare._id,
                     "message":`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly`,
                 })
-                io.sockets.to(String(drivers[driverIndex]._id)).emit("allotted",{
+                io.sockets.to(String(drivers[driverIndex]._id)).emit("allottedDriver",{
                     "status":"success",
                     "fareid":fare._id,
                     "message":`Ride booked successfully! `,
@@ -92,7 +93,7 @@ const bookRide=async(req,res)=>{
         await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:false,ongoingFare:null})
         
         driverIndex=0
-        drivers=await getDrivers(blackList,source)
+        drivers=await getDrivers(blackList,source,vehicleType)
 
         if(drivers.length==0){
             break
