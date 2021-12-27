@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 
-import Navbar from './Components/Base/Navbar';
+import Navbar from './Components/base/Navbar';
 import Home from './Components/Home/Home';
 import Bookings from './Components/Bookings/Bookings';
 import Driver from './Components/Driver/Driver';
@@ -16,20 +16,17 @@ import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
-import Footer from './Components/Base/Footer';
+import Footer from './Components/base/Footer';
 import GetEstimate from './Components/Estimation/GetEstimate';
 import ProtectedRoute from './ProtectedRoute'
 
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
-<<<<<<< HEAD
-import Hmap from './Components/Hmap/Hmap';
+// import Hmap from './Components/Hmap/Hmap';
 import RideSum from './Components/RideSummary/RideSum';
 
-=======
 import BookRide from './Components/BookRide/BookRide';
 import RideChat from './Components/RideChat/RideChat.js';
->>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1
 
 function App() {
 	return (
@@ -81,7 +78,7 @@ function App() {
 					/>
 
 					<Route path="/ride-summary" element={<>
-						<Navbar homepage={false}/>
+						{/* <Navbar homepage={false}/> */}
 						<RideSum/>
 						</>}
 					/>
