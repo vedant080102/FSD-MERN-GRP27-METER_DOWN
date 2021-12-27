@@ -32,6 +32,9 @@ const userSchema=mongoose.Schema({
     data:{
         type: mongoose.Schema.Types.ObjectId,
         default:null
+    },
+    otp:{
+        type:Number
     }
     
 

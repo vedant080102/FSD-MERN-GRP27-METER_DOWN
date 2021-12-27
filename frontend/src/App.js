@@ -35,13 +35,32 @@ import DriverBooking from './Components/DriverBooking/DriverBooking'
 
 import ProtectedRoute from './ProtectedRoute'
 
+
 import socket from './socket';
 
 function App() {
-
+	
 	const [acceptmsg,setAccept]= useState("");
+	
 
+	// useEffect(()=>{
 
+	// 	socket.on("ride",(data)=>{
+    //         console.log("ride")
+    //         console.log(data)
+    //         setAccept(data)
+    //     })
+
+		
+
+<<<<<<< HEAD
+	// 	socket.on("allottedDriver",(data)=>{
+	// 		console.log("allotted")
+	// 		console.log(data)
+	// 		// setRide(data.fareid)
+	// 	})
+	// })
+=======
 	useEffect(()=>{
 
 		socket.on("ride",(data)=>{
@@ -65,6 +84,7 @@ function App() {
 			// setRide(data.fareid)
 		})
 	})
+>>>>>>> 90502158d3e9cd4f85dd745777a91cc24dc6d0ee
 
 	return (
 		<div className="App">
