@@ -92,7 +92,7 @@ const bookRide=async(req,res)=>{
         await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:false,ongoingFare:null})
         
         driverIndex=0
-        drivers=await getDrivers(blackList,source)
+        drivers=await getDrivers(blackList,source,vehicleType)
 
         if(drivers.length==0){
             break
