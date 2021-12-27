@@ -11,8 +11,8 @@ const Review = require("../models/Review")
 const Chat=require("../models/Chat")
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 
-const getDrivers=async(blackList,source)=>{
-    driversList= await Driver.find({busy:false}).lean()
+const getDrivers=async(blackList,source,vehicleType)=>{
+    driversList= await Driver.find({busy:false,vehicleType:vehicleType}).lean()
     drivers=[...driversList]
         
     drivers.forEach((driver,index) => {
@@ -41,8 +41,8 @@ const bookRide=async(req,res)=>{
     console.log(fare)
     res.send(fare)
     var blackList=[]
-    
-    drivers=await getDrivers(blackList,source)
+    var vehicleType=req.body.vehicleType
+    drivers=await getDrivers(blackList,source,vehicleType)
     var allotted=0
       var driverIndex=0
       while(driverIndex<drivers.length){
