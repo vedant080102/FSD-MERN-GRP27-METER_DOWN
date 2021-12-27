@@ -1,18 +1,17 @@
 import React,{useState,useEffect} from 'react';
 import { DisplayMapClass } from './Map/DisplayMapClass';
-import './BookRide.css';
-import GetAddress from '../../base/geocoding';
+import './ride.css';
+import GetAddress from '../../Components/base/geocoding';
 import axios from 'axios';
-import { axiosInstance } from '../../../AxiosSetUp';
+import { axiosInstance } from '../../AxiosSetUp';
 import { MyRoute } from './RouteMap/Route';
 import Maptest from './Map/maptest';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
-import socket from '../../../socket';
+// import socket from '../../socket';
 const humanizeDuration = require("humanize-duration");
 
-
-function BookRide(props) {
+function Hmap(props) {
 
     const shortEnglishHumanizer = humanizeDuration.humanizer({
         language: "shortEn",
@@ -304,6 +303,7 @@ return (
                         Estimated Fare: <b>{taxiF}</b><br />
                         Estimated Distance: <b>{distance} km</b>
                     </div>
+
                 </div> 
                 </div>  
 
@@ -317,4 +317,4 @@ return (
     </div>
 );
 }
-export default BookRide;
+export default Hmap;

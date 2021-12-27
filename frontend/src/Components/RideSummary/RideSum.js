@@ -2,8 +2,8 @@ import React from "react";
 import { useState,useEffect } from "react";
 import { MyRoute } from "../BookRide/RouteMap/Route";
 import axios from "axios";
-import socket from "../../../socket";
-import MyModal from "../../base/MyModal";
+
+import MyModal from "../base/MyModal";
 
 import "./RideSum.css";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -127,11 +127,7 @@ function RideSum(){
                             <div>
                             <button id="chatBut">Chat with Driver  <i class="fas fa-location-arrow"></i></button>
                             </div>
-                            {/* <p>Pickup Location: <b>Some Address</b></p>
-                            <p>Destination Location: <b>Some Address</b></p>
-                            <p>Ride Distance: <b>15 km</b></p>
-                            <p>Estimated Duration: <b>40 min</b></p>
-                            <p>Ride Fare: <b>475</b></p> */}
+                            
                         </div>
                     </div>:<div></div>}
                     

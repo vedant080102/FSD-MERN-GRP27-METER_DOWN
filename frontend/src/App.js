@@ -10,9 +10,9 @@ import {
 } from "react-router-dom";
 
 
-import Navbar from './Components/Base/Navbar';
+import Navbar from './Components/base/Navbar';
 import ScrollToTop from './ScrollToTop';
-import Footer from './Components/Base/Footer';
+import Footer from './Components/base/Footer';
 
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
@@ -53,38 +53,12 @@ function App() {
 
 		
 
-<<<<<<< HEAD
 	// 	socket.on("allottedDriver",(data)=>{
 	// 		console.log("allotted")
 	// 		console.log(data)
 	// 		// setRide(data.fareid)
 	// 	})
 	// })
-=======
-	useEffect(()=>{
-
-		socket.on("ride",(data)=>{
-            console.log("ride")
-            console.log(data)
-            setAccept(data)
-        })
-
-		socket.on("allottedPassenger",(data)=>{
-		console.log("allotted")
-		console.log(data)
-		return(
-			<Navigate to='/ride/summary'/>
-		)
-		// setRide(data.fareid)  
-		});
-
-		socket.on("allottedDriver",(data)=>{
-			console.log("allotted")
-			console.log(data)
-			// setRide(data.fareid)
-		})
-	})
->>>>>>> 90502158d3e9cd4f85dd745777a91cc24dc6d0ee
 
 	return (
 		<div className="App">

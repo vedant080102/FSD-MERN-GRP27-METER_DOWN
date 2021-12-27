@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from "../Base/Navbar";
+import Navbar from "../base/Navbar";
 import './home.css'
 import logo from '../../Media/logo.png'
 import bgImg1 from '../../Media/MUMBAI-TAXI-landscape.jpg'
@@ -9,14 +9,11 @@ import { Parallax, Background } from "react-parallax";
 import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
 import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
-import GetAddress from '../Base/geocoding';
+import GetAddress from '../base/geocoding';
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
-<<<<<<< HEAD
 import socket from '../../socket';
-=======
 import { Link } from 'react-router-dom';
->>>>>>> 90502158d3e9cd4f85dd745777a91cc24dc6d0ee
 
 function Home() {
 
