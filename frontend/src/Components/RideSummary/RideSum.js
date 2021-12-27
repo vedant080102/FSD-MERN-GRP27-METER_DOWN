@@ -1,13 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
+import { useState,useEffect } from "react";
 import { MyRoute } from "../BookRide/RouteMap/Route";
 import axios from "axios";
-import socket from "../../../socket";
-import MyModal from "../../Base/MyModal";
-import { setDetails } from "../../../Redux/features/rideChatSlice";
-import { useDispatch } from "react-redux";
+
+import MyModal from "../base/MyModal";
 
 import "./RideSum.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function RideSum(){
 
@@ -20,8 +19,6 @@ function RideSum(){
     const [rideInfo,setrideInfo] = useState();
     const [toggle,settoggle] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
     console.log(Source,Dest)
 
     const getRideInfo = async() =>{
@@ -65,7 +62,6 @@ function RideSum(){
 
     useEffect(()=>{
         getRideInfo();
-        dispatch(setDetails(fareid));
     },[fareid]);
    
     return(
@@ -129,14 +125,9 @@ function RideSum(){
                                 </div>
                             </div>
                             <div>
-                            {/* <button id="chatBut" onClick={navigate('ride-chat')}>Chat with Driver  <i class="fas fa-location-arrow"></i></button> */}
-                            <Link to='ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
+                            <button id="chatBut">Chat with Driver  <i class="fas fa-location-arrow"></i></button>
                             </div>
-                            {/* <p>Pickup Location: <b>Some Address</b></p>
-                            <p>Destination Location: <b>Some Address</b></p>
-                            <p>Ride Distance: <b>15 km</b></p>
-                            <p>Estimated Duration: <b>40 min</b></p>
-                            <p>Ride Fare: <b>475</b></p> */}
+                            
                         </div>
                     </div>:<div></div>}
                     
