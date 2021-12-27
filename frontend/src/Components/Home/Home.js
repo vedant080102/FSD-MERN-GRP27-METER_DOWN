@@ -12,6 +12,7 @@ import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from '../Base/geocoding';
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -198,6 +199,10 @@ function Home() {
 
                 <div className='flex min-vh-100 py-2 how-to'>
                     <HowToRide/>
+                    <Link to={'/ride'}>ride</Link>
+                    <Link to={'/ride/book-ride'}>book-ride</Link>
+                    <Link to={'/ride/ride-chat'}>ride-chat</Link>
+                    <Link to={'/ride/summary'}>summary</Link>
                 </div>
 
                 <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>

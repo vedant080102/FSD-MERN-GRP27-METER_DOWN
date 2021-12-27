@@ -1,13 +1,10 @@
-@import '../../App.css';
-
-
 #bookings {
     background-image: linear-gradient(var(--yellow), transparent);
 }
 
 .booksvg {
-    /* background-image: url('../../Media/route-gps-svgrepo-com.svg'); */
-    background-image: url('../../Media/route-bookings.svg');
+    /* background-image: url('../../../Media/route-gps-svgrepo-com.svg'); */
+    background-image: url('../../../Media/route-bookings.svg');
     background-position: left;
     background-size: 70%;
     background-repeat: no-repeat;
@@ -29,14 +26,14 @@
 
 
 .autoR {
-    background-image: url('../../Media/rickshaw.svg');
+    background-image: url('../../../Media/rickshaw.svg');
     background-position: center;
     background-size: 33%;
     background-repeat: no-repeat;
 }
 
 .taxiR {
-    background-image: url('../../Media/taxi.svg');
+    background-image: url('../../../Media/taxi.svg');
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;

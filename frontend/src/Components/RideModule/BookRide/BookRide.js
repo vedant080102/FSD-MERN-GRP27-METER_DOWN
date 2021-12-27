@@ -1,17 +1,16 @@
-import React,{useState,useEffect} from 'react';
-import { DisplayMapClass } from './Map/DisplayMapClass';
-import './BookRide.css';
-import GetAddress from '../Base/geocoding';
-import axios from 'axios';
-import { axiosInstance } from '../../AxiosSetUp';
-import { MyRoute } from './RouteMap/Route';
-import Maptest from './Map/maptest';
-import { useSelector } from 'react-redux';
+import React,{useState,useEffect} from 'react'
+import { DisplayMapClass } from './Map/DisplayMapClass'
+import './BookRide.css'
+import GetAddress from '../../Base/geocoding'
+import axios from 'axios'
+import { axiosInstance } from '../../../AxiosSetUp'
+import { MyRoute } from './RouteMap/Route'
+import Maptest from './Map/maptest'
+import { useSelector } from 'react-redux'
 const humanizeDuration = require("humanize-duration");
 
 
-
-function Hmap(props) {
+function BookRide(props) {
 
     const shortEnglishHumanizer = humanizeDuration.humanizer({
         language: "shortEn",
@@ -231,15 +230,8 @@ return (
       
         
         <div className='container-fluid srchB'>
-<<<<<<< HEAD:frontend/src/Components/Hmap/Hmap.js
-            <div className='container-fluid bg-purple srchD rounded shadow'>
-                
-                <div className='row m-0 choose-locM p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}
-                    onClick={() => getLocationModal('Pickup Location', setpickupLoc, pickupLoc)}>
-=======
             <div className='container bg-purple srchD rounded shadow'>
                 <div className='row m-0 choose-locM p-2 my-2 rounded' data-bs-toggle="tooltip" data-bs-placement="right" title={pickupLoc.address}>
->>>>>>> d6b7b4bc63ea781edd0d897a52367af2b85f78f1:frontend/src/Components/BookRide/BookRide.js
                     <div className="col-3 col-xl-2 p-0 px-xl-2">
                             Pickup:
                     </div>
@@ -290,7 +282,6 @@ return (
                         Estimated Fare: <b>{taxiF}</b><br />
                         Estimated Distance: <b>{distance} km</b>
                     </div>
-
                 </div> 
                 </div>  
 
@@ -304,4 +295,4 @@ return (
     </div>
 );
 }
-export default Hmap;
+export default BookRide;

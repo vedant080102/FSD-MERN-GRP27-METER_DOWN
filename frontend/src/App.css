@@ -18,6 +18,7 @@ Extra-bold 800
   --yellow: #ffcf15;
   --contentFont: 'Exo 2', sans-serif;
   --brandFont: 'Antonio', sans-serif;
+  --taxi-svg: url('Media/taxi.svg');
 }
 
 .App {

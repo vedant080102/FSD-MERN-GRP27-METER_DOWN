@@ -1,6 +1,5 @@
-import React from "react";
-import { useState } from "react";
-import { MyRoute } from "../Hmap/RouteMap/Route";
+import React , { useState } from "react";
+import { MyRoute } from "../BookRide/RouteMap/Route";
 import "./RideSum.css";
 
 function RideSum(){

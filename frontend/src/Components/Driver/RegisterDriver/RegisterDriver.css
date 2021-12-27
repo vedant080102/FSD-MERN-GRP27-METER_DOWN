@@ -57,10 +57,10 @@
     background-color: transparent;
     text-align: left;
     display: block;
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 0.3rem;
-    font-size: 1rem;
+    border: 2px solid var(--purple);
+    /* border-radius: 5px; */
+    /* padding: 0.3rem; */
+    /* font-size: 1rem; */
 }
 
 .drlabel{

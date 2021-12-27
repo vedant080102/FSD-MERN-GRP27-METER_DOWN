@@ -1,12 +1,11 @@
 // src/DisplayMapClass.js
 import * as React from 'react';
 import axios from 'axios';
-import destP from '../../../Media/source.svg';
-import sourceP from '../../../Media/destination.svg';
+import destP from '../../../../Media/source.svg';
+import sourceP from '../../../../Media/destination.svg';
 
 export class DisplayMapClass extends React.Component {
   mapRef = React.createRef();
-
 
   state = {
     // The map instance to use during cleanup
