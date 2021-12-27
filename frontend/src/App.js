@@ -33,36 +33,30 @@ import RideChat from './Components/RideChat/RideChat.js';
 import DriverBooking from './Components/DriverBooking/DriverBooking';
 
 
+
 import socket from './socket';
 
 function App() {
-
+	
 	const [acceptmsg,setAccept]= useState("");
+	
 
+	// useEffect(()=>{
 
-	useEffect(()=>{
+	// 	socket.on("ride",(data)=>{
+    //         console.log("ride")
+    //         console.log(data)
+    //         setAccept(data)
+    //     })
 
-		socket.on("ride",(data)=>{
-            console.log("ride")
-            console.log(data)
-            setAccept(data)
-        })
+		
 
-		socket.on("allottedPassenger",(data)=>{
-		console.log("allotted")
-		console.log(data)
-		return(
-			<Navigate to='/ride-summary'/>
-		)
-		// setRide(data.fareid)  
-		});
-
-		socket.on("allottedDriver",(data)=>{
-			console.log("allotted")
-			console.log(data)
-			// setRide(data.fareid)
-		})
-	})
+	// 	socket.on("allottedDriver",(data)=>{
+	// 		console.log("allotted")
+	// 		console.log(data)
+	// 		// setRide(data.fareid)
+	// 	})
+	// })
 
 	return (
 		<div className="App">

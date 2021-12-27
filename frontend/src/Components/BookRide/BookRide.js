@@ -11,8 +11,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import socket from '../../socket';
 const humanizeDuration = require("humanize-duration");
 
-
-
 function Hmap(props) {
 
     const shortEnglishHumanizer = humanizeDuration.humanizer({
@@ -196,20 +194,21 @@ function Hmap(props) {
         await axiosInstance.post(`/api/passenger/bookRide`,apiData,{withCredentials:true}).then((res)=>{
             console.log(res);
             console.log("Worked");
-            // navigate('/ride-summary');
+            navigate('/ride-summary')
         }).catch((e)=>{
             console.log(e);
         });
     }
 
+    
+
     // useEffect(()=>{
     //     socket.on("allottedPassenger",(data)=>{
     //         console.log("allotted")
     //         console.log(data)
-    //         // setRide(data.fareid)  
+    //         navigate('/');
+    //         // setRide(data.fareid)
     //       })
-
-        
     // },[])
 
     useEffect(()=>{

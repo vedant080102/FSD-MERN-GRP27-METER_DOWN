@@ -12,8 +12,11 @@ import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from '../base/geocoding';
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
+import socket from '../../socket';
 
 function Home() {
+
+    console.log(socket.listeners("allotedPassenger"));
 
     const [modalShow, setModalShow] = useState(false);
     const [locQuery, setLocQuery] = useState({})
