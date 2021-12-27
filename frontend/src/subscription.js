@@ -1,4 +1,7 @@
 const convertedVapidKey = urlBase64ToUint8Array(process.env.REACT_APP_PUBLIC_VAPID_KEY)
+import { axiosInstance } from "../src/AxiosSetUp";
+
+
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - base64String.length % 4) % 4)
@@ -15,6 +18,10 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 function sendSubscription(subscription) {
+  // data=subscription
+  // axiosInstance.post("/api/user/subscribeUser", data, { withCredentials: true })
+
+
   return fetch(`${process.env.REACT_APP_API_URL}/notifications/subscribe`, {
     method: 'POST',
     body: JSON.stringify(subscription),

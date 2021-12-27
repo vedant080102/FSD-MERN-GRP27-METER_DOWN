@@ -5,6 +5,7 @@ const passport = require("passport")
 const utils = require("../utils/auth")
 const Driver = require("../models/Driver")
 const Passenger = require("../models/Passenger")
+const Subscription = require("../models/Subsciption")
 
 const ensureAuthenticated=(req,res,next)=>{
 
@@ -138,7 +139,29 @@ const currentUser=(req,res,next)=>{
         
     })(req, res, next);
    
+
 }
+
+const notificationsSubscribe=async (req, res) => {
+    const subscription = req.body
+  
+    console.log(subscription)
+   await Subscription.create({
+       "endpoint":subscription.endpoint,
+       "keys":subscription.keys,
+       "user":req.userId
+   })
+    const payload = JSON.stringify({
+      title: 'Hello!',
+      body: 'It works.',
+    })
+  
+    webpush.sendNotification(subscription, payload)
+      .then(result => console.log(result))
+      .catch(e => console.log(e.stack))
+  
+    res.status(200).json({'success': true})
+  }
 
 module.exports={
     loginUser,
@@ -146,5 +169,5 @@ module.exports={
     ensureAuthenticated,
     logoutUser,
     currentUser,
-    
+    notificationsSubscribe
 }
