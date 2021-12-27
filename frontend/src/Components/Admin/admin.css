@@ -1,3 +1,14 @@
+#admin-main {
+    background-color: var(--yellow);
+}
+
+#admin-main .admin-stats {
+    background-color: var(--purple);
+    color: var(--yellow);
+    border-color: transparent !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
 #admin-login {
     background-color: var(--yellow);
     min-height: calc(100vh - 76px);
