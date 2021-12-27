@@ -8,6 +8,7 @@ import { axiosInstance } from '../../AxiosSetUp';
 import { useSelector, useDispatch } from 'react-redux'
 import {login, logout} from '../../Redux/features/userSlice'
 import InstallPWA from './InstallEve';
+import {unsubscribeUser} from "../../subscription"
 
 function Navbar(props) {    
 
@@ -43,6 +44,7 @@ function Navbar(props) {
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
+        // unsubscribeUser()
         console.log(data.userData);
         // setuserInfo(data.userData);
         dispatch(logout());

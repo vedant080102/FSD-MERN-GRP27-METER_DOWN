@@ -1,4 +1,7 @@
 const convertedVapidKey = urlBase64ToUint8Array(process.env.REACT_APP_PUBLIC_VAPID_KEY)
+import { axiosInstance } from "../src/AxiosSetUp";
+
+
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - base64String.length % 4) % 4)
@@ -15,6 +18,10 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 function sendSubscription(subscription) {
+  // data=subscription
+  // axiosInstance.post("/api/user/subscribeUser", data, { withCredentials: true })
+
+
   return fetch(`${process.env.REACT_APP_API_URL}/notifications/subscribe`, {
     method: 'POST',
     body: JSON.stringify(subscription),
@@ -58,5 +65,20 @@ export function subscribeUser() {
       .catch(function(e) {
         console.error('An error ocurred during Service Worker registration.', e)
       })
+  }
+}
+
+export function unsubscribeUser() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(function(reg) {
+      reg.pushManager.getSubscription().then(function(subscription) {
+        subscription.unsubscribe().then(function(successful) {
+          console.log("subscription removed")
+        }).catch(function(e) {
+          // Unsubscription failed
+          console.log("error",e)
+        })
+      })
+    });
   }
 }

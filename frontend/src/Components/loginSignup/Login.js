@@ -5,6 +5,8 @@ import { useNavigate, Link } from "react-router-dom";
 import MyModal from "../Base/MyModal";
 import { useSelector, useDispatch } from 'react-redux'
 import {login} from '../../Redux/features/userSlice'
+import { subscribeUser } from '../../subscription';
+
 
 function Login() {
 
@@ -25,6 +27,7 @@ function Login() {
 		axiosInstance.post("/api/user/login", data, { withCredentials: true })
 		.then((res) => {
 			// dispatch(login())
+			// subscribeUser();
 			console.log("User Logged in!!", res.data.user);
 			setstatusMsg("Logged In Successfully! 🎉");
 			setModalShow(true);
@@ -32,6 +35,7 @@ function Login() {
 				dispatch(login(res.data.user))
 				navigate("/");
 			}, 2500);
+
 		}).catch((err) => {
 			console.log(err.response.data);
 			setstatusMsg(<>
