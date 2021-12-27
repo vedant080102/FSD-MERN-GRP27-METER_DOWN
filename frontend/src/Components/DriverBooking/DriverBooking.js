@@ -17,11 +17,11 @@ function DriverBooking (){
             setAccept(data)
         })
 
-        // socket.on("allottedDriver",(data)=>{
-        //     console.log("allotted")
-        //     console.log(data)
-        //     // setRide(data.fareid)
-        //   })
+        socket.on("allottedDriver",(data)=>{
+            console.log("allotted")
+            console.log(data)
+            // setRide(data.fareid)
+          })
     },[])
 
     return(
