@@ -9,6 +9,7 @@ const FarePrice=require("../models/FarePrice")
 const Completedfares = require("../models/Completedfares")
 const Review = require("../models/Review")
 const Chat=require("../models/Chat")
+const axios = require('axios');
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 
 const getDrivers=async(blackList,source,vehicleType)=>{
@@ -45,7 +46,8 @@ const bookRide=async(req,res)=>{
     drivers=await getDrivers(blackList,source,vehicleType)
     var allotted=0
       var driverIndex=0
-      while(driverIndex<drivers.length){
+      rejectcount=0
+      while(driverIndex<drivers.length &&rejectcount<10){
         console.log("Driver index:",drivers[driverIndex]._id)
          await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:true,ongoingFare:fare._id})
         io.socketsLeave(String(fare._id));
@@ -66,8 +68,9 @@ const bookRide=async(req,res)=>{
             
             if(String(checkAccepted.driver)==String(drivers[driverIndex]._id)){
                 allotted=1
+                var otp= Math.floor(1000 + Math.random() * 9000);
                 console.log("allotted!")
-                await Fare.updateOne({_id:fare._id},{allotted:true})
+                await Fare.updateOne({_id:fare._id},{allotted:true,otp:otp})
                 await Passenger.updateOne({_id:req.userId,ongoingRide:fare._id})
                 io.sockets.to(String(req.userId)).emit("allottedPassenger",{
                     "status":"success",
@@ -80,7 +83,9 @@ const bookRide=async(req,res)=>{
                     "message":`Ride booked successfully! `,
                 })
                 io.in(String(req.userId)).socketsJoin(String(fare._id));
-
+                us=await User.findOne({_id:req.userId})
+               
+               await sendOTP(`Ride booked successfully! Your ${drivers[driverIndex].vehicleType} with registration no: ${drivers[driverIndex].vehicleNumber} will be at your location shortly. Your OTP for your ride is:${otp}`,"+91"+String(us.phone))
                 break
             }
             waitCount=waitCount+1
@@ -91,7 +96,7 @@ const bookRide=async(req,res)=>{
 
         blackList.push(drivers[driverIndex])
         await  Driver.updateOne({_id:drivers[driverIndex]._id},{busy:false,ongoingFare:null})
-        
+        rejectcount+=1
         driverIndex=0
         drivers=await getDrivers(blackList,source,vehicleType)
 
@@ -194,7 +199,32 @@ const getChats=async(req,res)=>{
 // }
 
 // console.log(io.sockets.adapter.rooms)
-
+const test=async(req,res)=>{
+    try {
+        const response = await axios.post('https://dummy-sms.herokuapp.com/sender/sendMessage',{...req.body});
+        console.log(response);
+        res.send(response.data)
+      } catch (error) {
+        console.error(error);
+        res.send("error")
+      }
+    // const data = await response.json();
+    // res.send(data)
+}
+async function sendOTP(msg,phone) {
+    try {
+        const response = await axios.post('https://dummy-sms.herokuapp.com/sender/sendMessage',{
+            "senderName":"MeterDown",
+            "message":msg,
+            "recieverPhone":phone
+        });
+        console.log(response.data);
+       
+      } catch (error) {
+        console.error(error);
+        // res.send("error")
+      }
+}
 
 
 module.exports={
@@ -203,5 +233,6 @@ module.exports={
     getPriceEstimate,
     getPastRides,
     giveReview,
-    getChats
+    getChats,
+    test
 }

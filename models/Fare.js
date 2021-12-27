@@ -57,6 +57,10 @@ const fareSchema=mongoose.Schema({
     completed:{
         type:Boolean,
         default:false
+    },
+    otp:{
+        type:Number,
+        default:null
     }
 })
 
