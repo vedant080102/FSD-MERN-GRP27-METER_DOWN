@@ -52,6 +52,37 @@ const deleteUser=async(req,res)=>{
 
 }
 
+
+const dataStats=async(req,res)=>{
+    userCount=0
+    driverCount=0
+    passengerCount=0
+    completedRidesCount=0
+    ongoingRidesCount=0
+    users= await User.find()
+    rides=await Fare.find()
+    ridesCount= rides.length
+    
+    users.forEach((item)=>{
+        if(item.type=="driver"){
+            driverCount+=1
+        }else if(item.type=="passenger"){
+            passengerCount+=1
+        }
+    })
+
+    
+    rides.forEach((item)=>{
+        if(item.completed==true ){
+            completedRidesCount+=1
+        }else if(item.completed==false && item.alloted==true){
+            ongoingRidesCount+=1
+        }
+    })
+    usersCount=driverCount+passengerCount
+    res.send({usersCount,driverCount,passengerCount,ridesCount,completedRidesCount,ongoingRidesCount})
+}
+
 module.exports={
     getAllDrivers,
     getAllPassengers,
@@ -60,5 +91,6 @@ module.exports={
     getOneDriver,
     getAllRides,
     getAllCompletedFares,
-    deleteUser
+    deleteUser,
+    dataStats
 }

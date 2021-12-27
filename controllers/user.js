@@ -165,6 +165,11 @@ const notificationsSubscribe=async (req, res) => {
     res.status(200).json({'success': true})
   }
 
+const unsubscribe=async(req,res)=>{
+   push= await Subscription.deleteOne({user:req.userId})
+   res.send(push)
+  }
+
 module.exports={
     loginUser,
     registerUser,
