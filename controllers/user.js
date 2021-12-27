@@ -7,6 +7,7 @@ const Driver = require("../models/Driver")
 const Passenger = require("../models/Passenger")
 const Subscription = require("../models/Subsciption")
 const webpush = require('web-push')
+const axios = require('axios');
 
 
 const ensureAuthenticated=(req,res,next)=>{
@@ -74,8 +75,10 @@ const registerUser=(req,res,next)=>{
                     
                 })
             }else{
+                var otp= Math.floor(1000 + Math.random() * 9000);
+
                 const newUser=new User({
-                    name,phone,password,email,type
+                    name,phone,password,email,type,otp
                 })
                 //Hash password
                 bcrypt.genSalt(10,(err,salt)=>
@@ -99,6 +102,7 @@ const registerUser=(req,res,next)=>{
                             }
                             newUser.data=newUser._id
                             user=await newUser.save()
+                            sendOTP(`Your OTP to verify your MeterDown account is:${otp}`,"+91"+String(newUser.phone))
                           return  res.status(200).json({msg:"Successfully registered",userData:user})
                         } catch (error) {
                             console.log(error)
@@ -116,7 +120,8 @@ const registerUser=(req,res,next)=>{
 
 }
 
-const logoutUser=(req,res,next)=>{
+const logoutUser=async(req,res,next)=>{
+   push= await Subscription.deleteOne({user:req.userId})
     
     res.status(200).clearCookie("jwt").json({msg:"userLoggedOut",userData:{}})
 }
@@ -151,7 +156,7 @@ const notificationsSubscribe=async (req, res) => {
    await Subscription.create({
        "endpoint":subscription.endpoint,
        "keys":subscription.keys,
-       "user":req.userId
+       "user":"61a5f3e4598949923f387a77"
    })
     const payload = JSON.stringify({
       title: 'Hello!',
@@ -165,11 +170,43 @@ const notificationsSubscribe=async (req, res) => {
     res.status(200).json({'success': true})
   }
 
+const unsubscribe=async(req,res)=>{
+   push= await Subscription.deleteOne({user:req.userId})
+   res.send(push)
+  }
+
+const verifyUser=async(req,res)=>{
+    user=await User.findOne({_id:req.userId})
+    if(String(user.otp)==String(req.body.otp)){
+        await User.findOneAndUpdate({_id:req.userId},{isVerified:true})
+        return res.send({msg:"User verified successfully!"})
+    }else{
+        return res.send({msg:"Invalid otp"})
+    }
+
+}
+
+async function sendOTP(msg,phone) {
+    try {
+        const response = await axios.post('https://dummy-sms.herokuapp.com/sender/sendMessage',{
+            "senderName":"MeterDown",
+            "message":msg,
+            "recieverPhone":phone
+        });
+        console.log(response.data);
+       
+      } catch (error) {
+        console.error(error);
+        // res.send("error")
+      }
+}
+
 module.exports={
     loginUser,
     registerUser,
     ensureAuthenticated,
     logoutUser,
     currentUser,
-    notificationsSubscribe
+    notificationsSubscribe,
+    verifyUser
 }

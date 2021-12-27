@@ -53,7 +53,7 @@ const updateLocation=async(req,res)=>{
 const markStartRide=async(req,res)=>{
     driver=await Driver.findOne({_id:req.userId})
     data=await Fare.findOne({_id:driver.ongoingFare})
-    if(req.body.passenger==String(data.passenger)){
+    if(req.body.otp==String(data.otp)){
         await Fare.findOneAndUpdate({_id:driver.ongoingFare},{rideStart:Date.now()})
         res.json({
             "msg":"Passenger picked up!"
@@ -70,7 +70,7 @@ const markStartRide=async(req,res)=>{
 const markRideComplete=async(req,res)=>{
     driver=await Driver.findOne({_id:req.userId})
     data=await Fare.findOne({_id:driver.ongoingFare})
-    if(req.body.passenger==String(data.passenger)){
+    if(true){
 
       fare= await Fare.findOneAndUpdate({_id:driver.ongoingFare},{completed:true},{new:true})
       var completedAt=Date.now()
@@ -87,7 +87,7 @@ const markRideComplete=async(req,res)=>{
         await Driver.findOneAndUpdate({_id:req.userId},{ongoingFare:null,busy:false,$push:{
             pastFares:completedfare._id
         }})
-        await Passenger.findOneAndUpdate({_id:req.body.passenger},{ongoingRide:null,$push:{
+        await Passenger.findOneAndUpdate({_id:data.passenger},{ongoingRide:null,$push:{
             prevRides:completedfare._id
         }})
         res.json({

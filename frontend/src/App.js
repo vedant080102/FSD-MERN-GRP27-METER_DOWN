@@ -10,28 +10,30 @@ import {
 } from "react-router-dom";
 
 
-import Navbar from './Components/base/Navbar';
+import Navbar from './Components/Base/Navbar';
+import ScrollToTop from './ScrollToTop';
+import Footer from './Components/Base/Footer';
+
 import Home from './Components/Home/Home';
-import Bookings from './Components/Bookings/Bookings';
-import Driver from './Components/Driver/Driver';
 import About from './Components/About/About';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/loginSignup/Login';
 import Signup from './Components/loginSignup/Signup';
-import Footer from './Components/base/Footer';
 import GetEstimate from './Components/Estimation/GetEstimate';
-import ProtectedRoute from './ProtectedRoute'
 
-import ScrollToTop from './ScrollToTop';
+import AdminModule from './Components/Admin/Admin';
+
+import Bookings from './Components/RideModule/Bookings/Bookings';
+import RideModule from './Components/RideModule/RideModule';
+// import BookRide from './Components/RideModule/BookRide/BookRide';
+// import RideChat from './Components/RideModule/RideChat/RideChat';
+// import RideSum from './Components/RideModule/RideSummary/RideSum';
+
+import Driver from './Components/Driver/Driver';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
-// import Hmap from './Components/Hmap/Hmap';
-// import Hmap from './Components/Hmap/Hmap';
-import RideSum from './Components/RideSummary/RideSum';
+import DriverBooking from './Components/DriverBooking/DriverBooking'
 
-import BookRide from './Components/BookRide/BookRide';
-import RideChat from './Components/RideChat/RideChat.js';
-import DriverBooking from './Components/DriverBooking/DriverBooking';
-
+import ProtectedRoute from './ProtectedRoute'
 
 
 import socket from './socket';
@@ -51,12 +53,38 @@ function App() {
 
 		
 
+<<<<<<< HEAD
 	// 	socket.on("allottedDriver",(data)=>{
 	// 		console.log("allotted")
 	// 		console.log(data)
 	// 		// setRide(data.fareid)
 	// 	})
 	// })
+=======
+	useEffect(()=>{
+
+		socket.on("ride",(data)=>{
+            console.log("ride")
+            console.log(data)
+            setAccept(data)
+        })
+
+		socket.on("allottedPassenger",(data)=>{
+		console.log("allotted")
+		console.log(data)
+		return(
+			<Navigate to='/ride/summary'/>
+		)
+		// setRide(data.fareid)  
+		});
+
+		socket.on("allottedDriver",(data)=>{
+			console.log("allotted")
+			console.log(data)
+			// setRide(data.fareid)
+		})
+	})
+>>>>>>> 90502158d3e9cd4f85dd745777a91cc24dc6d0ee
 
 	return (
 		<div className="App">
@@ -73,53 +101,47 @@ function App() {
 					<Route path="/contact" element={<Contact />}/>
 					<Route path="/login" element={<Login />}/>
 					
-					<Route exact path="/bookings" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route exact path="/bookings" element={<Bookings />}/>
-					</Route>
 					<Route path="/ride/get-estimate" element={<GetEstimate/>}/>
-					<Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
 
-						<Route path="/ride/book-ride" element={<BookRide/>}/>
+					<Route path="/bookings" element={<ProtectedRoute usertype='passenger' />}>
+						<Route path="/bookings" element={<Bookings />}/>
 					</Route>
-					{/* <Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}> */}
-						<Route path="/ride/ride-chat" element={<RideChat/>}/>
+
+					{/* <Route path="ride/*" element={<ProtectedRoute usertype='passenger' />}> */}
+						<Route path="ride/*" element={<RideModule/>}/>
 					{/* </Route> */}
 
-					<Route path="/become-driver" element={<Driver/>}/>
-					
-					{/* <Route path="/driver-details" element={<RegisterDriver/>}/> */}
-					{/* Test Routes */}
-					{/* <Route path="/Map" element={ */}
+					{/* <Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/ride/book-ride" element={<BookRide/>}/>
+					</Route>
+					<Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/ride/ride-chat" element={<RideChat/>}/>
+					</Route>
+					<Route exact path="/ride/summary" element={<ProtectedRoute usertype='passenger'/>}>
+						<Route path="/ride/summary" element={<RideSum/>}/>
+					</Route> */}
 
-					<Route exact path="/driver-details" element={<ProtectedRoute usertype='driver' />}>
-						<Route exact path="/driver-details" element={<RegisterDriver/>}/>
+					<Route path="/become-driver" element={<Driver/>}/>
+
+					<Route path="/driver/fill-details" element={<ProtectedRoute usertype='driver' />}>
+						<Route path="/driver/fill-details" element={<RegisterDriver/>}/>
 					</Route>
 
-					<Route path="*"
-						element={
-							<main className='flex' style={{ padding: "1rem", height:'60vh', backgroundColor:'var(--yellow)' }}>
-								<div style={{color:'var(--purple)'}}>
-									<h1 className='fw-bold'>404</h1>
-									<h2 className='fw-bold'>PAGE NOT FOUND</h2>
-									<p>There's nothing here!</p>
-								</div>
-							</main>
-						}
-					/>
+					<Route path="/driver/booking" element={<ProtectedRoute usertype='driver' />}>
+						<Route path="/driver/booking" element={<DriverBooking/>}/>
+					</Route>
 
-					<Route path="/ride-summary" element={<>
-						{/* <Navbar homepage={false}/> */}
-						<RideSum/>
-						</>}
-					/>
+					<Route path="/admin/*" element={<AdminModule/>}/>
 
-					<Route path="/driverBooking" element={<>
-						{/* <Navbar homepage={false}/> */}
-						<DriverBooking/>
-						</>}
-					/>
-
-					
+					<Route path="*" element={
+						<main className='flex' style={{ padding: "1rem", height:'60vh', backgroundColor:'var(--yellow)' }}>
+							<div style={{color:'var(--purple)'}}>
+								<h1 className='fw-bold'>404</h1>
+								<h2 className='fw-bold'>PAGE NOT FOUND</h2>
+								<p>There's nothing here!</p>
+							</div>
+						</main>
+					}/>
 				</Routes>
 				<Footer/>
 			</Router>

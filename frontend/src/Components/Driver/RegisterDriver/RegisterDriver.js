@@ -71,7 +71,7 @@ const RegisterDriver = () =>{
 
     return(
         <div className="container-fluid regdriv">
-            <div className="container  rounded py-3 py-sm-5 px-sm-5 driverForm" style={{border:`4px solid var(--purple)`}}>
+            <div className="container rounded py-3 py-sm-5 px-sm-5 driverForm" style={{border:`4px solid var(--purple)`}}>
                 <h3 className="fw-bold mt-3  text-black">Your Profile</h3>
                 <div className="contanier bg-white  py-2 mb-3 " >
                     <hr className="myHr"/>
@@ -83,10 +83,10 @@ const RegisterDriver = () =>{
                                     <div className="image-cropper m-auto">
                                         <img src={driverInfo.driverPhoto || 'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'} alt="profile Pic" className='profile-pic' />
                                     </div>
-                                    <p><input type="file" name="driverPhoto" onChange={(e)=>{setdriverPhoto(e.target.files[0])}} style={{width:'100%', border:'black solid 1px',color:'black'}} className=' mt-2 p-1' id="image"  /></p>
+                                    <p><input type="file" name="driverPhoto" onChange={(e)=>{setdriverPhoto(e.target.files[0])}} style={{width:'100%', border:'black solid 1px',color:'black'}} className='form-control mt-2' id="image"  /></p>
                                 </div>
                             </div>
-                            <div className="col-lg-7 drinfo">
+                            <div className="col-lg-7 drinfo rounded">
                                 <label htmlFor="name" className="drlabel">Name</label><br />
                                 <input type="text" name="Name" value={user.name} className="drinput" id="name" disabled={true}/><br />
 
@@ -129,10 +129,10 @@ const RegisterDriver = () =>{
                                 {driverInfo.permit? 
                                 <div className="drPreview">
                                     <span>Preview Permit : <a href={driverInfo.permit} className="drPreview" rel="noreferrer" target="_blank">Here</a></span><br/>
-                                    Update : <input type="file" name="permit" defaultValue={permit}  onChange={(e)=>{setpermit(e.target.files[0])}} className="drfinput" id="permit" />
+                                    Update : <input type="file" name="permit" defaultValue={permit}  onChange={(e)=>{setpermit(e.target.files[0])}} className="drfinput form-control" id="permit" />
                                 </div>
                             
-                                : <input type="file" name="permit" defaultValue={permit}  onChange={(e)=>{setpermit(e.target.files[0])}} className="drfinput" id="permit" />}
+                                : <input type="file" name="permit" defaultValue={permit}  onChange={(e)=>{setpermit(e.target.files[0])}} className="drfinput form-control" id="permit" />}
                                
                                <br/>
 
@@ -140,20 +140,20 @@ const RegisterDriver = () =>{
                                 {driverInfo.liscence? 
                                 <div className="drPreview">
                                     <span>Preview liscence : <a href={driverInfo.liscence} className="drPreview" rel="noreferrer" target="_blank">Here</a></span><br/>
-                                    Update : <input type="file" name="permit" defaultValue={liscence}  onChange={(e)=>{setliscence(e.target.files[0])}} className="drfinput" id="liscence" />
+                                    Update : <input type="file" name="permit" defaultValue={liscence}  onChange={(e)=>{setliscence(e.target.files[0])}} className="drfinput form-control" id="liscence" />
                                 </div>
                             
-                                : <input type="file" name="permit" defaultValue={liscence}  onChange={(e)=>{setliscence(e.target.files[0])}} className="drfinput" id="liscence" />}
+                                : <input type="file" name="permit" defaultValue={liscence}  onChange={(e)=>{setliscence(e.target.files[0])}} className="drfinput form-control" id="liscence" />}
                                 <br />
 
                                 <label htmlFor="registration" className="drlabel">Registration </label><br />
                                 {driverInfo.registration? 
                                 <div className="drPreview">
                                     <span>Preview registration : <a href={driverInfo.registration} className="drPreview" rel="noreferrer" target="_blank">Here</a></span><br/>
-                                    Update : <input type="file" name="registration" defaultValue={registration}  onChange={(e)=>{setregistration(e.target.files[0])}} className="drfinput" id="registration" />
+                                    Update : <input type="file" name="registration" defaultValue={registration}  onChange={(e)=>{setregistration(e.target.files[0])}} className="drfinput form-control" id="registration" />
                                 </div>
                             
-                                : <input type="file" name="registration" defaultValue={registration}  onChange={(e)=>{setregistration(e.target.files[0])}} className="drfinput" id="registration" />}
+                                : <input type="file" name="registration" defaultValue={registration}  onChange={(e)=>{setregistration(e.target.files[0])}} className="drfinput form-control" id="registration" />}
                                 <br />
                                 <label htmlFor="carP" className="drlabel">Vehicle Images</label>
                                 <div  id="vehimg">
@@ -197,7 +197,7 @@ const RegisterDriver = () =>{
                                             </div>}
                                         
                                     </div>
-                                    <p><input type="file" name="carPhoto" style={{width:'100%', border:'black solid 1px',color:'black'}} className=' mt-2 p-1' id="carP" onChange={(e)=>{setcarPhoto(e.target.files)}}  multiple={true}/></p>
+                                    <p><input type="file" name="carPhoto" style={{width:'100%', border:'black solid 1px',color:'black'}} className='form-control mt-2 drfinput' id="carP" onChange={(e)=>{setcarPhoto(e.target.files)}}  multiple={true}/></p>
                                 </div>
                             </div>
                         </div>

@@ -59,7 +59,7 @@ function GetEstimate(props) {
                     <EstimatePrice pickup={pickupLoc} destination={destinationLoc}/>
                     <hr/>
                     <div className="w-100 flex pt-3">
-                        <Link className="btn purple-btn" 
+                        <Link className="btn purple-btn"
                         onClick={()=> dispatch(setAddresses({pickup: pickupLoc, destination: destinationLoc}))}
                         to={'/ride/book-ride'}>Book Ride Now</Link>
                     </div>
