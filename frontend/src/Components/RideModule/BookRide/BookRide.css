@@ -35,9 +35,7 @@
     /* font-weight: 100; */
     cursor: pointer;
     font-weight: 600;
-    font-size: 1em;
-    /* overflow: hidden; */
-    text-align: left;
+    font-size: 0.8rem;
 }
 .choose-locM .col-9,
 .choose-locM .col-8,
@@ -87,14 +85,14 @@
     background-repeat: no-repeat;
     background-size: 20%;
     background-position: center;
-    background-image: url('../../Media/rickshaw.svg');
+    background-image: url('../../../Media/rickshaw.svg');
 }
 
 .mdtaxi{
     background-repeat: no-repeat;
     background-size: 20%;
     background-position: center;
-    background-image: url('../../Media/taxi.svg');
+    background-image: url('../../../Media/taxi.svg');
 }
 
 #mdRide{

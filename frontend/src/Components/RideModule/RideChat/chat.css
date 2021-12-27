@@ -16,14 +16,14 @@
     /* background-color: rgb(255, 255, 255); */
     padding: 1rem;
     height: 80%;
-    background-image: linear-gradient(#ffcf151f, #ffcf156b), url('../../Media/purple-sprinkle.svg');
+    background-image: linear-gradient(#ffcf151f, #ffcf156b), url('../../../Media/purple-sprinkle.svg');
     background-repeat: no-repeat;
     border-radius: 0.25rem;
 
 }
 
 .messageCard {
-    padding: 2em;
+    padding: 1.2em;
     background-color: rgb(236, 236, 236);
     max-width: 350px;
 }
@@ -44,16 +44,16 @@
 }
 
 
-.sendbox {
-    /* margin-left: 2vw; */
-    /* height: 40px; */
-    /* width: 80%; */
-}
+/* .sendbox {
+    margin-left: 2vw;
+    height: 40px;
+    width: 80%;
+} */
 
 .sendbutton {
     border: black solid 2px;
-    /* width: 10vw; */
-    /* height: 40px; */
+    /* width: 10vw;
+    height: 40px; */
 }
 
 .chat-send {

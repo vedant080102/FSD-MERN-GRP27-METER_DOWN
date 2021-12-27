@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from "../base/Navbar";
+import Navbar from "../Base/Navbar";
 import './home.css'
 import logo from '../../Media/logo.png'
 import bgImg1 from '../../Media/MUMBAI-TAXI-landscape.jpg'
@@ -9,9 +9,10 @@ import { Parallax, Background } from "react-parallax";
 import {ReactComponent as Rick} from '../../Media/rickshaw.svg'
 import {ReactComponent as Taxi} from '../../Media/taxi.svg'
 import lottie from "lottie-web/build/player/lottie_light";
-import GetAddress from '../base/geocoding';
+import GetAddress from '../Base/geocoding';
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -198,6 +199,10 @@ function Home() {
 
                 <div className='flex min-vh-100 py-2 how-to'>
                     <HowToRide/>
+                    <Link to={'/ride'}>ride</Link>
+                    <Link to={'/ride/book-ride'}>book-ride</Link>
+                    <Link to={'/ride/ride-chat'}>ride-chat</Link>
+                    <Link to={'/ride/summary'}>summary</Link>
                 </div>
 
                 <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>

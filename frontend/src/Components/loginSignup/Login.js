@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate, Link } from "react-router-dom";
-import MyModal from "../base/MyModal";
+import MyModal from "../Base/MyModal";
 import { useSelector, useDispatch } from 'react-redux'
 import {login} from '../../Redux/features/userSlice'
 import { subscribeUser } from '../../subscription';
