@@ -1,5 +1,7 @@
 const Driver = require("../models/Driver")
+const Fare = require("../models/Fare")
 const Passenger = require("../models/Passenger")
+const Completedfares = require("../models/Completedfares")
 
 const getAllPassengers=async(req,res)=>{
     passengers =await Passenger.find().populate("account")
@@ -26,10 +28,22 @@ const getOneDriver=async(req,res)=>{
     res.send(driver)
 }
 
+const getAllRides=async(req,res)=>{
+    fares=await Fare.find().populate("driver passenger source destination")
+    res.send(fares)
+}
+
+const getAllCompletedFares=async(req,res)=>{
+    completedFares=await Completedfares.find().populate({"path":"fareData",populate:{"path":"driver source destination passenger"}})
+    res.send(completedFares)
+}
+
 module.exports={
     getAllDrivers,
     getAllPassengers,
     approveDriver,
     getOnePassenger,
-    getOneDriver
+    getOneDriver,
+    getAllRides,
+    getAllCompletedFares
 }
