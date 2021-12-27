@@ -20,17 +20,17 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 function sendSubscription(subscription) {
-  // data=subscription
-  // axiosInstance.post("/api/user/subscribeUser", data, { withCredentials: true })
+  var data=subscription
+  axiosInstance.post("/api/user/subscribeUser", data, { withCredentials: true })
 
 
-  return fetch(`${process.env.REACT_APP_API_URL}/notifications/subscribe`, {
-    method: 'POST',
-    body: JSON.stringify(subscription),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+  // return fetch(`${process.env.REACT_APP_API_URL}/api/user/subscribeUser`, {
+  //   method: 'POST',
+  //   body: JSON.stringify(subscription),
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   }
+  // })
 }
 
 export function subscribeUser() {

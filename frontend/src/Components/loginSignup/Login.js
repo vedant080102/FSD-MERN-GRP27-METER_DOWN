@@ -26,8 +26,7 @@ function Login() {
 		}
 		axiosInstance.post("/api/user/login", data, { withCredentials: true })
 		.then((res) => {
-			// dispatch(login())
-			// subscribeUser();
+			subscribeUser();
 			console.log("User Logged in!!", res.data.user);
 			setstatusMsg("Logged In Successfully! 🎉");
 			socket.connect()

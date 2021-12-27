@@ -37,11 +37,13 @@ import ProtectedRoute from './ProtectedRoute'
 
 
 import socket from './socket';
+import { useSelector } from 'react-redux';
 
 function App() {
 	
 	const [acceptmsg,setAccept]= useState("");
-	
+	const user = useSelector((state) => state.user.user);
+	const chatID = useSelector((state) => state.rideChat.rideChat);
 
 	// useEffect(()=>{
 
@@ -51,40 +53,36 @@ function App() {
     //         setAccept(data)
     //     })
 
-		
+	useEffect(()=> console.log("chat id:", chatID), [chatID]);
 
-<<<<<<< HEAD
-	// 	socket.on("allottedDriver",(data)=>{
-	// 		console.log("allotted")
-	// 		console.log(data)
-	// 		// setRide(data.fareid)
-	// 	})
-	// })
-=======
 	useEffect(()=>{
 
-		socket.on("ride",(data)=>{
-            console.log("ride")
-            console.log(data)
-            setAccept(data)
-        })
+		// socket.on("ride",(data)=>{
+        //     console.log("ride")
+        //     console.log(data)
+        //     setAccept(data)
+        // })
 
-		socket.on("allottedPassenger",(data)=>{
-		console.log("allotted")
-		console.log(data)
-		return(
-			<Navigate to='/ride/summary'/>
-		)
-		// setRide(data.fareid)  
-		});
+		// socket.on("allottedPassenger",(data)=>{
+		// console.log("allotted")
+		// console.log(data)
+		// return(
+		// 	<Navigate to='/ride/summary'/>
+		// )
+		// // setRide(data.fareid)  
+		// });
 
-		socket.on("allottedDriver",(data)=>{
-			console.log("allotted")
-			console.log(data)
-			// setRide(data.fareid)
-		})
+		// socket.on("allottedDriver",(data)=>{
+		// 	console.log("allotted")
+		// 	console.log(data)
+		// 	// setRide(data.fareid)
+		// })
+
+		// socket.io.on('reconnect', () => {
+		// 	socket.emit('join',{"user":user._id})
+		// 	chatID && socket.emit('rejoinchat', {"room":chatID, 'sender':user._id});
+		// })
 	})
->>>>>>> 90502158d3e9cd4f85dd745777a91cc24dc6d0ee
 
 	return (
 		<div className="App">

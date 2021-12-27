@@ -12,11 +12,8 @@ import lottie from "lottie-web/build/player/lottie_light";
 import GetAddress from '../Base/geocoding';
 import HowToRide from './howtoride';
 import { Alert } from 'react-bootstrap';
-<<<<<<< HEAD
 import socket from '../../socket';
-=======
 import { Link } from 'react-router-dom';
->>>>>>> 90502158d3e9cd4f85dd745777a91cc24dc6d0ee
 
 function Home() {
 

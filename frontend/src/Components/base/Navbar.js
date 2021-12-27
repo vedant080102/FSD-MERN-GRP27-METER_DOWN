@@ -45,7 +45,7 @@ function Navbar(props) {
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
-        // unsubscribeUser()
+        unsubscribeUser()
         console.log(data.userData);
         // setuserInfo(data.userData);
         dispatch(logout());
@@ -214,7 +214,7 @@ function Navbar(props) {
                 <Link to="/contact" className={"nav-link " + (activePage.contact ? "active" : "")}>Contact</Link>
             </li>
             <li>
-                <Link to="/driverBooking" className={"nav-link " + (activePage.test ? "active" : "")}>Test</Link>
+                <Link to="/driver/booking" className={"nav-link " + (activePage.test ? "active" : "")}>Test</Link>
             </li>
         </ul>
         <hr/>
