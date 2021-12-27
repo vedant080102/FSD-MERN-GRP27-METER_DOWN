@@ -15,7 +15,7 @@ export default function AdminLogin() {
     const handleSubmit = (e) => {
         e.preventDefault();
 		
-		axiosInstance.post("/api/admin/login", {phone: phone, password: password}, { withCredentials: true })
+		axiosInstance.post("/api/user/login", {phone: phone, password: password}, { withCredentials: true })
 		.then((res) => {
 			// dispatch(login())
 			console.log("User Logged in!!", res.data.user);
@@ -44,11 +44,11 @@ export default function AdminLogin() {
                         <span className='fs-4'>Admin Login</span>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address*</label>
-                        <input type="email" class="form-control" onChange={e => setEmail(e.target.value)} id="InputEmail" required />
+                        <label for="InputPhone" class="form-label">Phone Number*</label>
+                        <input type="tel" class="form-control" onChange={e => setphone(e.target.value)} id="InputPhone" required />
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password*</label>
+                        <label for="InputPassword" class="form-label">Password*</label>
                         <input type="password" class="form-control" onChange={e => setpassword(e.target.value)} id="InputPassword" required />
                     </div>
                     <div className="w-100 flex">

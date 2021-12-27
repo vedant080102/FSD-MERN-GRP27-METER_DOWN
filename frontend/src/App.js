@@ -31,6 +31,7 @@ import RideModule from './Components/RideModule/RideModule';
 
 import Driver from './Components/Driver/Driver';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
+import DriverBooking from './Components/DriverBooking/DriverBooking'
 
 import ProtectedRoute from './ProtectedRoute'
 

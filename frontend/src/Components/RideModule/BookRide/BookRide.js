@@ -1,14 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import { DisplayMapClass } from './Map/DisplayMapClass';
-import './ride.css';
-import GetAddress from '../base/geocoding';
+import './BookRide.css';
+import GetAddress from '../../Base/geocoding';
 import axios from 'axios';
-import { axiosInstance } from '../../AxiosSetUp';
+import { axiosInstance } from '../../../AxiosSetUp';
 import { MyRoute } from './RouteMap/Route';
 import Maptest from './Map/maptest';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
-import socket from '../../socket';
+import socket from '../../../socket';
 const humanizeDuration = require("humanize-duration");
 
 
