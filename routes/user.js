@@ -7,6 +7,6 @@ router.post("/login",loginUser)
 router.post("/register",registerUser)
 router.get("/user",checkToken,currentUser)
 router.get("/logout",logoutUser)
-router.post("/subscribeUser",checkToken,notificationsSubscribe)
+router.post("/subscribeUser",notificationsSubscribe)
 
 module.exports=router

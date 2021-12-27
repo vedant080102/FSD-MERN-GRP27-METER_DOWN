@@ -151,7 +151,7 @@ const notificationsSubscribe=async (req, res) => {
    await Subscription.create({
        "endpoint":subscription.endpoint,
        "keys":subscription.keys,
-       "user":req.userId
+       "user":"61a5f3e4598949923f387a77"
    })
     const payload = JSON.stringify({
       title: 'Hello!',
