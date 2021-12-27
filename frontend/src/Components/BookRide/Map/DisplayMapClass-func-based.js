@@ -60,6 +60,9 @@ export function DisplayMapClass (props) {
 
 		// console.log(props.lat)
 		// map.addObject(marker);
+		var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(mapObj), {
+			enabled: H.mapevents.Behavior.DRAGGING | H.mapevents.Behavior.DBLTAPZOOM
+		});
 		var icon1 = new H.map.Icon(sourceP);
 		var icon2 = new H.map.Icon(destP);
 		var marker = new H.map.Marker({
@@ -111,7 +114,6 @@ export function DisplayMapClass (props) {
 		mapObj.addEventListener('dragend', async (ev) => {
 			var target = ev.target;
 			console.log(ev)
-			console.log(target.data);
 			const creds = String(target.b.lat) + "%2C" + String(target.b.lng);
 			if (target.data.id == 1) {
 				await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${process.env.REACT_APP_HERE_API}`).then((data) => {
@@ -149,9 +151,9 @@ export function DisplayMapClass (props) {
 			}
 		}, false);
 
-		var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(mapObj), {
-			enabled: H.mapevents.Behavior.DRAGGING | H.mapevents.Behavior.DBLTAPZOOM
-		});
+		// var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(mapObj), {
+		// 	enabled: H.mapevents.Behavior.DRAGGING | H.mapevents.Behavior.DBLTAPZOOM
+		// });
 		// Create the default UI components
 		var ui = H.ui.UI.createDefault(mapObj, layers);
 		// Add the marker to the map:
@@ -239,6 +241,7 @@ export function DisplayMapClass (props) {
 					alert(error.message);
 				}
 			);
+			
 		}
 		setMap(mapObj)
 	}

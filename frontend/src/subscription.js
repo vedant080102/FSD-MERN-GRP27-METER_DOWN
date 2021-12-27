@@ -1,5 +1,7 @@
-const convertedVapidKey = urlBase64ToUint8Array(process.env.REACT_APP_PUBLIC_VAPID_KEY)
 import { axiosInstance } from "../src/AxiosSetUp";
+const convertedVapidKey = urlBase64ToUint8Array(process.env.REACT_APP_PUBLIC_VAPID_KEY)
+
+
 
 
 

@@ -18,3 +18,21 @@
     border-radius: 50%;
     border:var(--purple) solid;
 }
+
+.rinfo{
+    margin-bottom: 1em;
+}
+
+#chatBut{
+    padding: 0.4em 1em;
+    background: transparent;
+    border-radius: 0.4em;
+    border: solid var(--purple);
+    font-size: 600;
+    color: var(--purple);
+}
+
+#chatBut:hover{
+    color: var(--yellow);
+    background-color: var(--purple);
+}

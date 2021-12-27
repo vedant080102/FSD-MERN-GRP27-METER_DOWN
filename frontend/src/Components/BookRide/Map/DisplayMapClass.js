@@ -106,7 +106,7 @@ export class DisplayMapClass extends React.Component {
 
   // re-enable the default draggability of the underlying map
   // when dragging has completed
-  mapObj.addEventListener('dragend', async(ev) => {
+  marker.addEventListener('dragend', async(ev) => {
       var target = ev.target;
       console.log(ev)
       console.log(target.data);
@@ -136,6 +136,37 @@ export class DisplayMapClass extends React.Component {
       behavior.enable();
       }
   }, false);
+
+  marker2.addEventListener('dragend', async(ev) => {
+    var target = ev.target;
+    console.log(ev)
+    console.log(target.data);
+    const creds = String(target.b.lat) + "%2C" + String(target.b.lng);
+    if(target.data.id==1){
+    await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${process.env.REACT_APP_HERE_API}`).then((data)=>{
+              console.log(data.data.items[0]);
+              this.props.setCL(data.data.items[0]);
+              
+          }).catch((err)=>{
+              console.log(err);
+          });
+    }else{
+      await axios.get(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${creds}&lang=en-US&apikey=${process.env.REACT_APP_HERE_API}`).then((data)=>{
+              console.log(data.data.items[0]);
+              this.props.setDL(data.data.items[0]);
+          }).catch((err)=>{
+              console.log(err);
+          });
+    }
+
+    setTimeout(() => {
+      this.props.chngR();
+    }, 50); 
+      
+    if (target instanceof H.map.Marker) {
+    behavior.enable();
+    }
+}, false);
 
   // Listen to the drag event and move the position of the marker
   // as necessary
