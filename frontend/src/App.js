@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import './App.css';
 
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
+	Navigate,
+	useNavigate,
 } from "react-router-dom";
 
 
@@ -23,12 +25,45 @@ import ProtectedRoute from './ProtectedRoute'
 import ScrollToTop from './ScrollToTop';
 import RegisterDriver from './Components/Driver/RegisterDriver/RegisterDriver';
 // import Hmap from './Components/Hmap/Hmap';
+// import Hmap from './Components/Hmap/Hmap';
 import RideSum from './Components/RideSummary/RideSum';
 
 import BookRide from './Components/BookRide/BookRide';
 import RideChat from './Components/RideChat/RideChat.js';
+import DriverBooking from './Components/DriverBooking/DriverBooking';
+
+
+import socket from './socket';
 
 function App() {
+
+	const [acceptmsg,setAccept]= useState("");
+
+
+	useEffect(()=>{
+
+		socket.on("ride",(data)=>{
+            console.log("ride")
+            console.log(data)
+            setAccept(data)
+        })
+
+		socket.on("allottedPassenger",(data)=>{
+		console.log("allotted")
+		console.log(data)
+		return(
+			<Navigate to='/ride-summary'/>
+		)
+		// setRide(data.fareid)  
+		});
+
+		socket.on("allottedDriver",(data)=>{
+			console.log("allotted")
+			console.log(data)
+			// setRide(data.fareid)
+		})
+	})
+
 	return (
 		<div className="App">
 			<Router>
@@ -49,6 +84,7 @@ function App() {
 					</Route>
 					<Route path="/ride/get-estimate" element={<GetEstimate/>}/>
 					<Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
+
 						<Route path="/ride/book-ride" element={<BookRide/>}/>
 					</Route>
 					{/* <Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}> */}
@@ -82,6 +118,14 @@ function App() {
 						<RideSum/>
 						</>}
 					/>
+
+					<Route path="/driverBooking" element={<>
+						{/* <Navbar homepage={false}/> */}
+						<DriverBooking/>
+						</>}
+					/>
+
+					
 				</Routes>
 				<Footer/>
 			</Router>

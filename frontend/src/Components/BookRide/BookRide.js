@@ -8,6 +8,7 @@ import { MyRoute } from './RouteMap/Route';
 import Maptest from './Map/maptest';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
+import socket from '../../socket';
 const humanizeDuration = require("humanize-duration");
 
 
@@ -183,8 +184,10 @@ function Hmap(props) {
         apiData["timeEstimate"] = Number(dur)
         if(e=="auto"){
             apiData["fareEstimate"] = autoF
+            apiData["vehicleType"] = "Auto"
         }else{
             apiData["fareEstimate"] = taxiF
+            apiData["vehicleType"] = "Taxi"
         }
         apiData["time"] = "day"
         apiData["startType"] = "now"
@@ -193,13 +196,21 @@ function Hmap(props) {
         await axiosInstance.post(`/api/passenger/bookRide`,apiData,{withCredentials:true}).then((res)=>{
             console.log(res);
             console.log("Worked");
-            navigate('/ride-summary');
+            // navigate('/ride-summary');
         }).catch((e)=>{
             console.log(e);
         });
     }
 
-    
+    // useEffect(()=>{
+    //     socket.on("allottedPassenger",(data)=>{
+    //         console.log("allotted")
+    //         console.log(data)
+    //         // setRide(data.fareid)  
+    //       })
+
+        
+    // },[])
 
     useEffect(()=>{
         getTaxiFare()
@@ -299,7 +310,7 @@ return (
 
                 <button onClick={estimateH}  id="mpBut">Proceed</button>
             </div>
-            <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>
+            <GetAddress locquery={locQuery} show={modalShow} changeMarker={mpHandler} onHide={() => setModalShow(false)}/>
             
         </div>
         

@@ -8,6 +8,7 @@ import { axiosInstance } from '../../AxiosSetUp';
 import { useSelector, useDispatch } from 'react-redux'
 import {login, logout} from '../../Redux/features/userSlice'
 import InstallPWA from './InstallEve';
+import {unsubscribeUser} from "../../subscription"
 
 function Navbar(props) {    
 
@@ -20,7 +21,8 @@ function Navbar(props) {
         bookings: false,
         becomeDriver: false,
         about: false,
-        contact: false
+        contact: false,
+        test:false
     });
     const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch();
@@ -43,6 +45,7 @@ function Navbar(props) {
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
+        // unsubscribeUser()
         console.log(data.userData);
         // setuserInfo(data.userData);
         dispatch(logout());
@@ -209,6 +212,9 @@ function Navbar(props) {
             </li>
             <li>
                 <Link to="/contact" className={"nav-link " + (activePage.contact ? "active" : "")}>Contact</Link>
+            </li>
+            <li>
+                <Link to="/driverBooking" className={"nav-link " + (activePage.test ? "active" : "")}>Test</Link>
             </li>
         </ul>
         <hr/>
