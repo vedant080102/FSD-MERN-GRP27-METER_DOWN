@@ -1,5 +1,7 @@
 #admin-main {
     background-color: var(--yellow);
+    color: var(--purple);
+    min-height: calc(100vh - 120px);
 }
 
 #admin-main .admin-stats {
