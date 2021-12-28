@@ -184,7 +184,11 @@ const giveReview=async(req,res)=>{
         "comment":req.body.comment,
         "ride":req.body.rideId
     })
-    ride=await Completedfares.findOneAndUpdate({_id:req.body.rideId},{review:review._id},{new:true})
+    completedid=await Completedfares.findOneAndUpdate({_id:req.body.rideId},{review:review._id},{new:true})
+   ride =await Fare.findOne({_id:req.body.rideId})
+    await Driver.findOneAndUpdate({_id:ride.driver},{$push:{
+        reviews:completedid._id
+    }})
     res.send({
         "msg":"Review recorded successfully"
     })
