@@ -12,9 +12,10 @@ const Chat=require("../models/Chat")
 const axios = require('axios');
 const sleep = (delay) => new Promise (( resolve) =>setTimeout (resolve, delay))
 const webpush = require('web-push')
-const Subsciption = require("../models/Subsciption")
+const Subsciption = require("../models/Subsciption");
+const farePrice = require('../fareprices.json');
 
-
+// console.log("fareprice len:", farePrice.length);
 const getDrivers=async(blackList,source,vehicleType)=>{
     driversList= await Driver.find({busy:false,vehicleType:vehicleType}).lean()
     drivers=[...driversList]
@@ -155,12 +156,16 @@ const getOneRideData=async(req,res)=>{
 }
 
 const getPriceEstimate=async(req,res)=>{
-    fareData=await FarePrice.findOne({distance:req.query.distance,vehicleType:req.query.type})
+    // fareData=await FarePrice.findOne({distance:req.query.distance,vehicleType:req.query.type})
+
+    console.log("requi", req.query.distance, req.query.type)
+    fareData = farePrice.filter((fare)=> (fare.distance == Number(req.query.distance)) && fare.vehicleType == req.query.type)
+    console.log("fare data:", fareData);
     price=0
     if(req.query.time=="day"){
-        price=fareData.dayPrice
+        price=fareData[0].dayPrice
     }else{
-        price=fareData.nightPrice
+        price=fareData[0].nightPrice
 
     }
     res.send({

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { DisplayMapClass } from './Map/DisplayMapClass';
 import './ride.css';
-import GetAddress from '../../Components/base/geocoding';
+import GetAddress from '../Base/geocoding';
 import axios from 'axios';
 import { axiosInstance } from '../../AxiosSetUp';
 import { MyRoute } from './RouteMap/Route';

@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 import { MyRoute } from "../BookRide/RouteMap/Route";
 import axios from "axios";
 
-import MyModal from "../base/MyModal";
+import MyModal from "../Base/MyModal";
 
 import "./RideSum.css";
 import { Navigate, useNavigate } from "react-router-dom";

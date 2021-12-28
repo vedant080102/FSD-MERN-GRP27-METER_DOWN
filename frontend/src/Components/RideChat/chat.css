@@ -16,7 +16,7 @@
     /* background-color: rgb(255, 255, 255); */
     padding: 1rem;
     height: 80%;
-    background-image: linear-gradient(#ffcf151f, #ffcf156b), url('../../../Media/purple-sprinkle.svg');
+    background-image: linear-gradient(#ffcf151f, #ffcf156b), url('../../Media/purple-sprinkle.svg');
     background-repeat: no-repeat;
     border-radius: 0.25rem;
 

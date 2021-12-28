@@ -10,9 +10,9 @@ import {
 } from "react-router-dom";
 
 
-import Navbar from './Components/base/Navbar';
+import Navbar from './Components/Base/Navbar';
 import ScrollToTop from './ScrollToTop';
-import Footer from './Components/base/Footer';
+import Footer from './Components/Base/Footer';
 
 import Home from './Components/Home/Home';
 import About from './Components/About/About';
@@ -26,7 +26,7 @@ import AdminModule from './Components/Admin/Admin';
 import Bookings from './Components/RideModule/Bookings/Bookings';
 import RideModule from './Components/RideModule/RideModule';
 // import BookRide from './Components/RideModule/BookRide/BookRide';
-// import RideChat from './Components/RideModule/RideChat/RideChat';
+import RideChat from './Components/RideChat/RideChat';
 // import RideSum from './Components/RideModule/RideSummary/RideSum';
 
 import Driver from './Components/Driver/Driver';
@@ -37,11 +37,13 @@ import ProtectedRoute from './ProtectedRoute'
 
 
 import socket from './socket';
+import { useSelector } from 'react-redux';
 
 function App() {
 	
 	const [acceptmsg,setAccept]= useState("");
-	
+	const user = useSelector((state) => state.user.user);
+	const chatID = useSelector((state) => state.rideChat.rideChat);
 
 	// useEffect(()=>{
 
@@ -51,14 +53,35 @@ function App() {
     //         setAccept(data)
     //     })
 
-		
 
-	// 	socket.on("allottedDriver",(data)=>{
-	// 		console.log("allotted")
-	// 		console.log(data)
-	// 		// setRide(data.fareid)
-	// 	})
-	// })
+	useEffect(()=>{
+
+		// socket.on("ride",(data)=>{
+        //     console.log("ride")
+        //     console.log(data)
+        //     setAccept(data)
+        // })
+
+		// socket.on("allottedPassenger",(data)=>{
+		// console.log("allotted")
+		// console.log(data)
+		// return(
+		// 	<Navigate to='/ride/summary'/>
+		// )
+		// // setRide(data.fareid)  
+		// });
+
+		// socket.on("allottedDriver",(data)=>{
+		// 	console.log("allotted")
+		// 	console.log(data)
+		// 	// setRide(data.fareid)
+		// })
+
+		// socket.io.on('reconnect', () => {
+		// 	socket.emit('join',{"user":user._id})
+		// 	chatID && socket.emit('rejoinchat', {"room":chatID, 'sender':user._id});
+		// })
+	})
 
 	return (
 		<div className="App">
@@ -88,12 +111,14 @@ function App() {
 					{/* <Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
 						<Route path="/ride/book-ride" element={<BookRide/>}/>
 					</Route>
-					<Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/ride/ride-chat" element={<RideChat/>}/>
-					</Route>
 					<Route exact path="/ride/summary" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/ride/summary" element={<RideSum/>}/>
-					</Route> */}
+					<Route path="/ride/summary" element={<RideSum/>}/>
+				</Route> */}
+					{/* <Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype={null}/>}> */}
+
+					{user && <Route path="/ride-chat" element={<RideChat/>}/>}
+					
+					{/* </Route> */}
 
 					<Route path="/become-driver" element={<Driver/>}/>
 

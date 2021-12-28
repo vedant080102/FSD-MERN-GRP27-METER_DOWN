@@ -45,7 +45,7 @@ function Navbar(props) {
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
-        // unsubscribeUser()
+        unsubscribeUser()
         console.log(data.userData);
         // setuserInfo(data.userData);
         dispatch(logout());

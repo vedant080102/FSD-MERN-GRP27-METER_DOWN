@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './login.css';
 import { axiosInstance } from "../../AxiosSetUp";
 import { useNavigate, Link } from "react-router-dom";
-import MyModal from "../base/MyModal";
+import MyModal from "../Base/MyModal";
 import { useSelector, useDispatch } from 'react-redux'
 import {login} from '../../Redux/features/userSlice'
 import { subscribeUser } from '../../subscription';
@@ -26,8 +26,7 @@ function Login() {
 		}
 		axiosInstance.post("/api/user/login", data, { withCredentials: true })
 		.then((res) => {
-			// dispatch(login())
-			// subscribeUser();
+			subscribeUser();
 			console.log("User Logged in!!", res.data.user);
 			setstatusMsg("Logged In Successfully! 🎉");
 			socket.connect()

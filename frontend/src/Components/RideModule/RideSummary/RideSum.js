@@ -1,12 +1,14 @@
-import React from "react";
-import { useState,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { MyRoute } from "../BookRide/RouteMap/Route";
 import axios from "axios";
 import socket from "../../../socket";
-import MyModal from "../../base/MyModal";
+import MyModal from "../../Base/MyModal";
+import { setDetails } from "../../../Redux/features/rideChatSlice";
+import { useDispatch } from "react-redux";
 
 import "./RideSum.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../../AxiosSetUp";
 
 function RideSum(){
 
@@ -19,12 +21,14 @@ function RideSum(){
     const [rideInfo,setrideInfo] = useState();
     const [toggle,settoggle] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     console.log(Source,Dest)
 
     const getRideInfo = async() =>{
         console.log(fareid)
         try {
-            var data =await axios.get(`/api/passenger/getOneRide/${fareid}`,{withCredentials:true}) 
+            var data =await axiosInstance.get(`/api/passenger/getOneRide/${fareid}`,{withCredentials:true}) 
             console.log(data.data);
             setrideInfo(data.data);
             setSource(data.data.source)
@@ -62,6 +66,7 @@ function RideSum(){
 
     useEffect(()=>{
         getRideInfo();
+        dispatch(setDetails(fareid));
     },[fareid]);
    
     return(
@@ -73,6 +78,7 @@ function RideSum(){
             
             <div className="container-fluid  drCont">
                 <div className="container shadow drinfo rounded">
+                    {/* <Link to='/ride/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link> */}
                     {rideInfo?<div className="row">
                         <div className="col-lg-5">
                             <div className="drpic m-auto">
@@ -124,8 +130,17 @@ function RideSum(){
                                 <b>{rideInfo.fareEstimate}</b>
                                 </div>
                             </div>
+                            <div className="row rinfo">
+                                <div className="col-lg-3">
+                                OTP:
+                                </div>
+                                <div className="col-lg-9">
+                                <b>{rideInfo.otp}</b>
+                                </div>
+                            </div>
                             <div>
-                            <button id="chatBut">Chat with Driver  <i class="fas fa-location-arrow"></i></button>
+                            {/* <button id="chatBut" onClick={navigate('ride-chat')}>Chat with Driver  <i class="fas fa-location-arrow"></i></button> */}
+                            <Link to='/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
                             </div>
                             {/* <p>Pickup Location: <b>Some Address</b></p>
                             <p>Destination Location: <b>Some Address</b></p>

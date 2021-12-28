@@ -230,7 +230,8 @@ body {
   transition: 0.4s;
 }
 
-.purple-btn:hover {
+.purple-btn:hover,
+.purple-btn.active {
   background-color: var(--purple);
   color: var(--yellow);
 }
@@ -245,7 +246,8 @@ body {
   border: 1px solid var(--yellow);
 }
 
-.yellow-btn:hover {
+.yellow-btn:hover,
+.yellow-btn.active {
   color: var(--purple);
   background-color: var(--yellow);
   border: 1px solid transparent;

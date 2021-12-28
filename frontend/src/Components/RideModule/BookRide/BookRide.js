@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { DisplayMapClass } from './Map/DisplayMapClass';
 import './BookRide.css';
-import GetAddress from '../../base/geocoding';
+import GetAddress from '../../Base/geocoding';
 import axios from 'axios';
 import { axiosInstance } from '../../../AxiosSetUp';
 import { MyRoute } from './RouteMap/Route';
@@ -195,7 +195,7 @@ function BookRide(props) {
         await axiosInstance.post(`/api/passenger/bookRide`,apiData,{withCredentials:true}).then((res)=>{
             console.log(res);
             console.log("Worked");
-            navigate('ride/summary')
+            navigate('/ride/summary')
         }).catch((e)=>{
             console.log(e);
         });
@@ -213,11 +213,14 @@ function BookRide(props) {
     // },[])
 
     useEffect(()=>{
-        getTaxiFare()
+        console.log("distacne:", distance);
+        if (distance) {
+            getTaxiFare();
     // },[distance]);
 
     // useEffect(()=>{
-        getAutoFare()
+            getAutoFare();
+        }
     },[distance]);
 
     useEffect(()=>{

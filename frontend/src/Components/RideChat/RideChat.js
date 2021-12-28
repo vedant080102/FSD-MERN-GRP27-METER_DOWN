@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import socket from './socket';
+import socket from '../../socket';
+import {useSelector} from 'react-redux'
 import './chat.css'
 
 
@@ -11,27 +12,32 @@ export default function RideChat() {
     const [type, setType] = useState(" ");
     const [chatArray, setchatArray] = useState([])
 
+    
+	const user = useSelector((state) => state.user.user);
+	const chatID = useSelector((state) => state.rideChat.rideChat);
+
     useEffect(() => {
 
         socket.io.on('reconnect', () => {
             socket.emit("join", {
-                "user": name
+                "user": user._id
             })
+			chatID && socket.emit('rejoinchat', {"room":chatID, 'sender':user._id});
         })
-        socket.on("msg", (data) => {
-            console.log("yellow")
-            console.log(data.msg)
-        })
-        socket.on("ride", (data) => {
-            console.log("ride")
-            console.log(data)
-            setAccept(data)
-        })
-        socket.on("allotted", (data) => {
-            console.log("allotted")
-            console.log(data)
-            setRide(data.fareid)
-        })
+        // socket.on("msg", (data) => {
+        //     console.log("yellow")
+        //     console.log(data.msg)
+        // })
+        // socket.on("ride", (data) => {
+        //     console.log("ride")
+        //     console.log(data)
+        //     setAccept(data)
+        // })
+        // socket.on("allotted", (data) => {
+        //     console.log("allotted")
+        //     console.log(data)
+        //     setRide(data.fareid)
+        // })
         socket.on("chat", (message) => {
             setchatArray(prevState => [
                 ...prevState,
@@ -43,26 +49,20 @@ export default function RideChat() {
                 }
             ])
         })
-
     }, []);
 
     const storeChat = event => {
         setChat(event.target.value)
     }
 
-
-    const handleInput = event => {
-        setName(event.target.value);
-    };
-
-    const agree = () => {
-        // alert("Clicked")
-        console.log(name)
-        socket.connect()
-        socket.emit("join", {
-            "user": name
-        })
-    }
+    // const agree = () => {
+    //     // alert("Clicked")
+    //     console.log(name)
+    //     socket.connect()
+    //     socket.emit("join", {
+    //         "user": name
+    //     })
+    // }
 
     const sendMessage = () => {
         console.log(chat)
@@ -71,21 +71,22 @@ export default function RideChat() {
             {
                 "message": chat,
                 "origin": 0,
-                "fare": ride,
-                "sender": name
+                "fare": chatID,
+                "sender": user._id
             }
         ])
         socket.emit("chat", {
             chat,
-            room: ride,
-            sender: name
+            room: chatID,
+            sender: user._id
         })
     }
 
-    const acceptRide = () => {
-        console.log(acceptmsg)
-        socket.emit("accept", acceptmsg)
-    }
+    // const acceptRide = () => {
+    //     console.log(acceptmsg)
+    //     socket.emit("accept", acceptmsg)
+    // }
+	useEffect(()=> console.log("chat id:", chatID), [chatID]);
 
     useEffect(() => console.log("chat array", chatArray), [chatArray]);
 
@@ -108,23 +109,23 @@ export default function RideChat() {
             </div>
             {/* <hr/> */}
             <div className='chatbody'> 
-                {/* {chatArray.map((item,i)=><div className={"chatDiv "+ (item.origin===0 ? "selfMessage" : "otherMessage")} key={i}>
-                    <div className="messageCard"text-break>
+                {chatArray.map((item,i)=><div className={"chatDiv my-2 d-flex  "+ (item.origin===0 ? "selfMessage" : "otherMessage")} key={i}>
+                    <div className="messageCard shadow rounded-pill text-break">
                     {item.message}
                     </div>
-                </div>)}*/}
+                </div>)}
 
-                <div className="chatDiv my-2 d-flex selfMessage">
+                {/* <div className="chatDiv my-2 d-flex selfMessage">
                     <div className="messageCard shadow rounded-pill text-break">item.message lorem20</div>
                 </div>
                 <div className="chatDiv my-2 d-flex otherMessage">
                     <div className="messageCard shadow rounded-pill text-break">item.message</div>
-                </div>
+                </div> */}
             </div>
             {/* <hr /> */}
             <div className="chat-send flex">
-                <input className='form-control sendbox mx-3' type="text"/>
-                <button className="btn yellow-btn mx-3"><i className="fas fa-paper-plane fs-3"></i></button>
+                <input onChange={storeChat} className='form-control sendbox mx-3' type="text"/>
+                <button onClick={sendMessage} className="btn yellow-btn mx-3"><i className="fas fa-paper-plane fs-3"></i></button>
             </div>
         </div>
     </div>

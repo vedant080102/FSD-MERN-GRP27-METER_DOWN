@@ -100,6 +100,18 @@ const markRideComplete=async(req,res)=>{
     }
 }
 
+const getOneRideData=async(req,res)=>{
+    var fareid = await Driver.findOne({_id:req.userId})
+    var fare=await Fare.findOne({_id:fareid.ongoingFare,_id:req.params.rideId}).populate("source destination").populate({
+        path:"passenger",
+        populate:{"path":"account"}
+    }).populate({
+        path:"driver",
+        populate:{"path":"account"}
+    })
+    res.send(fare)
+}
+
 const getChats=async(req,res)=>{
     chats=await Chat.find({fare:req.params.fare}).lean()
     console.log(chats)
@@ -132,5 +144,6 @@ module.exports={
     markStartRide,
     markRideComplete,
     getChats,
-    getBusyStatus
+    getBusyStatus,
+    getOneRideData
 }
