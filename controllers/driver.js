@@ -83,7 +83,11 @@ const markRideComplete=async(req,res)=>{
            timeTaken:timeTaken
 
        })
-
+       io.sockets.to(String(data.passenger)).emit("rideEnd",{
+        
+        "fareid":fare._id,
+        "message":`Journey completed!`,
+    })
         await Driver.findOneAndUpdate({_id:req.userId},{ongoingFare:null,busy:false,$push:{
             pastFares:completedfare._id
         }})
@@ -98,6 +102,18 @@ const markRideComplete=async(req,res)=>{
             "msg":"Invalid Passenger Data!"
         })
     }
+}
+
+const getOneRideData=async(req,res)=>{
+    var fareid = await Driver.findOne({_id:req.userId})
+    var fare=await Fare.findOne({_id:fareid.ongoingFare,_id:req.params.rideId}).populate("source destination").populate({
+        path:"passenger",
+        populate:{"path":"account"}
+    }).populate({
+        path:"driver",
+        populate:{"path":"account"}
+    })
+    res.send(fare)
 }
 
 const getChats=async(req,res)=>{
@@ -132,5 +148,6 @@ module.exports={
     markStartRide,
     markRideComplete,
     getChats,
-    getBusyStatus
+    getBusyStatus,
+    getOneRideData
 }
