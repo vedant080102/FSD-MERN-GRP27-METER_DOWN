@@ -131,7 +131,7 @@ function RideSum(){
                             </div>
                             <div>
                             {/* <button id="chatBut" onClick={navigate('ride-chat')}>Chat with Driver  <i class="fas fa-location-arrow"></i></button> */}
-                            <Link to='/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
+                            <Link className="btn purple-btn" to='/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
                             </div>
                             {/* <p>Pickup Location: <b>Some Address</b></p>
                             <p>Destination Location: <b>Some Address</b></p>

@@ -4,10 +4,16 @@ import AdminLogin from './AdminLogin.js'
 import DisplayStats from './DisplayStats.js'
 import DisplayUsers from './DisplayUsers.js'
 import DisplayRides from './DisplayRides.js'
+import { useSelector } from "react-redux";
 import './admin.css'
-
+import { useEffect } from "react";
 
 export default function AdminModule () {
+    
+    const user = useSelector((state)=> state.user.user);
+
+    // useEffect()
+
     return (
         <>
             <Navbar sticky='top' bg='light' className='justify-content-center p-0 px-4 m-0 pt-1' style={{zIndex:'10',top:'76px'}}>

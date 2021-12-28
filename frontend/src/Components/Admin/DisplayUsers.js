@@ -12,9 +12,9 @@ export default function DisplayUsers () {
 	const [modalShow, setModalShow] = useState(false);
 
     const getUserDetails = async () => {
-        await axiosInstance.get('http://localhost:3001/api/admin/allPassengers')
+        await axiosInstance.get(`/api/admin/allPassengers`)        
         .then(doc => {
-            console.log("data", doc.data);
+            // console.log("data", doc.data);
             var d = doc.data;
             var data = [];
             d.forEach(element => {
@@ -28,12 +28,12 @@ export default function DisplayUsers () {
                     type: element.account.type,
                 })
             })
-            console.log("cleaned data", data);
+            // console.log("cleaned data", data);
             setPassenger(data);
         })
-        await axiosInstance.get('http://localhost:3001/api/admin/allDrivers')
+        await axiosInstance.get(`/api/admin/allDrivers`)        
         .then(doc => {
-            console.log("data", doc.data);
+            // console.log("data", doc.data);
             var d = doc.data;
             var data = [];
             d.forEach(element => {
@@ -63,12 +63,12 @@ export default function DisplayUsers () {
                     },
                 })
             })
-            console.log("cleaned data", data);
+            // console.log("cleaned data", data);
             setdrivers(data);
         })
     }
 
-    useEffect(()=> console.log('all users', allUsers), [allUsers]);
+    // useEffect(()=> console.log('all users', allUsers), [allUsers]);
 
     useEffect(()=> {
         if ((drivers.length != 0) || (passenger.length != 0)) {
@@ -90,95 +90,149 @@ export default function DisplayUsers () {
     }
 
     const deleteFinally = async (id) => {
-        await axiosInstance.delete('http://localhost:3001/api/admin/deleteUser', {user: id})
+        await axiosInstance.delete(`/api/admin/deleteUser`, {user: id})        
         .then(()=>{
             console.log('user deleted')
+            getUserDetails()
         })
         .catch((e)=> console.log(e))
     }
+
+    const listPrint = (data) => <>
+        {data.map((doc, i)=><li class="list-group-item"><a key={i} target={'_blank'} href={doc} className="link-primary">View</a></li>)}
+    </>
 
     const driverModal = (doc) => {
         setdisplayMsg(<>
             <div className="w-100 text-start" style={{height:'70vh'}}>
                 <h3>Driver Details</h3>
-                <div className="w-100" style={{height:'60vh', overflowY:'scroll'}}>
-                    <div className="row my-3">
-                        <div className="col-3">Name:</div>
-                        <div className="col-9">{doc.name}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Id:</div>
-                        <div className="col-9">{doc.id}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Email:</div>
-                        <div className="col-9">{doc.email}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Phone:</div>
-                        <div className="col-9">{doc.phone}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Type:</div>
-                        <div className="col-9">{doc.type}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Approved:</div>
-                        <div className="col-9">{doc.driverData.approved}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Is Busy:</div>
-                        <div className="col-9">{doc.driverData.busy}</div>
-                    </div>
-                    <div className="row my-3">
-                        <div className="col-3">Car Photo {/*doc.driverData.carPhoto*/}</div>
-                        <div className="col-9"></div>
+                <div className="container" style={{height:'60vh', overflowY:'scroll'}}>
+                <ul class="list-group list-group-flush">
+                    <li className="list-group-item ">
+                        <div className="row my-1">
+                            <div className="col-5">Name:</div>
+                            <div className="col-7">{doc.name}</div>
                         </div>
-                    <div className="row my-3">
-                        <div className="col-3">Driver Photo:</div>
-                        <div className="col-9">{doc.driverData.driverPhoto}</div>
+                    </li>
+                    <li className="list-group-item ">
+                        <div className="row my-1">
+                            <div className="col-5">Id:</div>
+                            <div className="col-7">{doc.id}</div>
+                        </div>
+                    </li>
+                    <li className="list-group-item ">
+                        <div className="row my-1">
+                            <div className="col-5">Email:</div>
+                            <div className="col-7">{doc.email}</div>
+                        </div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Phone:</div>
+                        <div className="col-7">{doc.phone}</div>
                     </div>
-                    <div className="row my-3">
-                        <div className="col-3">Licence:</div>
-                        <div className="col-9">{doc.driverData.liscence}</div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Type:</div>
+                        <div className="col-7">{doc.type}</div>
                     </div>
-                    <div className="row my-3">
-                        <div className="col-3">Permit:</div>
-                        <div className="col-9">{doc.driverData.permit}</div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Approved:</div>
+                        <div className="col-7">{doc.driverData.approved.toString()}</div>
                     </div>
-                    <div className="row my-3">
-                        <div className="col-3">Registration:</div>
-                        <div className="col-9">{doc.driverData.registration}</div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Is Busy:</div>
+                        <div className="col-7">{doc.driverData.busy.toString()}</div>
                     </div>
-                    <div className="row my-3">
-                        <div className="col-3">Reviews:</div>
-                        <div className="col-9">{doc.driverData.reviews}</div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Car Photo</div>
+                        <div className="col-7">
+                            <ul class="ms-0 list-group list-group-flush">
+                                {doc.driverData.carPhoto ? listPrint(doc.driverData.carPhoto) : '-'}
+                            </ul>
+                        </div>
                     </div>
-                    <div className="row my-3">
-                        <div className="col-3">Vehicle Number:</div>
-                        <div className="col-9">{doc.driverData.vehicleNumber}</div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Driver Photo:</div>
+                        <div className="col-7"><a target={'_blank'} href={doc.driverData.driverPhoto} className="link-primary">View</a></div>
                     </div>
-                    <div className="row my-3">
-                        <div className="col-3">Vehicle Type:</div>
-                        <div className="col-9">{doc.driverData.vehicleType}</div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Licence:</div>
+                        <div className="col-7"><a className="link-primary" href={doc.driverData.liscence}>View</a></div>
                     </div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Permit:</div>
+                        <div className="col-7"><a className="link-primary" href={doc.driverData.permit}>View</a></div>
+                    </div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Registration:</div>
+                        <div className="col-7"><a className="link-primary" href={doc.driverData.registration}>View</a></div>
+                    </div>
+                    </li>
+                    {/* <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Reviews:</div>
+                        <div className="col-7">{doc.driverData.reviews}</div>
+                    </div>
+                    </li> */}
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Vehicle Number:</div>
+                        <div className="col-7">{doc.driverData.vehicleNumber}</div>
+                    </div>
+                    </li>
+                    <li className="list-group-item ">
+                    <div className="row my-1">
+                        <div className="col-5">Vehicle Type:</div>
+                        <div className="col-7">{doc.driverData.vehicleType}</div>
+                    </div>
+                    </li>
+                </ul>
                 </div>
             </div>
         </>)
         setModalShow(true)
     }
 
-    const cards = (item, i) => <div key={i} className="col-md-3 col-6">
-        <div className="card shadow border-0">
+    const approveDriver = async(id) => {
+        await axiosInstance.put(`/api/admin/approveDriver`, {driver: id})
+        .then(doc => {
+            console.log("aprroved driver");
+            getUserDetails()
+        }).catch(e=> console.log(e));
+    }    
+
+    const cards = (item, i) => <div key={i} className="col-md-4 col-12">
+        <div className="card shadow" style={{borderColor:'var(--purple)'}}>
             <div class="card-body">
                 <h5 class="card-title fw-bold text-uppercase">{item.name}</h5>
                 <p className="text-muted text-truncate" data-bs-toggle="tooltip" data-bs-placement="top" title={item.id}>id: {item.id}</p>
                 <h6 class="yellow-btn active badge rounded-pill mb-2">{item.type}</h6>
                 <p class="card-text">{item.email}</p>
                 <p class="card-text">{item.phone}</p>
+                <p>{item.type === 'driver' && (item.driverData.approved ? '✅ Approved' : '❌ Not Approved')}</p>
                 <div className="w-100 flex">
-                    <button className="btn purple-btn" onClick={() => deleteUser(item.id)}>Delete</button>
-                    {item.type === 'driver' && <button onClick={()=> driverModal(item)}>View</button>}
+                    <button className="btn btn-outline-danger" onClick={() => deleteUser(item.id)}>Delete</button>
+                    {item.type === 'driver' && 
+                    <>
+                        <button className="ms-1 btn purple-btn" onClick={()=> driverModal(item)}>View</button>
+                        <button className="ms-1 btn purple-btn" onClick={()=> approveDriver(item.id)}>Approve</button>
+                    </>}
                 </div>
             </div>
         </div>

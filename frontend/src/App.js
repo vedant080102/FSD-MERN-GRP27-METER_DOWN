@@ -38,12 +38,15 @@ import ProtectedRoute from './ProtectedRoute'
 
 import socket from './socket';
 import { useSelector } from 'react-redux';
+import MyModal from './Components/Base/MyModal';
 
 function App() {
 	
 	const [acceptmsg,setAccept]= useState("");
 	const user = useSelector((state) => state.user.user);
 	const chatID = useSelector((state) => state.rideChat.rideChat);
+	const [statusMsg, setstatusMsg] = useState();
+	const [modalShow, setModalShow] = useState(false);
 
 	// useEffect(()=>{
 
@@ -56,11 +59,12 @@ function App() {
 
 	useEffect(()=>{
 
-		// socket.on("ride",(data)=>{
-        //     console.log("ride")
-        //     console.log(data)
-        //     setAccept(data)
-        // })
+		socket.on("ride",(data)=>{
+            console.log("ride")
+            console.log(data)
+            setAccept(data)
+			setstatusMsg("hi")
+        })
 
 		// socket.on("allottedPassenger",(data)=>{
 		// console.log("allotted")
@@ -82,6 +86,8 @@ function App() {
 		// 	chatID && socket.emit('rejoinchat', {"room":chatID, 'sender':user._id});
 		// })
 	})
+
+	
 
 	return (
 		<div className="App">
@@ -143,6 +149,12 @@ function App() {
 					}/>
 				</Routes>
 				<Footer/>
+
+				<MyModal
+					show={modalShow}
+					onHide={() => setModalShow(false)}
+					msg={statusMsg}
+				/>
 			</Router>
 		</div>
 	);
