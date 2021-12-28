@@ -121,7 +121,7 @@ const registerUser=(req,res,next)=>{
 }
 
 const logoutUser=async(req,res,next)=>{
-   push= await Subscription.deleteOne({user:req.userId})
+   push= await Subscription.findOneAndDelete({user:req.userId})
     console.log("",push)
     res.status(200).clearCookie("jwt").json({msg:"userLoggedOut",userData:{}})
 }
@@ -158,14 +158,14 @@ const notificationsSubscribe=async (req, res) => {
        "keys":subscription.keys,
        "user":req.userId
    })
-    const payload = JSON.stringify({
-      title: 'Hello!',
-      body: 'It works.',
-    })
+    // const payload = JSON.stringify({
+    //   title: 'Hello!',
+    //   body: 'It works.',
+    // })
   
-    webpush.sendNotification(subscription, payload)
-      .then(result => console.log(result))
-      .catch(e => console.log(e.stack))
+    // webpush.sendNotification(subscription, payload)
+    //   .then(result => console.log(result))
+    //   .catch(e => console.log(e.stack))
   
     res.status(200).json({'success': true})
   }
