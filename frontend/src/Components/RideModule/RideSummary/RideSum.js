@@ -77,6 +77,7 @@ function RideSum(){
             
             <div className="container-fluid  drCont">
                 <div className="container shadow drinfo rounded">
+                    {/* <Link to='/ride/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link> */}
                     {rideInfo?<div className="row">
                         <div className="col-lg-5">
                             <div className="drpic m-auto">
@@ -130,7 +131,7 @@ function RideSum(){
                             </div>
                             <div>
                             {/* <button id="chatBut" onClick={navigate('ride-chat')}>Chat with Driver  <i class="fas fa-location-arrow"></i></button> */}
-                            <Link to='ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
+                            <Link to='/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
                             </div>
                             {/* <p>Pickup Location: <b>Some Address</b></p>
                             <p>Destination Location: <b>Some Address</b></p>

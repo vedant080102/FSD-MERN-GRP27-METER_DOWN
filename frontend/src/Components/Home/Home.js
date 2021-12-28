@@ -202,10 +202,6 @@ function Home() {
 
                 <div className='flex min-vh-100 py-2 how-to'>
                     <HowToRide/>
-                    <Link to={'/ride'}>ride</Link>
-                    <Link to={'/ride/book-ride'}>book-ride</Link>
-                    <Link to={'/ride/ride-chat'}>ride-chat</Link>
-                    <Link to={'/ride/summary'}>summary</Link>
                 </div>
 
                 <GetAddress locquery={locQuery} show={modalShow} onHide={() => setModalShow(false)}/>

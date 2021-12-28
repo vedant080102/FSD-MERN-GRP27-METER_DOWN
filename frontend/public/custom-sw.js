@@ -20,10 +20,10 @@ self.addEventListener('push', event => {
     }).then(function(clientList) {
       for (var i = 0; i < clientList.length; i++) {
         var client = clientList[i];
-        if (client.url == '/' && 'focus' in client)
+        if (client.url == 'http://localhost:3000/ride/summary' && 'focus' in client)
           return client.focus();
       }
       if (clients.openWindow)
-        return clients.openWindow('/');
+        return clients.openWindow('http://localhost:3000/ride/summary');
     }));
   });

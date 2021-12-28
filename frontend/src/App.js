@@ -26,7 +26,7 @@ import AdminModule from './Components/Admin/Admin';
 import Bookings from './Components/RideModule/Bookings/Bookings';
 import RideModule from './Components/RideModule/RideModule';
 // import BookRide from './Components/RideModule/BookRide/BookRide';
-// import RideChat from './Components/RideModule/RideChat/RideChat';
+import RideChat from './Components/RideChat/RideChat';
 // import RideSum from './Components/RideModule/RideSummary/RideSum';
 
 import Driver from './Components/Driver/Driver';
@@ -53,7 +53,6 @@ function App() {
     //         setAccept(data)
     //     })
 
-	useEffect(()=> console.log("chat id:", chatID), [chatID]);
 
 	useEffect(()=>{
 
@@ -112,12 +111,14 @@ function App() {
 					{/* <Route exact path="/ride/book-ride" element={<ProtectedRoute usertype='passenger'/>}>
 						<Route path="/ride/book-ride" element={<BookRide/>}/>
 					</Route>
-					<Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/ride/ride-chat" element={<RideChat/>}/>
-					</Route>
 					<Route exact path="/ride/summary" element={<ProtectedRoute usertype='passenger'/>}>
-						<Route path="/ride/summary" element={<RideSum/>}/>
-					</Route> */}
+					<Route path="/ride/summary" element={<RideSum/>}/>
+				</Route> */}
+					{/* <Route exact path="/ride/ride-chat" element={<ProtectedRoute usertype={null}/>}> */}
+
+					{user && <Route path="/ride-chat" element={<RideChat/>}/>}
+					
+					{/* </Route> */}
 
 					<Route path="/become-driver" element={<Driver/>}/>
 

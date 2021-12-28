@@ -1,6 +1,6 @@
 import { Link, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import BookRide from './BookRide/BookRide'
-import RideChat from './RideChat/RideChat'
+// import RideChat from '../RideChat/RideChat'
 import RideSum from './RideSummary/RideSum'
 import ProtectedRoute from '../../ProtectedRoute'
 import { useSelector } from 'react-redux'
@@ -48,7 +48,7 @@ export default function RideModule() {
                     <Route path="book-ride" element={<BookRide/>}/>
                 {/* </Route> */}
                 {/* <Route path="ride-chat" element={<ProtectedRoute usertype='passenger'/>}> */}
-                    <Route path="ride-chat" element={<RideChat/>}/>
+                    {/* <Route path="ride-chat" element={<RideChat/>}/> */}
                 {/* </Route> */}
                 {/* <Route path="summary" element={<ProtectedRoute usertype='passenger'/>}> */}
                     <Route path="summary" element={<RideSum/>}/>
