@@ -5,7 +5,8 @@ const Fare = require("../models/Fare")
 const Passenger = require("../models/Passenger")
 const User = require("../models/User")
 const Chat=require("../models/Chat")
-
+const webpush = require('web-push')
+const Subsciption = require("../models/Subsciption");
 const updateDriverInfo=async(req,res)=>{
     
     console.log(req.files)
@@ -83,6 +84,17 @@ const markRideComplete=async(req,res)=>{
            timeTaken:timeTaken
 
        })
+       var subscription=await Subsciption.findOne({user:req.userId}).lean()
+       var payload = JSON.stringify({
+           title: 'Journey completed!',
+           body: ` Please tell us your experience by rating your ride`,
+           type:"review",
+           ride:String(fare._id)
+         })
+       
+         webpush.sendNotification(subscription, payload)
+           .then(result => console.log(result))
+           .catch(e => console.log(e.stack))
        io.sockets.to(String(data.passenger)).emit("rideEnd",{
         
         "fareid":fare._id,

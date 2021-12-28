@@ -174,7 +174,7 @@ const getPriceEstimate=async(req,res)=>{
 }
 
 const getPastRides=async(req,res)=>{
-    passenger=await Passenger.findOne({_id:req.userId}).populate({path:"prevRides",populate:{"path":"fareData",populate:"source destination"}})
+    passenger=await Passenger.findOne({_id:req.userId}).populate({path:"prevRides",populate:{"path":"fareData",populate:"source destination driver"}})
     res.send(passenger.prevRides)
 }
 
@@ -184,8 +184,10 @@ const giveReview=async(req,res)=>{
         "comment":req.body.comment,
         "ride":req.body.rideId
     })
-    completedid=await Completedfares.findOneAndUpdate({_id:req.body.rideId},{review:review._id},{new:true})
+    completedid=await Completedfares.findOneAndUpdate({fareData:req.body.rideId},{review:review._id},{new:true})
+    console.log("compled",completedid)
    ride =await Fare.findOne({_id:req.body.rideId})
+   console.log("ride",ride)
     await Driver.findOneAndUpdate({_id:ride.driver},{$push:{
         reviews:completedid._id
     }})

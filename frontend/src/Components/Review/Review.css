@@ -1,0 +1,17 @@
+.submitButton{
+    border: solid 2px var(--yellow);
+    padding: 0.7em;
+    padding-left:1em ;
+    padding-right: 1em;
+    border-radius: 25px;
+    color: var(--yellow);
+    background-color: var(--purple);
+}
+
+.submitButton:hover{
+    border: solid 2px var(--purple);
+    
+    font-weight: bold;
+    color: var(--purple);
+    background-color: var(--yellow);
+}

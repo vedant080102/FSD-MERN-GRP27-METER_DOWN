@@ -1,6 +1,9 @@
 const {Server, Socket}=require("socket.io");
 const Chat = require("../models/Chat");
 const Fare =require("../models/Fare")
+const webpush = require('web-push')
+const Subsciption = require("../models/Subsciption");
+
 // module.exports=function (io) {
 //     // const io= new Server(server,{
 //     //     cors: {
@@ -53,6 +56,7 @@ if (io === undefined) {
                 socket.on("chat",(event)=>{
                   console.log(event)
                   socket.broadcast.to(event.room).emit("chat",event)
+                  
                   Chat.create({
                     "sender":event.sender,
                     "fare":event.room,

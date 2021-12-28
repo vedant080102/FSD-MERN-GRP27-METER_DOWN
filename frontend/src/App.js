@@ -39,6 +39,7 @@ import ProtectedRoute from './ProtectedRoute'
 import socket from './socket';
 import { useSelector } from 'react-redux';
 import MyModal from './Components/Base/MyModal';
+import Review from './Components/Review/Review';
 
 function App() {
 	
@@ -147,6 +148,7 @@ function App() {
 							</div>
 						</main>
 					}/>
+					<Route path="/review/*" element={<Review/>} />
 				</Routes>
 				<Footer/>
 

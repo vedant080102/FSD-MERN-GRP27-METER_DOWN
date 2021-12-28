@@ -1,6 +1,9 @@
 import React,{useEffect,useState} from "react";
 import { axiosInstance } from "../../../AxiosSetUp";
 import './Bookings.css';
+import Taxi from "../../../Media/taxi.svg"
+import Auto from "../../../Media/rickshaw.svg"
+
 
 function Bookings() {
 
@@ -37,7 +40,7 @@ function Bookings() {
                             <div class="card rideind shadow">
                             <div class="card-header ">
                                 <div className="row">
-                                    <div className="col-lg-2 col-md-2 col-sm-2 col-2 autoR">
+                                    <div className={"col-lg-2 col-md-2 col-sm-2 col-2 "}>
     
                                     </div>
                                     <div className="col-lg-10 col-md-10 col-sm-10 col-10">
@@ -47,16 +50,21 @@ function Bookings() {
                             </div>
                             <div class="card-body shadow">
                                 <div className="row rideinf"> 
-                                    <div className="col-lg-9 col-md-9">
-                                        <div className="w-100 srcinfo source">
+                                    <div className="col-lg-6 col-md-6" >
+                                        <div className="w-100 srcinfo source" >
                                             {r.fareData.source.address}
                                         </div>
                                         <div className="w-100 srcinfo destn">
                                             {r.fareData.destination.address}
                                         </div>
                                     </div>
+                                    <div className="col-lg-3 col-md-3" >
+                                        <b >&#8377; {r.paidAmt}</b>
+                                        
+                                        {/* <button className="mybtn purple-btn">More Info</button> */}
+                                    </div>
                                     <div className="col-lg-3 col-md-3">
-                                        <b>{r.paidAmt} $</b><br />
+                                    <img src={((r.fareData.driver.vehicleType=="Taxi")?Taxi:Auto)} style={{"height":"60px"}} />
                                         {/* <button className="mybtn purple-btn">More Info</button> */}
                                     </div>
                                 </div>

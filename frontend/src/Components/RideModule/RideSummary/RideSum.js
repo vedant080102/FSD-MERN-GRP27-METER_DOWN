@@ -62,6 +62,14 @@ function RideSum(){
             // navigate('/');
             // setRide(data.fareid)
           })
+         
+            socket.on("rideEnd",(event)=>{
+                    navigate("/review/"+event.fareid);
+    
+            })
+        
+
+
     },[])
 
     useEffect(()=>{
