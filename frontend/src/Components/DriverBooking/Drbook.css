@@ -1,8 +1,27 @@
 .drbook{
     padding: 3em;
     background-color: var(--yellow);
-    margin: 2em;
+    /* margin: 2em; */
     border-radius: 0.4em;
+    min-height: calc(100vh - 76px - 2em);
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.form-confirm {
+    border: 1px solid var(--purple);
+    /* color: var(--yellow); */
+}
+
+.ride-address {
+    width: 80%;
+    padding: 0.5em;
+    border: 1px solid var(--purple);
+    border-radius: 0.25rem;
+    margin: 0.25em 1em;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #acceptRide{
@@ -20,11 +39,11 @@
 }
 
 .otpI{
-    border: solid var(--purple);
-    border-radius: 0.4em;
-    padding: 0.2em 0.7em;
+    /* border: solid var(--purple); */
+    /* border-radius: 0.4em;
+    padding: 0.2em 0.7em; */
     color: var(--purple);
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     font-weight: 600;
     background-color: transparent;
 }

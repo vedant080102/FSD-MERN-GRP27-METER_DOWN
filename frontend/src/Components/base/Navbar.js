@@ -22,7 +22,7 @@ function Navbar(props) {
         becomeDriver: false,
         about: false,
         contact: false,
-        test:false
+        driver:false
     });
     const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch();
@@ -84,7 +84,9 @@ function Navbar(props) {
             bookings: false,
             becomeDriver: false,
             about: false,
-            contact: false
+            contact: false,
+            // passenger: false,
+            driver: false,
         })
         if (page === '' || page === 'home') {
             setIsHome(true)
@@ -115,6 +117,12 @@ function Navbar(props) {
             setActivePage(prevState => ({
                 ...prevState,
                 contact: true
+            }))
+        }
+        else if (page === 'driver') {
+            setActivePage(prevState => ({
+                ...prevState,
+                driver: true
             }))
         }
         setsidebarOpen(false)
@@ -202,9 +210,6 @@ function Navbar(props) {
                 <HashLink to='/home#book-a-ride' className={"nav-link " + (activePage.home ? "active" : "")}>Book a Ride</HashLink>
             </li>
             <li>
-                <Link to="/bookings" className={"nav-link " + (activePage.bookings ? "active" : "")}>My Bookings</Link>
-            </li>
-            <li>
                 <Link to="/become-driver" className={"nav-link " + (activePage.becomeDriver ? "active" : "")}>Become a Driver</Link>
             </li>
             <li>
@@ -213,9 +218,18 @@ function Navbar(props) {
             <li>
                 <Link to="/contact" className={"nav-link " + (activePage.contact ? "active" : "")}>Contact</Link>
             </li>
-            <li>
-                <Link to="/driver/booking" className={"nav-link " + (activePage.test ? "active" : "")}>Test</Link>
-            </li>
+            {/* restricted links */}
+            {user && 
+            <>
+                <hr/>
+                <li>
+                    <Link to="/bookings" className={"nav-link " + (activePage.bookings ? "active" : "") + (!user || user.type!='passenger' && 'd-none')}>My Bookings</Link>
+                </li>
+                <li>
+                    <Link to="/driver/booking" className={"nav-link " + (activePage.driver ? "active" : "") + (!user || user.type!='driver' && 'd-none')}>Driver Ride Booking</Link>
+                </li>
+            </>
+            }
         </ul>
         <hr/>
         <div><InstallPWA/></div>

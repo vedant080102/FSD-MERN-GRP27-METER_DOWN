@@ -1,17 +1,18 @@
 import { Navigate, Route , Outlet, useNavigate} from "react-router-dom"
 import { useSelector } from 'react-redux'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // import MyModal from "./Components/base/MyModal";
-// import { useState } from "react";
 
 
 export default function ProtectedRoute(props) {
     // const [statusMsg, setstatusMsg] = useState();
 	// const [modalShow, setModalShow] = useState(false);
 
+	const [userPresent, setuserPresent] = useState(true);
+
     const { path, usertype: userType } = props;
-    const user = useSelector((state) => state.user.user);
-    // const navigate = useNavigate();
+    var user;
+    const navigate = useNavigate();
 
     // useEffect(()=>console.log("user type:", user.type, userType));
 
@@ -31,14 +32,28 @@ export default function ProtectedRoute(props) {
     //     }, 2500);
     // }
 
-    return (
-        <>
-            {user ? ((!userType) || (userType === user.type)) ? <Outlet /> : <Navigate to='/'/> : <Navigate to='/login' />}
-            {/* <MyModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-                msg={statusMsg}
-            /> */}
-        </>
-    )
+    // const GetUser = () => {
+        user = useSelector((state) => state.user.user);
+        // setuserPresent(user!=null ? true : false);
+        if (user) {
+            if (user.type === userType) return <Outlet />
+            else return <Navigate to='/'/>
+        }
+        else return <Navigate to='/login'/>
+    // }
+
+    // useEffect(()=> {
+    //     GetUser()
+    // },[])
+
+    // return (
+    //     <>
+    //         {user ? ((!userType) || (userType === user.type)) ? <Outlet /> : <Navigate to='/'/> : <Navigate to='/login' />}
+    //         {/* <MyModal
+    //             show={modalShow}
+    //             onHide={() => setModalShow(false)}
+    //             msg={statusMsg}
+    //         /> */}
+    //     </>
+    // )
 }

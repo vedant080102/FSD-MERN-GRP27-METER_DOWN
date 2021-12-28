@@ -29,8 +29,6 @@ function DriverBooking (){
             var data =await axiosInstance.get(`/api/driver/getOneRide/${fare}`,{withCredentials:true}) 
             console.log(data.data);
             setrideinfo(data.data);
-          
-
         } catch (error) {
             console.log(error);
         }
@@ -86,54 +84,55 @@ function DriverBooking (){
     return(
         <>
         <div>
-            <div className="container drbook vh-100 ">
-                {acceptmsg?<button id="acceptRide" onClick={acceptRide}>Accept</button>:<div>No Cutomers waiting!</div>}
-                {rideinfo?<div className="container">
-                   <br />
-                    <div className="row" style={{marginBottom:"2em"}}>
-                        <div className="col-lg-3">
-                            Pickup Location:
+            <div className="container drbook flex text-start">
+                    {acceptmsg ? 
+                        <div className="w-100 flex">
+                            <button id="acceptRide" onClick={acceptRide}>Accept</button>
                         </div>
-                        <div className="col-lg-8" style={{textAlign:"left"}}>
-                            {rideinfo.source.address}
-                        </div>
-                    </div>
-                    <div className="row" style={{marginBottom:"2em"}}>
-                        <div className="col-lg-3">
-                            Destination Location:
-                        </div>
-                        <div className="col-lg-8" style={{textAlign:"left"}}>
-                            {rideinfo.destination.address}
-                        </div>
-                    </div>
-                    <div className="row " id="myotp" style={{marginBottom:"2em"}}>
-                        <div className="col-lg-3">
-                        <label htmlFor="otpI">Enter OTP:</label>
-                        </div>
-                        <div className="col-lg-4" style={{textAlign:"left"}}>
-                        <input type="text" className="otpI" onChange={(e)=>{setotp(e.target.value)}}/>
-                        </div>
-                        <div className="col-lg-5" style={{textAlign:"left"}}>
-                        <button onClick={verifyOTP} className="otplink">Submit</button>
-                        </div>
-                    </div>
-                    <div className="row " id="myamt" style={{marginBottom:"2em"},{display:"none"}}>
-                        <div className="col-lg-3">
-                        <label htmlFor="otpI">Enter Amount Received:</label>
-                        </div>
-                        <div className="col-lg-4" style={{textAlign:"left"}}>
-                        <input type="text" className="otpI" onChange={(e)=>{setamt(e.target.value)}}/>
-                        </div>
-                        <div className="col-lg-5" style={{textAlign:"left"}}>
-                        <button onClick={submitDetail} className="otplink">Submit</button>
-                        </div>
-                    </div>
-                    
-                    
+                    : <div className="h-100 w-100 flex flex-column" style={{color:'var(--purple)'}}>
+                        <h3>No Cutomers waiting!</h3>
+                        <i className="fas fa-user-clock display-1 my-5"></i>
+                    </div>}
+                {rideinfo ? 
+                    <div className="row flex">
+                        <div className="form-confirm rounded p-4 col-md-8 col-12">
+                            <div className="row mb-4">
+                                <div className="fw-bold fs-4">Pickup Location:</div>
+                                <div className="ride-address fs-5">{rideinfo.source.address}</div>
+                            </div>
+                            <div className="row mb-4">
+                                <div className="col-12 fw-bold fs-4">Destination Location:</div>
+                                <div className="col-12 ride-address fs-5">{rideinfo.destination.address}</div>
+                            </div>
+                            <div className="row" id="myotp mb-4">
+                                <div className="col-12 fw-bold fs-4">
+                                    <label htmlFor="otpI">Enter OTP*:</label>
+                                </div>
+                                <div className="col-12">
+                                    <input className="ride-address otpI" type="text" onChange={(e)=>{setotp(e.target.value)}} required/>
+                                </div>
+                                <div className="w-100 flex mt-3">
+                                <button onClick={verifyOTP} className="btn purple-btn">Submit</button>
+                                </div>
+                            </div>
 
-                </div>:<div></div>}
-                <br />
-                <Link to={'/ride-chat'} className="otplink">Chat yo!</Link>
+                            <div className="my-4" id="myamt">
+                                <div className="w-100 fw-bold fs-4">
+                                    <label htmlFor="otpI">Enter Amount Received:</label>
+                                </div>
+                                <div className="w-100">
+                                    <input type="text" className="ride-address otpI"  onChange={(e)=>{setamt(e.target.value)}} required/>
+                                </div>
+                                <div className="w-100 flex mt-3">
+                                    <button onClick={submitDetail} className="btn purple-btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="w-100 flex my-3">
+                            <Link to={'/ride-chat'} className="btn purple-btn">Chat with passenger</Link>
+                        </div>
+                    </div>
+                :<></>}
             </div>
             
         </div>

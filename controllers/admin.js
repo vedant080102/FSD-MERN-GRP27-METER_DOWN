@@ -10,7 +10,7 @@ const getAllPassengers=async(req,res)=>{
 }
 
 const getAllDrivers=async(req,res)=>{
-    drivers=await Driver.find().populate("account review")
+    drivers=await Driver.find().populate("account")
     res.send(drivers)
 }
 

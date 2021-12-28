@@ -47,7 +47,12 @@ function Signup() {
               <span className="mt-3">Welcome to METER DOWN! 🎉</span>
             </>);
             setModalShow(true);
-            setTimeout(() => navigate("/"), 2500);
+            setTimeout(() => {
+              if (res.data.user.type === 'driver') {
+                navigate('/driver/fill-details')
+              }
+              navigate("/")
+            }, 2500);
           })
         }).catch((err)=>{
           console.log(err.response.data.msg);
