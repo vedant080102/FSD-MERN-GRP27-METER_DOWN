@@ -158,14 +158,15 @@ const notificationsSubscribe=async (req, res) => {
        "keys":subscription.keys,
        "user":req.userId
    })
-    // const payload = JSON.stringify({
-    //   title: 'Hello!',
-    //   body: 'It works.',
-    // })
+    const payload = JSON.stringify({
+      title: 'Hello!',
+      body: 'It works.',
+      data:{"type":"home"}
+    })
   
-    // webpush.sendNotification(subscription, payload)
-    //   .then(result => console.log(result))
-    //   .catch(e => console.log(e.stack))
+    webpush.sendNotification(subscription, payload)
+      .then(result => console.log(result))
+      .catch(e => console.log(e.stack))
   
     res.status(200).json({'success': true})
   }
