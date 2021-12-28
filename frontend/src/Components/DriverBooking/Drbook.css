@@ -1,0 +1,43 @@
+.drbook{
+    padding: 3em;
+    background-color: var(--yellow);
+    margin: 2em;
+    border-radius: 0.4em;
+}
+
+#acceptRide{
+    background-color: transparent;
+    padding: 0.4em 1.5em;
+    border: solid var(--purple);
+    border-radius: 0.4em;
+    color: var(--purple);
+    font: 600;
+}
+
+#acceptRide:hover{
+    background-color: var(--purple);
+    color: var(--yellow);
+}
+
+.otpI{
+    border: solid var(--purple);
+    border-radius: 0.4em;
+    padding: 0.2em 0.7em;
+    color: var(--purple);
+    font-size: 1.2em;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.otplink{
+    color: var(--purple);
+    border-radius: 0.5em;
+    border:solid var(--purple);
+    padding:0.4em 1em;
+    background-color: transparent;
+}
+
+.otplink:hover{
+    color: var(--yellow);
+    background-color: var(--purple);
+}
