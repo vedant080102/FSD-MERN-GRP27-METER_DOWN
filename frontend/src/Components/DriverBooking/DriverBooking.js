@@ -1,5 +1,6 @@
 import React,{ useState,useEffect} from "react";
 import socket from "../../socket";
+import './Drbook.css'
 
 function DriverBooking (){
 
@@ -26,7 +27,11 @@ function DriverBooking (){
 
     return(
         <div>
-            <button onClick={acceptRide}>Accept</button>
+            <div className="conatiner flex  vh-100 drbook">
+
+                {acceptmsg?<button onClick={acceptRide} id="acceptRide">Accept</button>:<div>No customers yet!</div>}
+            </div>
+            
         </div>
     )
 }

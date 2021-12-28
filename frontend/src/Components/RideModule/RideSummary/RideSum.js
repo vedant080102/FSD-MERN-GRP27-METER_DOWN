@@ -51,9 +51,9 @@ function RideSum(){
             }else{
                 setstatusMsg(data.message)
                 setTimeout(() => {
-                    
+                    console.log("2 seconds");
                 }, 2000);
-                navigate('/ride/book-ride');
+                navigate('/home#book-a-ride');
             }
             // navigate('/');
             // setRide(data.fareid)

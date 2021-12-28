@@ -195,7 +195,7 @@ function BookRide(props) {
         await axiosInstance.post(`/api/passenger/bookRide`,apiData,{withCredentials:true}).then((res)=>{
             console.log(res);
             console.log("Worked");
-            navigate('/ride-summary')
+            navigate('ride/summary')
         }).catch((e)=>{
             console.log(e);
         });

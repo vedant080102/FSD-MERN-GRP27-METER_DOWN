@@ -1,0 +1,20 @@
+.drbook{
+ 
+    background-color: var(--yellow);
+    margin: 2em;
+    border-radius: 0.4em;
+}
+
+#acceptRide{
+    background-color: transparent;
+    padding: 0.4em 1.5em;
+    border: solid var(--purple);
+    border-radius: 0.4em;
+    color: var(--purple);
+    font: 600;
+}
+
+#acceptRide:hover{
+    background-color: var(--purple);
+    color: var(--yellow);
+}
