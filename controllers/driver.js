@@ -83,7 +83,11 @@ const markRideComplete=async(req,res)=>{
            timeTaken:timeTaken
 
        })
-
+       io.sockets.to(String(data.passenger)).emit("rideEnd",{
+        
+        "fareid":fare._id,
+        "message":`Journey completed!`,
+    })
         await Driver.findOneAndUpdate({_id:req.userId},{ongoingFare:null,busy:false,$push:{
             pastFares:completedfare._id
         }})
