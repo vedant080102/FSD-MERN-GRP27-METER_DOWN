@@ -61,6 +61,26 @@ To start the project run following command in your terminal:
 <br/>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+## FEATURES:
+- Create accounts! - Cabbie Drivers & Passengers
+- Book cabs or autos at any time of the day! From anywhere to anywhere
+- Mark your pickup and destination on a map!
+- Chat with your driver
+- Update account data
+- View previous rides and fares
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
+## TECHNOLOGIES USED:
+- React
+- Node.js
+- ExpressJs
+- Push API
+- Socket.io
+- Mongoose
+- MongoDB
+- DummySMS API
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#)
 
 ### MEMBERS
 - VEDANT SARNOBAT (1911117)
