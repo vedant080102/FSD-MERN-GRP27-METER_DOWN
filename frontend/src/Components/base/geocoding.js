@@ -12,7 +12,7 @@ function GetAddress(props) {
 
     useEffect(()=>{
         (props.locquery.currLoc === undefined || props.locquery.currLoc.title === undefined) ? console.log() : inputRef.current.value = props.locquery.currLoc.title;
-        console.log("hi modal invoked!")
+        // console.log("hi modal invoked!")
         setResults([])
     }, [props.show])
 

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import socket from '../../socket';
 import {useSelector} from 'react-redux'
 import './chat.css'
+import { axiosInstance } from "../../AxiosSetUp";
+
 
 
 export default function RideChat() {
@@ -81,6 +83,17 @@ export default function RideChat() {
             sender: user._id
         })
     }
+
+    const initializeChat = async () => {
+        try {
+            var {chatData} = await axiosInstance.get(`api/passenger/rideChat/${chatID}`)
+            console.log("chat array:", chatData);     
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> chatID && initializeChat(),[1])
 
     // const acceptRide = () => {
     //     console.log(acceptmsg)

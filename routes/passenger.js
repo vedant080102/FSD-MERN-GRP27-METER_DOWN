@@ -11,7 +11,7 @@ router.get("/getOneRide/:rideId",checkToken,getOneRideData)
 router.get("/priceEstimate",getPriceEstimate)
 router.get("/getPrevRides",checkToken,isPassenger,getPastRides)
 router.post("/giveReview",checkToken,isPassenger,giveReview)
-router.get("/rideChat/:fare",checkToken,isPassenger,getChats)
+router.get("/rideChat/:fare",checkToken,getChats)
 router.post("/test",test)
 
 // router.get("/createprice",createPrices)

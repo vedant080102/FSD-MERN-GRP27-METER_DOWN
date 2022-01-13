@@ -12,7 +12,7 @@ router.put("/markBusy",checkToken,isDriver,markBusy)
 router.put("/updateLocation",checkToken,isDriver,updateLocation)
 router.put("/startRide",checkToken,isDriver,markStartRide)
 router.post("/rideComplete",checkToken,isDriver,markRideComplete)
-router.get("/rideChat/:fare",checkToken,isDriver,getChats)
+router.get("/rideChat/:fare",checkToken,getChats)
 router.get("/getDriverStatus",checkToken,isDriver,getBusyStatus)
 router.get("/getOneRide/:rideId",checkToken,getOneRideData)
 

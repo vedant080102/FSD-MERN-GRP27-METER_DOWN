@@ -2,7 +2,7 @@ import { Modal } from "react-bootstrap";
 
 export default function MyModal(props) {
 
-    console.log("In modall")
+    // console.log("In modall")
     return (
         <Modal
             {...props}

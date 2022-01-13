@@ -160,7 +160,7 @@ const notificationsSubscribe=async (req, res) => {
    })
     const payload = JSON.stringify({
       title: 'Hello!',
-      body: 'It works.',
+      body: 'You have logged in! 🎉',
       data:{"type":"home"}
     })
   

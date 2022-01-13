@@ -40,13 +40,13 @@ function Navbar(props) {
         }
     }
 
-    useEffect(()=> console.log("hi user:", user), [user]);
+    // useEffect(()=> console.log("hi user:", user), [user]);
     // useEffect(()=> console.log("home status:", isHome), [isHome]);
 
     const logoutHandler = async(e) =>{
         const { data } = await axiosInstance.get("/api/user/logout",{withCredentials:true});
         unsubscribeUser()
-        console.log(data.userData);
+        // console.log(data.userData);
         // setuserInfo(data.userData);
         dispatch(logout());
     }

@@ -15,7 +15,14 @@ function RideSum(){
     const [Source,setSource] = useState();
     const [Dest,setDest] = useState();
     const [fareid,setfareid] = useState("");
-    const [statusMsg, setstatusMsg] = useState("Finding Driver!!");
+    const [statusMsg, setstatusMsg] = useState(
+        <div className="flex"> 
+            Finding Driver
+            <div class="ms-2 my-4 spinner-grow text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    );
 	const [modalShow, setModalShow] = useState(true);
     const [driverPic,setdriverPic] = useState();
     const [rideInfo,setrideInfo] = useState();
@@ -56,20 +63,16 @@ function RideSum(){
                 setstatusMsg(data.message)
                 setTimeout(() => {
                     console.log("2 seconds");
+                    navigate('/home#book-a-ride');
                 }, 2000);
-                navigate('/home#book-a-ride');
             }
             // navigate('/');
             // setRide(data.fareid)
           })
          
             socket.on("rideEnd",(event)=>{
-                    navigate("/review/"+event.fareid);
-    
+                navigate("/review/"+event.fareid);
             })
-        
-
-
     },[])
 
     useEffect(()=>{
@@ -148,7 +151,7 @@ function RideSum(){
                             </div>
                             <div>
                             {/* <button id="chatBut" onClick={navigate('ride-chat')}>Chat with Driver  <i class="fas fa-location-arrow"></i></button> */}
-                            <Link className="btn purple-btn" to='/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
+                            <Link target={"_blank"} className="btn purple-btn" to='/ride-chat'>Chat with Driver  <i class="fas fa-location-arrow"></i></Link>
                             </div>
                             {/* <p>Pickup Location: <b>Some Address</b></p>
                             <p>Destination Location: <b>Some Address</b></p>

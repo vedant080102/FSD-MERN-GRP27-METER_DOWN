@@ -72,7 +72,7 @@ function Home() {
                 setalertModal(true)
         }
         else {
-            console.log("all clear",pickupLoc, destinationLoc)
+            // console.log("all clear",pickupLoc, destinationLoc)
             navigate("/ride/get-estimate", { state: {
                 pickup: pickupLoc,
                 destination: destinationLoc,
@@ -100,6 +100,7 @@ function Home() {
                                 backgroundImage: `linear-gradient(#2b0a2ca6, #2b0a2ca6), url(${bgImg1})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
+                                backgroundColor: 'var(--purple)',
                             }}
                             />
                         </Background>
