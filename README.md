@@ -15,7 +15,9 @@
 ### TITLE: **METER DOWN**
 
 ### WEBSITE URL:
-https://meter-down.herokuapp.com/
+https://meter-down.herokuapp.com/ (The Heroku link is not functioning due to the termination of the free tier)
+
+front-end only: https://fsd-mern-grp-27-meter-down.vercel.app/
 
 <br>
 
